@@ -1,0 +1,25 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main  # or the branch you want to deploy from
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.HOSTINGER_SSH_KEY }}
+
+      - name: Upload files to Hostinger
+        run: |
+          rsync -avz --delete-after \
+          -e "ssh -o StrictHostKeyChecking=no" \
+          ./ u118130549@154.41.233.109:/home/u118130549/domains/wheels2deals.com/public_html
