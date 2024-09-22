@@ -16,7 +16,7 @@ jobs:
       - name: Setup SSH agent
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          ssh-private-key: ${{ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNwtAg5BSu3eVAoht8qxBnf8s9ksWGJTGPi3gKSv/wMHQWureYLWUWQQB3YeNdzuDHV30AAqTj45GTQU5qI1KfBhy1GpdI890xX2j/wD56GT2okqqBVZM6Jiz7NqZJKQQnJdThR5Hkmg5arkA009wCloQ9mWttqdCE9H8XaU4GDTRgdogsezol6vW1j4RXaMVISk13uxeFqO40K3pMQwWvSoyQFiLOGHuDZTlso4t0B1uN4Jrsm/uFOp/4k6gpOwnNq3WKGXrl0T6jOkvqtSY05cY1k8P/yQxbwj8SUOlknDMrel6bnjhhVdWrmg6W3lMfRXmyVb6xoU+K4XWyQzJfZQL8DDMw6wISEviNbUJCm5hWvQ1C/7cFBikUzbVLNQKRbJHgji5lPUi70w8LAsG7JKUoX+i9ZtsKBCPy2vsJgUpk9S0mjkzUvzgpzcJeiCO8gBZ5WO0EgHjayn9JEukk2GIfhjXTxKnczMfhipCAIRzLG2U6pn14/YFEeW76e2sJrCur3rjC3y5NXlv0/fLmdo5HQsXBUFs2Nf8Kwpe8Y6CIJI2PdOcqCGXK9CkGeDrwxG13Oj96/qSET6Mj2Cqz2bo1R/o+cnx2pqzClC6ern6/lW+iiZIlBayHheO6TImbADItUSB0tAYob758ayV2imNygeMJdsziEmTHP0a9Sw== kumail97416@gmail.com }}
 
       - name: Upload files to Hostinger
         run: |
