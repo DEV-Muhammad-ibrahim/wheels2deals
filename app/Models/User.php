@@ -32,7 +32,8 @@ class User extends Authenticatable
         'account_type',
         'user_can_add_products',
         'verified',
-        'verification_code',
+        'otp',
+        'otp_expires_at'
 
     ];
 
@@ -62,6 +63,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'verified' => 'boolean',
         ];
     }
 }

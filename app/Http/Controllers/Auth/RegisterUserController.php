@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\DynamicMailer;
 use App\Models\User;
-use Exception;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Validation\ValidationException;
+
+
 
 class RegisterUserController extends Controller
 {
@@ -33,47 +33,32 @@ class RegisterUserController extends Controller
             'password.regex' => 'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
         ]);
 
-        try {
-            $user = new User();
-            $user->name = $validatedData['name'];
-            $user->email = $validatedData['email'];
-            $user->password = Hash::make($validatedData['password']);
-            $user->save();
+        $otp = rand(100000, 999999);
+        $expiresAt = Carbon::now()->addMinutes(5);
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'otp' => $otp,
+            'otp_expires_at' => $expiresAt,
+            'is_verified' => false,
+        ]);
 
-            // Authenticate the user
-            Auth::login($user);
+        Mail::to($user->email)->send(new DynamicMailer(
+            'Your OTP for Account Verification',
+            'Thank you for registering. Please use this OTP to verify your account.',
+            $otp
+        ));
 
-
-            /// Sending Otp at users email
-
-            $id = auth()->user()->id;
-            $user = User::where('id', $id)->get();
-            $otp = rand(100000, 999999);
-            $expiresAt = now()->addMinutes(5);
-
-            $user->otp = $otp;
-            $user->otp_expires_at = $expiresAt;
-            $user->save();
+        // Store necessary information in session
+        session([
+            'user_id' => $user->id,
+            'otp' => $otp,
+            'otp_expires_at' => $expiresAt
+        ]);
 
 
 
-            $mailer = new DynamicMailer('Verify Your Email', 'Please verify your email address by entering the OTP below.', $otp);
-            Mail::to($user->email)->send($mailer);
-
-            //sending otp in view
-
-            $resendAvailable = $user->otp_expires_at && $user->otp_expires_at->gt(now()->addMinutes(-5));
-            $otpExpiresAt = $user->otp_expires_at;
-
-            return view('verify-otp', compact('resendAvailable', 'otpExpiresAt'));
-            // Redirect to the index route
-
-        } catch (Exception $e) {
-            // Log the error for debugging purposes
-            Log::error('Error registering user: ' . $e->getMessage());
-
-            // Return an error response
-            return response()->json(['error' => 'Something went wrong, unable to register user'], 500);
-        }
+        return redirect()->route('verify_otp_page')->with('success', 'Registration successful. Please verify your email.');
     }
 }

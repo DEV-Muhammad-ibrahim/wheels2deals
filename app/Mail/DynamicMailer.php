@@ -27,11 +27,7 @@ class DynamicMailer extends Mailable
         $this->otp = $otp;
     }
 
-    public function build()
-    {
-        return $this->subject($this->subject)
-            ->view('emails.dynamic');
-    }
+
 
     /**
      * Get the message envelope.
@@ -39,7 +35,7 @@ class DynamicMailer extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Dynamic Mailer',
+            subject: $this->subject,
         );
     }
 
@@ -49,7 +45,7 @@ class DynamicMailer extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.dynamic',
         );
     }
 

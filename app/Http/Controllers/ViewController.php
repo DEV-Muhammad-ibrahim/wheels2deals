@@ -279,9 +279,10 @@ class ViewController extends Controller
             return view('404');
         }
     }
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->flush();
 
         return redirect()->route('login');
     }

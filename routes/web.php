@@ -5,6 +5,7 @@
 use App\Http\Controllers\AdminViewController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginAllController;
+use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\Auth\RegisterVendorController;
 use App\Http\Controllers\Product\CreateProductController;
@@ -70,15 +71,20 @@ Route::prefix('admin')->group(function () {
 });
 
 
-
 Route::get('/register', [ViewController::class, 'register'])->name('register');
-Route::middleware('auth')->group(function () {
-    Route::get('/setting', [ViewController::class, 'setting'])->name('setting');
-    Route::get('/users', [AuthController::class, 'users']);
-    Route::post('/vendor', [RegisterVendorController::class, 'register'])->name('register_vendor');
-});
-Route::post('/login', [LoginAllController::class, 'login_all'])->name('login_all');
 
+/// Otp routes
+Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->name('verify_otp');
+Route::post('/resend-otp', [OtpController::class, 'resendOtp'])->name('resend-otp');
+Route::middleware('otp.verify')->group(function () {
+    Route::get('verify-otp', [OtpController::class, 'otp'])->name('verify_otp_page');
+});
+
+
+Route::get('/setting', [ViewController::class, 'setting'])->name('setting');
+Route::get('/users', [AuthController::class, 'users']);
+Route::post('/vendor', [RegisterVendorController::class, 'register'])->name('register_vendor');
+Route::post('/login', [LoginAllController::class, 'login_all'])->name('login_all');
 Route::post('/register', [RegisterUserController::class, 'register'])->name('register_user');
 Route::post('/create_ad', [CreateProductController::class, 'create_product'])->name('ad_create');
 Route::fallback(function () {
