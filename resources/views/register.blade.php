@@ -6,7 +6,7 @@
             <div class="auth-banner-overlay">
                 <div class="auth-content"><a class="auth-logo" href="index.html"><img
                             src="{{ asset('assets/images/logo.png') }}" alt="logo"></a>
-                    <h1 class="auth-headline">Login tgwsvxdyo</h1>
+                    <h1 class="auth-headline">Login tgdfgjturutwsvxdyo</h1>
                     <p class="auth-details">Elit Iusto dolore libero recusandae dolor dolores explicabo ullam cum
                         facilis aperiam alias odio quam excepturi molestiae omnis inventore. Repudiandae officia placeat
                         amet consectetur dicta dolorem quo.</p>
