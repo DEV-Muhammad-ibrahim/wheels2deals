@@ -18,7 +18,8 @@ class LoginAllController extends Controller
             'email' => 'email|required',
             'password' => 'required|min:8'
         ]);
-        if (Auth::attempt($credentials)) {
+        $remember = $request->has('remember');
+        if (Auth::attempt($credentials, $remember)) {
 
             $user = Auth::user();
             if (!$user->verified) {

@@ -47,13 +47,28 @@
                 @enderror
                 <div class="form-group-content">
                     <div class="form-check mb-0">
-                        <input class="form-check-input" type="checkbox" id="checkAgree"><label class="form-check-label"
-                            for="checkAgree">Remember me.</label>
+                        <input class="form-check-input" type="checkbox" name="remember" id="checkAgree" value="1">
+                        <label class="form-check-label" for="checkAgree">Remember me.</label>
                     </div><a class="auth-forgot" href="forgot-password.html">forgot password?</a>
                 </div>
                 <button type="submit" class="form-btn">login</button>
                 <div class="auth-form-or"><span>or</span></div>
-
+                <ul class="auth-form-continue">
+                    {{-- <li>
+                        <a class="facebook" href="#">
+                            <i class="icofont-facebook"></i>
+                            <span>Continue with
+                                Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="instagram" href="#">
+                            <i class="icofont-instagram"></i>
+                            <span>Continue with
+                                Instagram</span>
+                        </a>
+                    </li> --}}
+                </ul>
                 <p class="auth-form-text">Don't have any account? <a href="{{ Route('register') }}">Register here</a>
                 </p>
             </div>
