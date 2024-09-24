@@ -8,10 +8,8 @@
             <div class="auth-banner-overlay">
                 <div class="auth-content"><a class="auth-logo" href="index.html"><img
                             src="{{ asset('assets/images/logo.png') }}" alt="logo"></a>
-                    <h1 class="auth-headline">Lorem ipsum dolor sit amet consectetur adipisicing</h1>
-                    <p class="auth-details">Elit Iusto dolore libero recusandae dolor dolores explicabo ullam cum
-                        facilis aperiam alias odio quam excepturi molestiae omnis inventore. Repudiandae officia placeat
-                        amet consectetur dicta dolorem quo.</p>
+                    <h1 class="auth-headline">Verify Your Account</h1>
+
                     <div class="auth-social">
                         <h5>follow on</h5>
                         <ul>
@@ -41,7 +39,7 @@
                     </div>
                 @endif
                 <div class="form-group">
-                    <input type="number" class="form-control" placeholder="Otp" name="otp">
+                    <input type="number" class="form-control" placeholder="Otp" name="otp" required>
                 </div>
                 @error('otp')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -58,7 +56,7 @@
                 </div>
                 <div id="countdown"></div>
                 <div id="resend-message" class="mt-2"></div>
-                <div name="csrf">@csrf</div>
+
             </div>
         </form>
     </section>
@@ -77,7 +75,7 @@
             console.log('Resend message element:', resendMessage);
 
             let countdownTimer;
-            let remainingTime = 300; // 5 minutes in seconds
+            let remainingTime = 10; // 5 minutes in seconds
 
             function updateCountdown() {
                 const minutes = Math.floor(remainingTime / 60);
@@ -94,7 +92,7 @@
             }
 
             function startCountdown() {
-                remainingTime = 300;
+                remainingTime = 10;
                 resendButton.disabled = true;
                 clearInterval(countdownTimer);
                 countdownTimer = setInterval(updateCountdown, 1000);

@@ -31,15 +31,11 @@
 
             <div class="auth-form-content">
                 <h3 class="auth-form-title">Register a new account.</h3>
-                {{-- @if ($errors->any())
+                @if (session('error'))
                     <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                        {{ session('error') }}
                     </div>
-                @endif --}}
+                @endif
                 <div class="form-group">
                     <input type="text" class="form-control" required placeholder="enter full name" name="name"
                         value="{{ old('name') }}">
@@ -66,8 +62,9 @@
                         name="confirmed">
                 </div> --}}
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="checkAgree"><label class="form-check-label"
-                        for="checkAgree">I agree to the <a href="#">Terms </a> and <a href="#">Privacy
+                    <input class="form-check-input" type="checkbox" id="checkAgree" name="terms"><label
+                        class="form-check-label" for="checkAgree">I agree to the <a href="#">Terms </a> and <a
+                            href="#">Privacy
                             Policy</a>.</label>
                 </div>
 

@@ -24,6 +24,7 @@ class OtpController extends Controller
                 'verified' => true,
                 'otp' => null,
                 'otp_expires_at' => null,
+                'email_verified_at' => Carbon::now()
             ]);
 
             Auth::login($user);

@@ -16,7 +16,7 @@ class LoginAllController extends Controller
     {
         $credentials =  $request->validate([
             'email' => 'email|required',
-            'password' => 'required|min:8'
+            'password' => 'required'
         ]);
         $remember = $request->has('remember');
         if (Auth::attempt($credentials, $remember)) {
@@ -54,9 +54,9 @@ class LoginAllController extends Controller
     {
         $otp = rand(1000000, 999999);
         Mail::to($user->email)->send(new DynamicMailer(
-            $otp,
             'Account Verification',
-            'Please use this OTP to verify your account.'
+            'Please use this OTP to verify your account.',
+            $otp,
         ));
         return $otp;
     }
