@@ -14,7 +14,7 @@ class ApproveVenderChangeRoleController extends Controller
             //code...
             $id = $request->id;
             $user = User::where('id', $id)->get();
-            $user->role = 'vendor';
+            $user->user_can_add_products = true;
             $savedUser = $user->save();
             if ($savedUser) {
                 return redirect()->back()->with('message', 'User Can is now vendor and add products');

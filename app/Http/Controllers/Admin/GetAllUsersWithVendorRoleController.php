@@ -10,6 +10,6 @@ class GetAllUsersWithVendorRoleController extends Controller
 {
     public function getUsers()
     {
-        $users = User::where('role', 'user')->get();
+        $users = User::where('role', 'vendor')->get();
     }
 }

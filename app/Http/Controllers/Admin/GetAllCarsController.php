@@ -10,6 +10,6 @@ class GetAllCarsController extends Controller
 {
     public function getCars()
     {
-        $cars = Product::where('status', 'active')->where('type', 'cars')->get();
+        $cars = Product::where('type', 'cars')->get();
     }
 }
