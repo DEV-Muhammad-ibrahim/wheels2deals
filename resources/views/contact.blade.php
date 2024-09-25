@@ -6,13 +6,13 @@
     @include('layouts.navbar')
     @include('layouts.widget')
     <section class="section-gap-100">
-        <div style="background: url(../images/banner/single/01.jpg) no-repeat center / cover;">
+        <div style="background: url({{ asset('assets/images/banner/single/01.jpg') }}) no-repeat center / cover;">
             <div class="single-banner">
                 <div class="container">
                     <h2>contact us</h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">contact</li>
+                        <li class="breadcrumb-item active ml-3" aria-current="page">contact</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,9 @@
             <div class="row content-reverse">
                 <div class="col-lg-6">
                     <div class="contact-map"><iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.3406974350205!2d90.48469931445422!3d23.663771197998262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b0d5983f048d%3A0x754f30c82bcad3cd!2sJalkuri%20Bus%20Stop!5e0!3m2!1sen!2sbd!4v1605354966349!5m2!1sen!2sbd"></iframe>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1861056.6117736322!2d52.62933082298113!3d24.350804941418325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e48dfb1ab12bd%3A0x33d32f56c0080aa7!2sUnited%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1727177976982!5m2!1sen!2s"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div class="col-lg-6">

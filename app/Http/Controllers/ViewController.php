@@ -148,7 +148,7 @@ class ViewController extends Controller
             return view('404');
         }
     }
-    public function inventory_list()
+    public function cars()
     {
         $view = 'inventory_list';
         if (view()->exists($view)) {

@@ -6,15 +6,14 @@
                     <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" /></a>
                     <ul>
                         <li>
-                            <i
-                                class="material-icons">description</i><span>info@example.com<br />carrer@example.com</span>
+                            <i class="material-icons"></i><span>info@wheels2deals.com<br />carrer@wheels2deals.com</span>
                         </li>
                         <li>
-                            <i class="material-icons">perm_phone_msg</i><span>+91 987-654-3210<br />+91
+                            <i class="material-icons"></i><span>+91 987-654-3210<br />+91
                                 987-654-5466</span>
                         </li>
                         <li>
-                            <i class="material-icons">map</i><span>1Hd- 50, 010 Avenue, <br />NY 90001 United
+                            <i class="material-icons"></i><span>1Hd- 50, 010 Avenue, <br />NY 90001 United
                                 States</span>
                         </li>
                     </ul>

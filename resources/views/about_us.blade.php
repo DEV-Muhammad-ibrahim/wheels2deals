@@ -6,13 +6,14 @@
     @include('layouts.navbar')
     @include('layouts.widget')
     <section class="section-gap-100">
-        <div style="background: url(../images/banner/single/01.jpg) no-repeat center / cover;">
+        <div style="background: url({{ asset('assets/images/banner/single/01.jpg') }}) no-repeat center / cover;">
             <div class="single-banner">
                 <div class="container">
                     <h2>about our company</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">about-us</li>
+                        <li class="breadcrumb-item"><a href="{{ Route('index') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('about') }}">about-us</a>
+                        </li>
                     </ol>
                 </div>
             </div>
@@ -22,14 +23,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-xl-6">
-                    <div class="about-media"><img src="../images/bg/video.jpg" alt="video">
+                    {{-- <div class="about-media"><img src="../images/bg/video.jpg" alt="video">
                         <div class="about-overlay"><a href="https://youtu.be/TboWOSW7qCI" class="venobox material-icons"
                                 data-autoplay="true" data-vbtype="video">play_arrow</a></div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-6 col-xl-6">
                     <div class="about-content">
-                        <h3>Ghurnek has been standing on the trust of customers for the last 10 years</h3>
+                        <h3>Wheels2Deals has been standing on the trust of customers for the last 10 years</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, eligendi consectetur
                             laboriosam qui optio illo provident impedit, vero nisi commodi delectus pariatur eum
                             mollitia excepturi temporibus aspernatur, repudiandae animi. Quaerat sit rem doloremque
@@ -125,7 +126,8 @@
             <div class="row review-slider slider-arrow">
                 <div class="col">
                     <div class="review-wrap">
-                        <div class="review-wrap-image"><img src="../images/review/01.jpg" alt="review"></div>
+                        <div class="review-wrap-image"><img src="{{ asset('assets/images/review/01.jpg') }}"
+                                alt="review"></div>
                         <div class="review-wrap-content">
                             <div class="review-wrap-meta">
                                 <div class="review-wrap-video"><a href="#" class="material-icons">play_arrow</a><i
@@ -169,21 +171,22 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="section-center">
-                        <h2>Some of our experienced people in Ghurnek management</h2>
+                        <h2>Some of our experienced people in Wheels2deals management</h2>
                     </div>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4">
                 <div class="col">
                     <div class="team-card">
-                        <figure class="team-media"><img src="../images/team/01.jpg" alt="team">
+                        <figure class="team-media"><img src="{{ asset('assets/images/team/04.jpg') }}"
+                                alt="team">
                             <div class="team-overlay"><a href="#" class="icofont-facebook facebook"></a><a
                                     href="#" class="icofont-twitter twitter"></a><a href="#"
                                     class="icofont-linkedin linkedin"></a></div>
                         </figure>
                         <div class="team-meta">
-                            <h4><a href="#">managment name</a></h4>
-                            <p>designation</p>
+                            <h4><a href="#">Muhammad Ibrahim</a></h4>
+                            <p>Website Developer</p>
                         </div>
                     </div>
                 </div>
@@ -285,12 +288,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="intro-card" style="background: url(../images/bg/intro.jpg) no-repeat center / cover;">
+                    <div class="intro-card"
+                        style="background: url({{ asset('assets/images/bg/intro.jpg') }}) no-repeat center / cover;">
                         <div class="intro-overlay">
                             <div class="intro-content">
                                 <h3>Want to sell your car quickly?</h3>
                                 <p>Lorem ipsum dolor amet consectetur libero accusantium minima</p>
-                            </div><a href="create-ads.html" class="btn btn-inline"><i
+                            </div><a href="{{ Route('create_ads') }}" class="btn btn-inline"><i
                                     class="material-icons">storefront</i><span>sell vehicless</span></a>
                         </div>
                     </div>

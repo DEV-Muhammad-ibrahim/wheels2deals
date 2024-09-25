@@ -6,13 +6,13 @@
     @include('layouts.navbar')
     @include('layouts.widget')
     <section class="section-gap-100">
-        <div style="background: url(../images/banner/single/01.jpg) no-repeat center / cover;">
+        <div style="background: url({{ asset('assets/images/banner/single/01.jpg') }}) no-repeat center / cover;">
             <div class="single-banner">
                 <div class="container">
                     <h2>Inventory List View</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">inventory-list</li>
+                        <li class="breadcrumb-item"><a href="{{ Route('index') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="{{ Route('cars') }}">Cars</a></li>
                     </ol>
                 </div>
             </div>

@@ -267,9 +267,11 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="vendor-grid-card"><a class="vendor-grid-cover" href="profile.html"><img
-                                        src="../images/bg/cover.jpg" alt="cover"></a><a class="vendor-grid-avatar"
-                                    href="profile.html"><img src="../images/avatar/03.jpg" alt="avatar"></a>
+                            <div class="vendor-grid-card">
+                                <a class="vendor-grid-cover" href="profile.html">
+                                    <img src="{{ asset('assets/images/bg/cover.jpg') }}" alt="cover"></a><a
+                                    class="vendor-grid-avatar" href="profile.html">
+                                    <img src="{{ asset('assets/images/avatar/03.jpg') }}" alt="avatar"></a>
                                 <ul class="vendor-grid-meta">
                                     <li class="profile"><i class="material-icons">account_circle</i><a
                                             href="profile.html">person name</a></li>

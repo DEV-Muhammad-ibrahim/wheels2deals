@@ -6,7 +6,7 @@
     @include('layouts.navbar')
     @include('layouts.widget')
     <section class="section-gap-100">
-        <div style="background: url(../images/banner/single/01.jpg) no-repeat center / cover;">
+        <div style="background: url({{ asset('assets/images/banner/single/01.jpg') }}) no-repeat center / cover;">
             <div class="single-banner">
                 <div class="container">
                     <h2>vendor list page</h2>
@@ -195,9 +195,13 @@
                     </div>
                     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 row-cols-xl-1">
                         <div class="col">
-                            <div class="vendor-list-card"><a class="vendor-list-cover" href="profile.html"><img
-                                        src="../images/bg/cover.jpg" alt="cover"></a><a class="vendor-list-avatar"
-                                    href="profile.html"><img src="../images/avatar/01.jpg" alt="avatar"></a>
+                            <div class="vendor-list-card">
+                                <a class="vendor-list-cover" href="profile.html">
+                                    <img src="{{ asset('assets/images/bg/cover.jpg') }}" alt="cover">
+                                </a>
+                                <a class="vendor-list-avatar" href="profile.html"><img
+                                        src="{{ asset('assets/images/avatar/01.jpg') }}" alt="avatar">
+                                </a>
                                 <div class="vendor-list-group">
                                     <ul class="vendor-list-meta">
                                         <li><i class="pro material-icons">account_circle</i><a

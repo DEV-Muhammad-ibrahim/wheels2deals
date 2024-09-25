@@ -16,15 +16,14 @@
                     <div class="banner-content">
                         <h1>best place to sell and buy a car</h1>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Molestiae unde, eos porro ipsa ullam aliquid aspernatur
-                            reiciendis totam facilis quibusdam explicabo maiores consectetur
-                            ex architecto recusandae
+                            Welcome to Wheels2Deals, your one-stop destination for buying and selling cars with ease and
+                            confidence! Whether you're looking to purchase your dream car or sell your vehicle quickly,
+                            we’ve got you covered.
                         </p>
                         <ul>
                             <li>
                                 <i class="material-icons">email</i><span><small>contact
-                                        email</small>info@example.com</span>
+                                        email</small>info@wheels2deals.com</span>
                             </li>
                             <li>
                                 <i class="material-icons">phone</i><span><small>contact number</small>934 7273
@@ -47,15 +46,14 @@
                     <div class="banner-content">
                         <h1>best place to sell and buy a car</h1>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Molestiae unde, eos porro ipsa ullam aliquid aspernatur
-                            reiciendis totam facilis quibusdam explicabo maiores consectetur
-                            ex architecto recusandae
+                            Welcome to Wheels2Deals, your one-stop destination for buying and selling cars with ease and
+                            confidence! Whether you're looking to purchase your dream car or sell your vehicle quickly,
+                            we’ve got you covered.
                         </p>
                         <ul>
                             <li>
                                 <i class="material-icons">email</i><span><small>contact
-                                        email</small>info@example.com</span>
+                                        email</small>info@wheels2deals.com</span>
                             </li>
                             <li>
                                 <i class="material-icons">phone</i><span><small>contact number</small>934 7273
@@ -78,15 +76,14 @@
                     <div class="banner-content">
                         <h1>best place to sell and buy a car</h1>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Molestiae unde, eos porro ipsa ullam aliquid aspernatur
-                            reiciendis totam facilis quibusdam explicabo maiores consectetur
-                            ex architecto recusandae
+                            Welcome to Wheels2Deals, your one-stop destination for buying and selling cars with ease and
+                            confidence! Whether you're looking to purchase your dream car or sell your vehicle quickly,
+                            we’ve got you covered.
                         </p>
                         <ul>
                             <li>
                                 <i class="material-icons">email</i><span><small>contact
-                                        email</small>info@example.com</span>
+                                        email</small>info@wheels2deals.com</span>
                             </li>
                             <li>
                                 <i class="material-icons">phone</i><span><small>contact number</small>934 7273
@@ -107,7 +104,7 @@
                     <div class="section-head">
                         <div class="section-text">
                             <h2>find top categories</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+
                         </div>
                         <a href="inventory-list.html" class="btn btn-inline"><i
                                 class="material-icons">travel_explore</i><span>browse all</span></a>
@@ -174,7 +171,7 @@
                     <div class="section-head">
                         <div class="section-text">
                             <h2>recent add vehicles</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+
                         </div>
                         <a href="inventory-list.html" class="btn btn-inline"><i
                                 class="material-icons">travel_explore</i><span>browse all</span></a>

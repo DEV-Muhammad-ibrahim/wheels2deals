@@ -64,8 +64,8 @@
                                         class="material-icons">remove</i><span>inventory grid</span></a>
                             </li>
                             <li class="drop-item">
-                                <a href="{{ Route('inventory_list') }}" class="drop-link"><i
-                                        class="material-icons">remove</i><span>inventory list</span></a>
+                                <a href="{{ Route('cars') }}" class="drop-link"><i
+                                        class="material-icons">remove</i><span>Cars</span></a>
                             </li>
                             <li class="drop-item">
                                 <a href="{{ Route('inventory_single') }}" class="drop-link"><i
@@ -86,7 +86,7 @@
                                         class="material-icons">remove</i><span>vendor list</span></a>
                             </li>
                             <li class="drop-item">
-                                <a href="{{ Route('inventory_list') }}" class="drop-link"><i
+                                <a href="{{ Route('cars') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>vendor single</span></a>
                             </li>
                         </ul>
