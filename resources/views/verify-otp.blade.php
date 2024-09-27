@@ -55,8 +55,8 @@
                     </button>
                 </div>
                 <div id="countdown"></div>
-                <div id="resend-message" class="mt-2"></div>
-
+                <div id="resend-message" class="mt-2 alert alert-danger"></div>
+                z
             </div>
         </form>
     </section>
@@ -75,7 +75,7 @@
             console.log('Resend message element:', resendMessage);
 
             let countdownTimer;
-            let remainingTime = 10; // 5 minutes in seconds
+            let remainingTime = 300; // 5 minutes in seconds
 
             function updateCountdown() {
                 const minutes = Math.floor(remainingTime / 60);
@@ -92,7 +92,7 @@
             }
 
             function startCountdown() {
-                remainingTime = 10;
+                remainingTime = 300;
                 resendButton.disabled = true;
                 clearInterval(countdownTimer);
                 countdownTimer = setInterval(updateCountdown, 1000);
@@ -105,6 +105,7 @@
                 console.log('Resend button clicked');
                 resendButton.disabled = true;
                 resendMessage.textContent = 'Sending...';
+
 
                 fetch('{{ route('resend-otp') }}', {
                         method: 'POST',

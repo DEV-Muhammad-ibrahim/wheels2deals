@@ -41,9 +41,12 @@
                 <ul class="sub-menu-group">
                     <li><a href="{{ Route('car_list') }}"><span>Car List</span></a></li>
                     <li><a href="{{ Route('car_details') }}"><span>Car Details</span></a></li>
+                    <li><a href="{{ Route('categories') }}"><span>Categories</span></a></li>
+                    <li><a href="{{ Route('add_category') }}"><span>Add Category</span></a></li>
                     <li><a href="{{ Route('car_approval') }}"><span>Approvals</span></a></li>
-                    <li><a href="{{ Route('car_approval_details') }}"><span>Approval
-                                Details</span></a></li>
+                    <li><a href="{{ Route('car_approval_details') }}">
+                            <span>Approval Details</span>
+                        </a></li>
                 </ul>
             </li>
             <li class="sub-menu">

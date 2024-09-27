@@ -6,7 +6,7 @@
                     <div class="col-lg-7 col-xl-8">
                         <div class="user-banner-profile">
                             <div class="user-banner-profile-avatar"><a href="profile.html"><img
-                                        src="{{ asset('assets/images/avatar/01.jpg') }}" alt="avatar"></a></div>
+                                        src="{{ asset('assets/images/user.png') }}" alt="avatar"></a></div>
                             <div class="user-banner-profile-meta">
                                 <div class="user-banner-profile-name">
                                     <h3><a href="profile.html">person name</a></h3><span>individual</span>
@@ -38,16 +38,26 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <ul class="user-banner-menu-list">
-                            <li><a href="{{ Route('dashboard') }}" class="active">dashboard</a></li>
-                            <li><a href="{{ Route('profile') }}">profile</a></li>
-                            <li><a href="{{ Route('create_ads') }}">create ads</a></li>
-                            <li><a href="{{ Route('posted_ads') }}">posted ads</a></li>
-                            <li><a href="{{ Route('favourite') }}">favorites</a></li>
-                            <li><a href="{{ Route('compare') }}">compares</a></li>
-                            <li><a href="{{ Route('review') }}">reviews</a></li>
-                            <li><a href="{{ Route('notify') }}">notify</a></li>
-                            <li><a href="{{ Route('setting') }}">settings</a></li>
-                            <li><a href="{{ Route('logout') }}">logout</a></li>
+                            <li><a href="{{ Route('dashboard') }}"
+                                    class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">dashboard</a></li>
+                            <li><a href="{{ Route('profile') }}"
+                                    class="{{ request()->routeIs('profile') ? 'active' : '' }}">profile</a></li>
+                            <li><a href="{{ Route('create_ads') }}"
+                                    class="{{ request()->routeIs('create_ads') ? 'active' : '' }}">create ads</a></li>
+                            <li><a href="{{ Route('posted_ads') }}"
+                                    class="{{ request()->routeIs('posted_ads') ? 'active' : '' }}">posted ads</a></li>
+                            {{-- <li><a href="{{ Route('favourite') }}"
+                                    class="{{ request()->routeIs('favourite') ? 'active' : '' }}">favorites</a></li>
+                            <li><a href="{{ Route('compare') }}"
+                                    class="{{ request()->routeIs('compare') ? 'active' : '' }}">compares</a></li>
+                            <li><a href="{{ Route('review') }}"
+                                    class="{{ request()->routeIs('review') ? 'active' : '' }}">reviews</a></li>
+                            <li><a href="{{ Route('notify') }}"
+                                    class="{{ request()->routeIs('notify') ? 'active' : '' }}">notify</a></li> --}}
+                            <li><a href="{{ Route('setting') }}"
+                                    class="{{ request()->routeIs('setting') ? 'active' : '' }}">settings</a></li>
+                            <li><a href="{{ Route('logout') }}"
+                                    class="{{ request()->routeIs('logout') ? 'active' : '' }}">logout</a></li>
                         </ul>
                     </div>
                 </div>

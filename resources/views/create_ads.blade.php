@@ -56,7 +56,7 @@
                                             <span>*</span></label><input type="text" class="form-control"></div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">
-                                    <div class="form-group"><label class="form-label">Registerarion Plate Number
+                                    <div class="form-group"><label class="form-label">Registeration Plate Number
                                             <span>*</span></label><input type="text" class="form-control"></div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-6">

@@ -30,7 +30,7 @@
                                     2392</span>
                             </li>
                         </ul>
-                        <a href="inventory-list.html" class="btn btn-inline"><i
+                        <a href="{{ Route('cars') }}" class="btn btn-inline"><i
                                 class="material-icons">visibility</i><span>show listing</span></a>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                     2392</span>
                             </li>
                         </ul>
-                        <a href="inventory-list.html" class="btn btn-inline"><i
+                        <a href="{{ Route('cars') }}" class="btn btn-inline"><i
                                 class="material-icons">visibility</i><span>show listing</span></a>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                                     2392</span>
                             </li>
                         </ul>
-                        <a href="inventory-list.html" class="btn btn-inline"><i
+                        <a href="{{ Route('cars') }}" class="btn btn-inline"><i
                                 class="material-icons">visibility</i><span>show listing</span></a>
                     </div>
                 </div>
@@ -3386,7 +3386,7 @@
             </div>
         </div>
     </section>
-    <section class="section-gap-95">
+    {{-- <section class="section-gap-95">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -3483,7 +3483,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <section class="section-gap-120">
         <div class="container">
             <div class="row">
@@ -3491,21 +3491,21 @@
                     <div class="section-head">
                         <div class="section-text">
                             <h2>how we best for you</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+
                         </div>
-                        <a href="about-us.html" class="btn btn-inline"><i
-                                class="material-icons">details</i><span>more details</span></a>
+                        <a href="{{ Route('about') }}" class="btn btn-inline"><i
+                                class="material-icons"></i><span>more details</span></a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-xl-6">
                     <div class="about-media">
-                        <img src="../images/bg/video.jpg" alt="video" />
-                        <div class="about-overlay">
+                        <img src="{{ asset('assets/images/bg/video.jpg') }}" alt="video" />
+                        {{-- <div class="about-overlay">
                             <a href="https://youtu.be/TboWOSW7qCI" class="venobox material-icons"
                                 data-autoplay="true" data-vbtype="video">play_arrow</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-6 col-xl-6">
@@ -3566,7 +3566,7 @@
         </div>
     </section>
 
-    <section class="section-gap-120 review-part">
+    {{-- <section class="section-gap-120 review-part">
         <div class="container">
             <div class="row review-slider slider-arrow">
                 <div class="col">
@@ -3623,7 +3623,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
     @include('layouts.footer')

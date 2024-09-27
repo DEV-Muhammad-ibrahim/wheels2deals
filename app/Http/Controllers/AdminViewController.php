@@ -62,4 +62,12 @@ class AdminViewController extends Controller
     {
         return view('admin.admin-users');
     }
+    public function categories()
+    {
+        return view('admin.admin-categories');
+    }
+    public function add_categories()
+    {
+        return view('admin.admin-add-category');
+    }
 }

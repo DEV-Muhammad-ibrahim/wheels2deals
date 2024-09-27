@@ -36,7 +36,9 @@ class CreateProductController extends Controller
             $user = auth()->user();
 
             // Check if user can add products and has the right role
-            if ($user->can_add_products && ($user->role === 'admin' || $user->role === 'vendor')) {
+            if ($user->can_add_products && ($user->role === 'admin' || 'vendor' || $user->role === 'vendor')) {
+
+                $query = Product::query();
 
                 // Create the product
                 $product = new Product();
@@ -45,6 +47,8 @@ class CreateProductController extends Controller
                 $product->company = $validatedData['company'];
                 $product->price = $validatedData['price'];
                 $product->user_id = $user->id;
+
+
 
                 if ($product->save()) {
                     // Get current date to create the folder for today
@@ -63,6 +67,7 @@ class CreateProductController extends Controller
                             ]);
                         }
                     }
+
 
                     return response()->json(['message' => 'Product added successfully', 'product' => $product], 200);
                 } else {

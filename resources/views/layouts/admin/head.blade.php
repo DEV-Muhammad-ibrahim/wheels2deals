@@ -22,6 +22,46 @@
 
     <!-- Global CSS -->
     <link href="{{ asset('adminAssets/css/style.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            /* Primary color */
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .file-upload-label:hover {
+            background-color: #0056b3;
+            /* Darker shade for hover effect */
+        }
+
+        .file-upload-icon {
+            margin-right: 10px;
+        }
+
+        .file-upload-input {
+            display: none;
+            /* Hide the default file input */
+        }
+
+        .file-name-display {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+            /* Text color for the filename */
+        }
+    </style>
 
     <!-- Light-Dark Mode & Theme Direction Selector -->
     <script src="{{ asset('adminAssets/js/theme.js') }} crossorigin=" anonymous"></script>

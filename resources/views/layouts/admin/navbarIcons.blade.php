@@ -533,8 +533,8 @@
                     </div>
                 </a>
                 <hr class="opacity-20 border-dashed">
-                <a class="btn btn-primary btn-soft btn-sm d-block" href="#" role="button">Read All
-                    Notifications</a>
+                <a class="btn btn-primary btn-soft btn-sm d-block" href="#" role="button">Read
+                    All Notifications</a>
             </div>
             <!-- ***** Content End ***** -->
         </div>
