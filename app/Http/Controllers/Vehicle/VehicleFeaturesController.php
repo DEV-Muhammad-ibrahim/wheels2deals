@@ -34,18 +34,14 @@ class VehicleFeaturesController extends Controller
         }
         return redirect()->back()->with('error', "Something went wrong");
     }
-    public function update(Request $request)
+    public function show()
     {
-        $request->validate(
-            [
-                'id' => 'required',
-                'name' => 'required|max:255|unique:features'
-            ]
-        );
-        $feature = Feature::where('id', $request->id)->update(['name' => $request->name]);
-        if ($feature) {
-            return redirect()->back()->with('success', 'Feature Updated');
-        }
-        return redirect()->back()->with('error', 'Cannot Update Feature');
+        $feature = Feature::all();
+
+        return view('admin.admin-feature', compact('feature'));
+    }
+    public function add_feature()
+    {
+        return view('admin.admin-add-feature');
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\Auth\RegisterVendorController;
 use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Vehicle\VehicleCategoryController;
+use App\Http\Controllers\Vehicle\VehicleFeaturesController;
 use App\Http\Controllers\ViewController;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\Route;
@@ -73,12 +74,18 @@ Route::prefix('admin')->group(function () {
     Route::get('/new-password', [AdminViewController::class, 'new_password'])->name('admin_new_password');
     Route::get('/settings', [AdminViewController::class, 'settings'])->name('admin_settings');
     Route::get('/users', [AdminViewController::class, 'all_users'])->name('all_users');
+    //Categories Routes
     Route::get('/categories', [VehicleCategoryController::class, 'read'])->name('categories');
     Route::get('/add_category', [AdminViewController::class, 'add_categories'])->name('add_category');
     Route::post('/add_category', [VehicleCategoryController::class, 'create'])->name('create_category');
     Route::get('/category/{id}/edit', [VehicleCategoryController::class, 'show'])->name('edit_category');
     Route::post('/category/{id}/edit', [VehicleCategoryController::class, 'update'])->name('category_edit');
     Route::post('/category/{id}/delete', [VehicleCategoryController::class, 'destroy'])->name('delete_category');
+    //Features Routes
+    Route::get('/features', [VehicleFeaturesController::class, 'show'])->name('features');
+    Route::post('/feature/{id}/delete', [VehicleFeaturesController::class, 'delete'])->name('delete_feature');
+    Route::get('/add_feature', [VehicleFeaturesController::class, 'add_feature'])->name('add_feature');
+    Route::post('/add_feature', [VehicleFeaturesController::class, 'create'])->name('create_feature');
 });
 
 
