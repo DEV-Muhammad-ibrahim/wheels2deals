@@ -15,7 +15,7 @@ class Vehicle extends Model
         'doi', // Date of Issue
         'doe', // Date of Expiry
         'category',
-        'make',
+        'company',
         'fuel',
         'year',
         'color',

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('doi');
             $table->string('doe');
             $table->string('category');
-            $table->string('make');
+            $table->string('company');
             $table->string('fuel');
             $table->string('year');
             $table->string('color');

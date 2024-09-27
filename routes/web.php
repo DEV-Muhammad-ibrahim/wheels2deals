@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\Auth\RegisterVendorController;
 use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Vehicle\VehicleCategoryController;
+use App\Http\Controllers\Vehicle\VehicleCompanyController;
 use App\Http\Controllers\Vehicle\VehicleFeaturesController;
 use App\Http\Controllers\ViewController;
 use App\Models\Vehicle;
@@ -86,6 +87,13 @@ Route::prefix('admin')->group(function () {
     Route::post('/feature/{id}/delete', [VehicleFeaturesController::class, 'delete'])->name('delete_feature');
     Route::get('/add_feature', [VehicleFeaturesController::class, 'add_feature'])->name('add_feature');
     Route::post('/add_feature', [VehicleFeaturesController::class, 'create'])->name('create_feature');
+    // Company Routes
+    Route::get('/company', [VehicleCompanyController::class, 'read'])->name('company');
+    Route::get('/add_company', [VehicleCompanyController::class, 'add_company'])->name('add_company');
+    Route::post('/add_company', [VehicleCompanyController::class, 'create'])->name('create_company');
+    Route::get('/company/{id}/edit', [VehicleCompanyController::class, 'show'])->name('edit_company');
+    Route::post('/company/{id}/edit', [VehicleCompanyController::class, 'update'])->name('company_edit');
+    Route::post('/company/{id}/delete', [VehicleCompanyController::class, 'destroy'])->name('delete_company');
 });
 
 

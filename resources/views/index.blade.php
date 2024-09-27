@@ -3305,7 +3305,7 @@
                     <div class="section-head">
                         <div class="section-text">
                             <h2>browse by top brands</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+
                         </div>
                         <a href="inventory-list.html" class="btn btn-inline"><i
                                 class="material-icons">travel_explore</i><span>browse all</span></a>
@@ -3314,8 +3314,8 @@
             </div>
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
                 <div class="col">
-                    <a class="brand-card" href="inventory-list.html"><img src="../images/brand/01.png"
-                            alt="brand" />
+                    <a class="brand-card" href="inventory-list.html"><img
+                            src="{{ asset('assets/images/brand/01.png') }}" alt="brand" />
                         <h6>tesla</h6>
                         <p>(24) vehicles</p>
                     </a>
