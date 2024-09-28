@@ -12,7 +12,7 @@
     <div class="sidebar-menu custom-scroll pt-4">
         <!-- ***** Dashboards Menu Start ***** -->
         <ul class="menu-group m-0 px-4 mb-4">
-            <li class="sub-menu active">
+            <li class="sub-menu {{ request()->routeIs('admin_dashboard') ? 'active' : '' }}">
                 <a href="{{ Route('admin_dashboard') }}" class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <i data-feather="home" stroke-width="1.5" height="20" class="me2"></i>
@@ -26,11 +26,10 @@
         <!-- ***** Dashboards Menu End ***** -->
 
         <!-- ***** Projects Menu Start ***** -->
-        <div class="menu-title mb-2">
-            <small>PROJECTS</small>
-        </div>
+
         <ul class="menu-group m-0 px-4 mb-4">
-            <li class="sub-menu">
+            <li
+                class="sub-menu {{ request()->routeIs(['car_list', 'car_details', 'categories', 'add_category', 'features', 'add_feature', 'company', 'add_company', 'car_approval', 'car_approval_details', 'add_car']) ? 'active' : '' }} ">
                 <a href="javascript:;" class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <i data-feather="monitor" stroke-width="1.5" height="18" class="me2"></i>
@@ -39,18 +38,61 @@
                     <i class="arrow" data-feather="chevron-right" height="14"></i>
                 </a>
                 <ul class="sub-menu-group">
-                    <li><a href="{{ Route('car_list') }}"><span>Car List</span></a></li>
-                    <li><a href="{{ Route('car_details') }}"><span>Car Details</span></a></li>
-                    <li><a href="{{ Route('categories') }}"><span>Categories</span></a></li>
-                    <li><a href="{{ Route('add_category') }}"><span>Add Category</span></a></li>
-                    <li><a href="{{ Route('features') }}"><span>Feature</span></a></li>
-                    <li><a href="{{ Route('add_feature') }}"><span>Add Feature</span></a></li>
-                    <li><a href="{{ Route('company') }}"><span>Company</span></a></li>
-                    <li><a href="{{ Route('add_company') }}"><span>Add Company</span></a></li>
-                    <li><a href="{{ Route('car_approval') }}"><span>Approvals</span></a></li>
-                    <li><a href="{{ Route('car_approval_details') }}">
+                    <li class="{{ request()->routeIs('car_list') ? 'active' : '' }}">
+                        <a href="{{ Route('car_list') }}">
+                            <span>Car List</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('add_car') ? 'active' : '' }}">
+                        <a href="{{ Route('add_car') }}">
+                            <span>Add Car</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('car_details') ? 'active' : '' }}">
+                        <a href="{{ Route('car_details') }}">
+                            <span>Car Details</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('categories') ? 'active' : '' }}">
+                        <a href="{{ Route('categories') }}">
+                            <span>Categories</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('add_category') ? 'active' : '' }}">
+                        <a href="{{ Route('add_category') }}">
+                            <span>Add Category</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('features') ? 'active' : '' }}">
+                        <a href="{{ Route('features') }}">
+                            <span>Feature</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('add_feature') ? 'active' : '' }}">
+                        <a href="{{ Route('add_feature') }}">
+                            <span>Add Feature</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('company') ? 'active' : '' }}">
+                        <a href="{{ Route('company') }}">
+                            <span>Company</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('add_company') ? 'active' : '' }}">
+                        <a href="{{ Route('add_company') }}">
+                            <span>Add Company</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('car_approval') ? 'active' : '' }}">
+                        <a href="{{ Route('car_approval') }}">
+                            <span>Approvals</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('car_approval_details') ? 'active' : '' }}">
+                        <a href="{{ Route('car_approval_details') }}">
                             <span>Approval Details</span>
-                        </a></li>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="sub-menu">
@@ -61,9 +103,19 @@
                     </div>
                     <i class="arrow" data-feather="chevron-right" height="14"></i>
                 </a>
-                <ul class="sub-menu-group">
-                    <li><a href="{{ Route('admin_account') }}"><span>Simple Users</span></a></li>
-                    <li><a href="{{ Route('admin_settings') }}"><span>Vendors</span></a></li>
+                <ul
+                    class="sub-menu-group
+                    {{ request()->routeIs(['all_users', 'admin_settings']) ? 'active' : '' }}">
+                    <li class=" {{ request()->routeIs('all_users') ? 'active' : '' }}">
+                        <a href="{{ Route('all_users') }}">
+                            <span>Simple Users</span>
+                        </a>
+                    </li>
+                    <li class=" {{ request()->routeIs('admin_settings') ? 'active' : '' }}">
+                        <a href="{{ Route('admin_settings') }}">
+                            <span>Vendors</span>
+                        </a>
+                    </li>
 
                 </ul>
             </li>
@@ -74,37 +126,11 @@
         <!-- ***** Projects Menu End ***** -->
 
         <!-- ***** Apps Menu Start ***** -->
-        <div class="menu-title mb-2">
-            <small>APPS</small>
-        </div>
-        <ul class="menu-group m-0 px-4 mb-4">
 
-            <li class="sub-menu">
-                <a href="{{ Route('admin_chat') }}" class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <i data-feather="message-circle" stroke-width="1.5" height="18" class="me2"></i>
-                        <span>Chat</span>
-                    </div>
-
-                </a>
-
-            </li>
-
-
-
-
-
-
-
-
-
-        </ul>
         <!-- ***** Apps Menu End ***** -->
 
         <!-- ***** Pages Menu Start ***** -->
-        <div class="menu-title mb-2">
-            <small>PAGES</small>
-        </div>
+
         <ul class="menu-group m-0 px-4 mb-4">
             <li class="sub-menu">
                 <a href="javascript:;" class="d-flex align-items-center justify-content-between">
@@ -120,35 +146,14 @@
 
                 </ul>
             </li>
-            <li class="sub-menu">
-                <a href="javascript:;" class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <i data-feather="key" stroke-width="1.5" height="18" class="me2"></i>
-                        <span>Authentication</span>
-                    </div>
-                    <i class="arrow" data-feather="chevron-right" height="14"></i>
-                </a>
-                <ul class="sub-menu-group">
-                    <li><a href="{{ Route('admin_login') }}"><span>Sign-in</span></a></li>
-                    <li><a href="{{ Route('admin_signup') }}"><span>Sign-up</span></a></li>
-                    <li><a href="{{ Route('admin_reset_password') }}"><span>Reset Password</span></a></li>
-                    <li><a href="{{ Route('admin_new_password') }}"><span>New Password</span></a></li>
-                </ul>
-            </li>
 
 
 
 
 
 
-            <li class="single-menu">
-                <a href="{{ Route('404') }}" class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <i data-feather="alert-circle" stroke-width="1.5" height="18" class="me2"></i>
-                        <span>404 Error</span>
-                    </div>
-                </a>
-            </li>
+
+
         </ul>
         <!-- ***** Pages Menu End ***** -->
 

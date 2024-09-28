@@ -90,4 +90,8 @@ class VehicleCategoryController extends Controller
 
         return redirect()->route('categories')->with('success', 'Category deleted successfully.');
     }
+    public function add_category()
+    {
+        return view('admin.admin-add-category');
+    }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\RegisterVendorController;
 use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Vehicle\VehicleCategoryController;
 use App\Http\Controllers\Vehicle\VehicleCompanyController;
+use App\Http\Controllers\Vehicle\VehicleController;
 use App\Http\Controllers\Vehicle\VehicleFeaturesController;
 use App\Http\Controllers\ViewController;
 use App\Models\Vehicle;
@@ -61,12 +62,10 @@ Route::get('/vendor_list', [ViewController::class, 'vendor_list'])->name('vendor
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/404', [AdminViewController::class, 'not_found'])->name('admin_404');
     Route::get('/dashboard', [AdminViewController::class, 'admin_dashboard'])->name('admin_dashboard');
-    Route::get('/cars', [AdminViewController::class, 'car_list'])->name('car_list');
-    Route::get('/car/details', [AdminViewController::class, 'car_details'])->name('car_details');
-    Route::get('/car/approval', [AdminViewController::class, 'car_approval'])->name('car_approval');
-    Route::get('/car/approval/details', [AdminViewController::class, 'car_approval_details'])->name('car_approval_details');
+    Route::get('/404', [AdminViewController::class, 'not_found'])->name('admin_404');
+
+
     Route::get('/login', [AdminViewController::class, 'login'])->name('admin_login');
     Route::get('/signup', [AdminViewController::class, 'signup'])->name('admin_signup');
     Route::get('/account', [AdminViewController::class, 'account'])->name('admin_account');
@@ -74,10 +73,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/reset-password', [AdminViewController::class, 'reset_password'])->name('admin_reset_password');
     Route::get('/new-password', [AdminViewController::class, 'new_password'])->name('admin_new_password');
     Route::get('/settings', [AdminViewController::class, 'settings'])->name('admin_settings');
-    Route::get('/users', [AdminViewController::class, 'all_users'])->name('all_users');
+
     //Categories Routes
     Route::get('/categories', [VehicleCategoryController::class, 'read'])->name('categories');
-    Route::get('/add_category', [AdminViewController::class, 'add_categories'])->name('add_category');
+    Route::get('/add_category', [VehicleCategoryController::class, 'add_category'])->name('add_category');
     Route::post('/add_category', [VehicleCategoryController::class, 'create'])->name('create_category');
     Route::get('/category/{id}/edit', [VehicleCategoryController::class, 'show'])->name('edit_category');
     Route::post('/category/{id}/edit', [VehicleCategoryController::class, 'update'])->name('category_edit');
@@ -94,6 +93,15 @@ Route::prefix('admin')->group(function () {
     Route::get('/company/{id}/edit', [VehicleCompanyController::class, 'show'])->name('edit_company');
     Route::post('/company/{id}/edit', [VehicleCompanyController::class, 'update'])->name('company_edit');
     Route::post('/company/{id}/delete', [VehicleCompanyController::class, 'destroy'])->name('delete_company');
+    //Car Routes
+    Route::get('add_car', [VehicleController::class, 'add_vehicle_page'])->name('add_car');
+    Route::get('/cars', [VehicleController::class, 'car_list'])->name('car_list');
+    Route::get('/car/details', [VehicleController::class, 'car_details'])->name('car_details');
+    Route::get('/car/approval', [VehicleController::class, 'car_approval'])->name('car_approval');
+    Route::get('/car/approval/details', [VehicleController::class, 'car_approval_details'])->name('car_approval_details');
+    //Users Routes
+    Route::get('/users', [AdminViewController::class, 'all_users'])->name('all_users');
+    // Vendor Routes
 });
 
 
