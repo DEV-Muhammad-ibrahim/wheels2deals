@@ -423,7 +423,7 @@
                                         <div class="col-12 mb6">
                                             <div class="card shadow-card p6">
                                                 <label for="add-form-1" class="form-label">
-                                                    <span>Media</span>
+                                                    <span>Media Files</span>
                                                     <span class="text-danger">*</span>
                                                     <i data-feather="info" stroke-width="2" width="12"
                                                         class="text-body" data-bs-toggle="tooltip"
