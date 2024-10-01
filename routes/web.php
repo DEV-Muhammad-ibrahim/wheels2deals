@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 ///Routes Accessible By Anyone
-Route::get('/', [ViewController::class, 'index'])->name('index');
+Route::get('/', [ViewController::class, 'coming_soon'])->name('index');
 Route::get('/404', [ViewController::class, 'error'])->name('404');
 Route::get('/about', [ViewController::class, 'about'])->name('about');
 Route::get('/coming_soon', [ViewController::class, 'coming_soon'])->name('coming_soon');

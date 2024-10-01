@@ -9,7 +9,7 @@
                     vehicles</span></a>
         </div>
         <nav class="sidebar-nav">
-            <div class="sidebar-group">
+            {{-- <div class="sidebar-group">
                 <h5 class="sidebar-title">languages</h5>
                 <div class="select-option">
                     <div class="select-data">
@@ -29,9 +29,9 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="sidebar-group">
-                <h5 class="sidebar-title">user action</h5>
+            </div> --}}
+            {{-- <div class="sidebar-group">
+                <h5 class="sidebar-title">User</h5>
                 <ul class="nav-list">
                     <li class="nav-item">
                         <a href="{{ Route('favourite') }}" class="nav-link"><i class="material-icons">favorite</i><span
@@ -47,7 +47,7 @@
                                 class="nav-count">9+</span></a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
             <div class="sidebar-group">
                 <h5 class="sidebar-title">main menu</h5>
                 <ul class="nav-list">
@@ -67,10 +67,10 @@
                                 <a href="{{ Route('cars') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>Cars</span></a>
                             </li>
-                            <li class="drop-item">
+                            {{-- <li class="drop-item">
                                 <a href="{{ Route('inventory_single') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>inventory single</span></a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -99,19 +99,19 @@
                                 <a href="{{ Route('about') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>about us</span></a>
                             </li>
-                            <li class="drop-item">
+                            {{-- <li class="drop-item">
                                 <a href="{{ Route('pricing_plan') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>pricing plan</span></a>
-                            </li>
+                            </li> --}}
                             <li class="drop-item">
                                 <a href="{{ Route('coming_soon') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>coming soon</span></a>
                             </li>
-                            <li class="drop-item">
+                            {{-- <li class="drop-item">
                                 <a href="{{ Route('404') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>404
                                         error</span></a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
 
@@ -154,26 +154,27 @@
                     </li>
                 </ul>
             </div>
-            <div class="sidebar-group">
-                <h5 class="sidebar-title">user menu</h5>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="{{ Route('dashboard') }}" class="nav-link"><i
-                                class="material-icons">dashboard</i><span class="nav-text">dashboard</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ Route('profile') }}" class="nav-link"><i
-                                class="material-icons">account_circle</i><span class="nav-text">profile</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ Route('create_ads') }}" class="nav-link"><i
-                                class="material-icons">note_add</i><span class="nav-text">create ads</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ Route('posted_ads') }}" class="nav-link"><i class="material-icons">apps</i><span
-                                class="nav-text">posted ads</span></a>
-                    </li>
-                    <li class="nav-item">
+            @if (Auth::user())
+                <div class="sidebar-group">
+                    <h5 class="sidebar-title">user menu</h5>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="{{ Route('dashboard') }}" class="nav-link"><i
+                                    class="material-icons">dashboard</i><span class="nav-text">dashboard</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('profile') }}" class="nav-link"><i
+                                    class="material-icons">account_circle</i><span class="nav-text">profile</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('create_ads') }}" class="nav-link"><i
+                                    class="material-icons">note_add</i><span class="nav-text">create ads</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('posted_ads') }}" class="nav-link"><i
+                                    class="material-icons">apps</i><span class="nav-text">posted ads</span></a>
+                        </li>
+                        {{-- <li class="nav-item">
                         <a href="{{ Route('favourite') }}" class="nav-link"><i
                                 class="material-icons">favorite</i><span class="nav-text">favorites</span></a>
                     </li>
@@ -189,17 +190,18 @@
                         <a href="{{ Route('notify') }}" class="nav-link"><i
                                 class="material-icons">notifications</i><span
                                 class="nav-text">notifications</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ Route('setting') }}" class="nav-link"><i
-                                class="material-icons">settings</i><span class="nav-text">settings</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ Route('logout') }}" class="nav-link"><i class="material-icons">lock</i><span
-                                class="nav-text">logout</span></a>
-                    </li>
-                </ul>
-            </div>
+                    </li> --}}
+                        <li class="nav-item">
+                            <a href="{{ Route('setting') }}" class="nav-link"><i
+                                    class="material-icons">settings</i><span class="nav-text">settings</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('logout') }}" class="nav-link"><i class="material-icons">lock</i><span
+                                    class="nav-text">logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            @endif
         </nav>
     </div>
 </aside>
