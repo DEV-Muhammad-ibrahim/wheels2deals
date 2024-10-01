@@ -1,4 +1,4 @@
-<div class="app-sidebar">
+<div class="app-sidebar ">
     <!-- ***** Logo Start ***** -->
     <div class="sidebar-logo d-flex justify-content-center">
         <a href="index.html">
@@ -11,7 +11,7 @@
 
     <div class="sidebar-menu custom-scroll pt-4">
         <!-- ***** Dashboards Menu Start ***** -->
-        <ul class="menu-group m-0 px-4 mb-4">
+        <ul class="menu-group m-0 px-4 mb-2">
             <li class="sub-menu {{ request()->routeIs('admin_dashboard') ? 'active' : '' }}">
                 <a href="{{ Route('admin_dashboard') }}" class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
@@ -27,9 +27,9 @@
 
         <!-- ***** Projects Menu Start ***** -->
 
-        <ul class="menu-group m-0 px-4 mb-4">
+        <ul class="menu-group m-0 px-2 mb-2">
             <li
-                class="sub-menu {{ request()->routeIs(['car_list', 'car_details', 'categories', 'add_category', 'features', 'add_feature', 'company', 'add_company', 'car_approval', 'car_approval_details', 'add_car']) ? 'active' : '' }} ">
+                class="sub-menu {{ request()->routeIs(['car_list', 'car_details', 'categories', 'add_category', 'features', 'add_feature', 'company', 'add_company', 'car_approval', 'car_approval_details', 'add_car', 'type', 'add_type']) ? 'active' : '' }} ">
                 <a href="javascript:;" class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <i data-feather="monitor" stroke-width="1.5" height="18" class="me2"></i>
@@ -48,11 +48,11 @@
                             <span>Add Car</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('car_details') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('car_details') ? 'active' : '' }}">
                         <a href="{{ Route('car_details') }}">
                             <span>Car Details</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ request()->routeIs('categories') ? 'active' : '' }}">
                         <a href="{{ Route('categories') }}">
                             <span>Categories</span>
@@ -83,6 +83,16 @@
                             <span>Add Company</span>
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('type') ? 'active' : '' }}">
+                        <a href="{{ Route('type') }}">
+                            <span>Type</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('add_type') ? 'active' : '' }}">
+                        <a href="{{ Route('add_type') }}">
+                            <span>Add Type</span>
+                        </a>
+                    </li>
                     <li class="{{ request()->routeIs('car_approval') ? 'active' : '' }}">
                         <a href="{{ Route('car_approval') }}">
                             <span>Approvals</span>
@@ -95,7 +105,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="sub-menu">
+            <li class="sub-menu {{ request()->routeIs('all_users') ? 'active' : '' }}">
                 <a href="javascript:;" class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <i data-feather="user" stroke-width="1.5" height="18" class="me2"></i>

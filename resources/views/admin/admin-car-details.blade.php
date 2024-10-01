@@ -570,13 +570,14 @@
                     <!-- Page Top Start -->
                     <div class="row mb6 align-items-center">
                         <div class="col-md-6 mobile-bottom-fix">
-                            <h1 class="page-title mb2">Volkswagen - Golf TSI 2017</h1>
+                            <h1 class="page-title mb2">{{ $car->company }} - {{ $car->title }} - {{ $car->year }}
+                            </h1>
                             <nav class="breadcrumb-nav" aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item"><a href="#">Car Details</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Volkswagen - Golf TSI
-                                        2017</li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $car->company }} -
+                                        {{ $car->title }} - {{ $car->year }}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -600,7 +601,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-md-7 mobile-bottom-fix">
                                                 <div class="w-100 height-280 img-fix rounded">
-                                                    <img src="assets/media/cars/1.jpg" alt="">
+                                                    <img src="{{ asset('storage/' . $car->image) }}" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
@@ -609,7 +610,7 @@
                                                         <span>Brand</span>
                                                     </div>
                                                     <div class="col-7">
-                                                        <strong class="text-heading">Volkswagen</strong>
+                                                        <strong class="text-heading">{{ $car->company }}</strong>
                                                     </div>
                                                 </div>
                                                 <div class="row mb6">
@@ -617,7 +618,7 @@
                                                         <span>Model</span>
                                                     </div>
                                                     <div class="col-7">
-                                                        <strong class="text-heading">Golf TSI 2017</strong>
+                                                        <strong class="text-heading">{{ $car->title }}</strong>
                                                     </div>
                                                 </div>
                                                 <div class="row mb6">
@@ -625,7 +626,7 @@
                                                         <span>Year</span>
                                                     </div>
                                                     <div class="col-7">
-                                                        <strong class="text-heading">2017</strong>
+                                                        <strong class="text-heading">{{ $car->year }}</strong>
                                                     </div>
                                                 </div>
                                                 <div class="row mb6">
@@ -640,7 +641,8 @@
                                                                 D</div>
                                                             <div
                                                                 class="w-100 d-flex align-items-center justify-content-center bg-white">
-                                                                <h6 class="mb0 text-dark">KA PA 777</h6>
+                                                                <h6 class="mb0 text-dark">
+                                                                    {{ $car->registration_plate_no }}</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -650,8 +652,15 @@
                                                         <span>Status</span>
                                                     </div>
                                                     <div class="col-7">
-                                                        <span
-                                                            class="badge rounded-pill badge-soft text-bg-success">Published</span>
+                                                        @if ($car->status == true)
+                                                            <span
+                                                                class="badge rounded-pill badge-soft text-bg-success">Active
+                                                            </span>
+                                                        @else
+                                                            <span
+                                                                class="badge rounded-pill badge-soft text-bg-danger">Inactive
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -670,7 +679,7 @@
                                                 <div class="position-relative">
                                                     <div
                                                         class="z-2 position-relative p5 d-flex flex-row align-items-center justify-content-center">
-                                                        <h6 class="m0 text-body">Total Earnings</h6>
+                                                        <h6 class="m0 text-body">Price</h6>
                                                     </div>
                                                     <div
                                                         class="position-absolute w-100 h-100 start-0 bottom-0 bg-light rounded-top z-1">
@@ -680,7 +689,7 @@
                                         </div>
                                         <div class="row align-items-center p5">
                                             <div class="col-12 d-flex align-items-center justify-content-center">
-                                                <h3 class="m0">$26.457,28</h3>
+                                                <h3 class="m0">{{ $car->price }}AED</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -692,7 +701,7 @@
                                                 <div class="position-relative">
                                                     <div
                                                         class="z-2 position-relative p5 d-flex flex-row align-items-center justify-content-center">
-                                                        <h6 class="m0 text-body">Fuel Consumption (KM)</h6>
+                                                        <h6 class="m0 text-body">Mileage (KM)</h6>
                                                     </div>
                                                     <div
                                                         class="position-absolute w-100 h-100 start-0 bottom-0 bg-light rounded-top z-1">
@@ -702,7 +711,53 @@
                                         </div>
                                         <div class="row align-items-center p5">
                                             <div class="col-12 d-flex align-items-center justify-content-center">
-                                                <h3 class="m0">$0,11</h3>
+                                                <h3 class="m0">{{ $car->mileage }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 mb6">
+                                    <div class="card shadow-card p2">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="position-relative">
+                                                    <div
+                                                        class="z-2 position-relative p5 d-flex flex-row align-items-center justify-content-center">
+                                                        <h6 class="m0 text-body">Price</h6>
+                                                    </div>
+                                                    <div
+                                                        class="position-absolute w-100 h-100 start-0 bottom-0 bg-light rounded-top z-1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center p5">
+                                            <div class="col-12 d-flex align-items-center justify-content-center">
+                                                <h3 class="m0">{{ $car->price }}AED</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb6">
+                                    <div class="card shadow-card p2">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="position-relative">
+                                                    <div
+                                                        class="z-2 position-relative p5 d-flex flex-row align-items-center justify-content-center">
+                                                        <h6 class="m0 text-body">Mileage (KM)</h6>
+                                                    </div>
+                                                    <div
+                                                        class="position-absolute w-100 h-100 start-0 bottom-0 bg-light rounded-top z-1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center p5">
+                                            <div class="col-12 d-flex align-items-center justify-content-center">
+                                                <h3 class="m0">{{ $car->mileage }}</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -713,17 +768,17 @@
                         <!-- Left Rows End -->
 
                         <!-- Map Start -->
-                        <div class="col-xxl-4 mb6">
+                        {{-- <div class="col-xxl-4 mb6">
                             <div class="card shadow-card p6">
                                 <div id="car-map" class="w-100 height-490 rounded"></div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- Map End -->
                     </div>
                     <!-- Info End -->
 
                     <!-- Table & Calendar Start -->
-                    <div class="row">
+                    {{-- <div class="row">
                         <!-- Table Start -->
                         <div class="col-xxl-8 mb6">
                             <div class="card shadow-card p6">
@@ -811,26 +866,26 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Table End -->
+                        </div> --}}
+                    <!-- Table End -->
 
-                        <!-- Calendar Start -->
-                        <div class="col-xxl-4 mb6">
-                            <div class="card shadow-card overflow-hidden p6">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h6>Project Time</h6>
-                                        <div class="calendar-container"></div>
-                                    </div>
+                    <!-- Calendar Start -->
+                    <div class="col-xxl-4 mb6">
+                        <div class="card shadow-card overflow-hidden p6">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6>Project Time</h6>
+                                    <div class="calendar-container"></div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Calendar End -->
                     </div>
-                    <!-- Table & Calendar End -->
+                    <!-- Calendar End -->
+                </div>
+                <!-- Table & Calendar End -->
 
-                    <!-- Last Reservations Start -->
-                    <div class="row mb6">
+                <!-- Last Reservations Start -->
+                {{-- <div class="row mb6">
                         <div class="col-12">
                             <div class="card shadow-card p6">
                                 <div class="row align-items-center mb4">
@@ -1019,15 +1074,15 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Last Reservations End -->
-                </div>
+                    </div> --}}
+                <!-- Last Reservations End -->
             </div>
-            <!-- ***** Content End ***** -->
+    </div>
+    <!-- ***** Content End ***** -->
 
-            <!-- ***** Footer Start ***** -->
-            <script src="{{ asset('adminAssets/js/pages/projects/car-rental/car-details.js') }}" crossorigin="anonymous"></script>
-            @include('layouts.admin.footer')
+    <!-- ***** Footer Start ***** -->
+    <script src="{{ asset('adminAssets/js/pages/projects/car-rental/car-details.js') }}" crossorigin="anonymous"></script>
+    @include('layouts.admin.footer')
 </body>
 
 

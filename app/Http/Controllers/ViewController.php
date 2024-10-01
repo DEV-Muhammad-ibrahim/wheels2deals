@@ -171,7 +171,7 @@ class ViewController extends Controller
         $user = auth()->user();
 
         if ($user) {
-            return view('index');
+            return redirect()->route('index');
         } else {
             return view('login');
         }
@@ -231,7 +231,7 @@ class ViewController extends Controller
     {
         $user = auth()->user();
         if ($user) {
-            return view('index');
+            return redirect()->route('index');
         } else {
             return view('register');
         }

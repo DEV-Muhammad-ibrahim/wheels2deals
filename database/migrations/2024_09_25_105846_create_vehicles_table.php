@@ -23,12 +23,14 @@ return new class extends Migration
             $table->string('fuel');
             $table->string('year');
             $table->string('color');
-            $table->string('mileage');
-            $table->string('price');
+            $table->integer('mileage');
+            $table->integer('price');
             $table->string('price_type');
+            $table->string('type');
             $table->string('condition');
             $table->string('description');
             $table->string('image');
+            $table->boolean('status')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

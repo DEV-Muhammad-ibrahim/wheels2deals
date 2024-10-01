@@ -9,10 +9,12 @@ use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\Auth\RegisterVendorController;
 use App\Http\Controllers\Product\CreateProductController;
+use App\Http\Controllers\Vehicle\VehicleApprovalController;
 use App\Http\Controllers\Vehicle\VehicleCategoryController;
 use App\Http\Controllers\Vehicle\VehicleCompanyController;
 use App\Http\Controllers\Vehicle\VehicleController;
 use App\Http\Controllers\Vehicle\VehicleFeaturesController;
+use App\Http\Controllers\Vehicle\VehicleTypeController;
 use App\Http\Controllers\ViewController;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\Route;
@@ -96,9 +98,18 @@ Route::prefix('admin')->group(function () {
     //Car Routes
     Route::get('add_car', [VehicleController::class, 'add_vehicle_page'])->name('add_car');
     Route::get('/cars', [VehicleController::class, 'car_list'])->name('car_list');
-    Route::get('/car/details', [VehicleController::class, 'car_details'])->name('car_details');
-    Route::get('/car/approval', [VehicleController::class, 'car_approval'])->name('car_approval');
-    Route::get('/car/approval/details', [VehicleController::class, 'car_approval_details'])->name('car_approval_details');
+    Route::get('/car/{id}/details', [VehicleController::class, 'car_details'])->name('car_details');
+    Route::get('/car/approval', [VehicleApprovalController::class, 'car_approval'])->name('car_approval');
+    Route::get('/approval/details', [VehicleApprovalController::class, 'car_details'])->name('car_approval_details');
+    Route::post('/add_car', [VehicleController::class, 'add_car'])->name('create_car');
+    Route::post('/delete/{id}/vehicle', [VehicleController::class, 'deleteVehicle'])->name('delete_vehicle');
+    //Car Type Routes
+    Route::get('/type', [VehicleTypeController::class, 'read'])->name('type');
+    Route::get('/add_type', [VehicleTypeController::class, 'add_type'])->name('add_type');
+    Route::post('/add_type', [VehicleTypeController::class, 'create'])->name('create_type');
+    Route::get('/type/{id}/edit', [VehicleTypeController::class, 'show'])->name('edit_type');
+    Route::post('/type/{id}/edit', [VehicleTypeController::class, 'update'])->name('type_edit');
+    Route::post('/type/{id}/delete', [VehicleTypeController::class, 'destroy'])->name('delete_type');
     //Users Routes
     Route::get('/users', [AdminViewController::class, 'all_users'])->name('all_users');
     // Vendor Routes

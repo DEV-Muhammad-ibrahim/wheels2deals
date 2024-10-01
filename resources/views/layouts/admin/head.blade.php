@@ -61,6 +61,13 @@
             color: #333;
             /* Text color for the filename */
         }
+
+        .app-sidebar {
+            height: 100vh;
+            /* Full viewport height */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+        }
     </style>
 
     <!-- Light-Dark Mode & Theme Direction Selector -->

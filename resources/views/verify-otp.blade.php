@@ -55,8 +55,8 @@
                     </button>
                 </div>
                 <div id="countdown"></div>
-                <div id="resend-message" class="mt-2 alert alert-danger"></div>
-                z
+                <div id="resend-message" class="mt-2 "></div>
+
             </div>
         </form>
     </section>

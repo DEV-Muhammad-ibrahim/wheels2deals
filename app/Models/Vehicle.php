@@ -22,10 +22,15 @@ class Vehicle extends Model
         'mileage',
         'price',
         'price_type',
+        'type',
         'condition',
         'description',
         'image',
+        'status',
         'user_id' // Foreign key for User
+    ];
+    protected $casts = [
+        'status' => 'boolean',
     ];
 
     // Define relationships if necessary

@@ -2,7 +2,7 @@
 
 <body>
     <!-- Add Modal Start -->
-    <div class="modal fade" id="addCarModal" tabindex="-1" aria-labelledby="addCarModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="addCarModal" tabindex="-1" aria-labelledby="addCarModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form method="post" action="#" id="addcar" class="needs-validation" novalidate>
@@ -533,7 +533,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Add Modal End -->
 
     <div class="app-root d-flex flex-column">
@@ -578,71 +578,21 @@
                         </div>
                         <div class="col-md-6 text-start text-md-end">
                             <!-- Filter Dropdown Start-->
-                            <div class="dropdown d-inline me4">
-                                <button class="btn bg-white d-inline-flex align-items-center dropdown-toggle"
-                                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i data-feather="filter" stroke-width="1.5" height="16"
-                                        class="me2 text-body"></i>
-                                    <span class="text-body">Filter</span>
-                                </button>
-                                <div class="dropdown-menu width-300 p0">
-                                    <div class="border-bottom-dashed">
-                                        <h6 class="mb0 p4 px-4">Filter Options</h6>
-                                    </div>
-                                    <div class="p5 px-4">
-                                        <div class="row mb5">
-                                            <div class="col-12 mb4">
-                                                <label for="form-element-1" class="form-label">Status:</label>
-                                                <select id="form-element-1" class="form-select js-choice">
-                                                    <option value="">Select option</option>
-                                                    <option value="1">Published</option>
-                                                    <option value="2">Inactive</option>
-                                                    <option value="3">Scheduled</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-12 mb4">
-                                                <label for="form-element-2" class="form-label">Year:</label>
-                                                <input type="text" class="form-control" id="form-element-2"
-                                                    placeholder="2023">
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="form-element-3" class="form-label d-block">Using
-                                                    Status:</label>
-                                                <div class="checkbox checkbox-primary me4">
-                                                    <input type="checkbox" name="check1" id="check1" checked>
-                                                    <label for="check1">In Use</label>
-                                                </div>
-                                                <div class="checkbox checkbox-primary me4">
-                                                    <input type="checkbox" name="check2" id="check2">
-                                                    <label for="check2">In the Garage</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <button class="btn btn-sm d-block w-100 btn-secondary btn-soft"
-                                                    role="button">Reset</button>
-                                            </div>
-                                            <div class="col-6">
-                                                <button class="btn btn-sm d-block w-100 btn-primary"
-                                                    role="button">Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <!-- Filter Dropdown End-->
 
                             <!-- Add Button Start-->
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCarModal">Add
-                                Car</button>
+
+                            <a href="{{ Route('add_type') }}" class="btn btn-primary">Add
+                                Car</a>
+
                             <!-- Add Button End-->
                         </div>
                     </div>
                     <!-- Page Top End -->
 
                     <!-- Mini Widgets Start -->
-                    <div class="row mb2">
+                    {{-- <div class="row mb2">
                         <!-- Widget 1 Start -->
                         <div class="col-xxl-4 mb5">
                             <div class="bg-primary rounded-3 pt2 pb5 text-center">
@@ -678,8 +628,18 @@
                             </div>
                         </div>
                         <!-- Widget 3 End -->
-                    </div>
+                    </div> --}}
                     <!-- Mini Widgets End -->
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
                     <!-- Content Start -->
                     <div class="row mb5">
@@ -689,8 +649,8 @@
                                     <table class="table qd-table mb6 align-middle">
                                         <thead>
                                             <tr>
-                                                <th scope="col">BRAND</th>
-                                                <th scope="col">MODEL</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Company</th>
                                                 <th scope="col">YEAR</th>
                                                 <th scope="col">LICENSE PLATE</th>
                                                 <th scope="col">STATUS</th>
@@ -698,67 +658,80 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-inline-flex flex-row align-items-center">
-                                                        <div class="width-120 height-80 img-fix rounded me4">
-                                                            <img src="assets/media/cars/1.jpg" alt="">
+                                            @foreach ($cars as $car)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-inline-flex flex-row align-items-center">
+                                                            <div class="width-120 height-80 img-fix rounded me4">
+                                                                <img src="{{ asset('storage/' . $car->image) }}"
+                                                                    alt="">
+                                                            </div>
+                                                            <strong>{{ $car->title }}</strong>
                                                         </div>
-                                                        <strong>Volkswagen</strong>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <strong class="text-heading">Golf TSI 2017</strong>
-                                                </td>
-                                                <td>
-                                                    <strong class="text-heading">2017</strong>
-                                                </td>
-                                                <td>
-                                                    <div class="border border-dark width-160 rounded overflow-hidden d-flex"
-                                                        dir="ltr">
-                                                        <div
-                                                            class="bg-primary width-40 height-30 d-flex align-items-center justify-content-center text-white">
-                                                            D</div>
-                                                        <div
-                                                            class="w-100 d-flex align-items-center justify-content-center bg-white">
-                                                            <h6 class="mb0 text-dark">KA PA 777</h6>
+                                                    </td>
+                                                    <td>
+                                                        <strong class="text-heading">{{ $car->company }}</strong>
+                                                    </td>
+                                                    <td>
+                                                        <strong class="text-heading">{{ $car->year }}</strong>
+                                                    </td>
+                                                    <td>
+                                                        <div class="border border-dark width-160 rounded overflow-hidden d-flex"
+                                                            dir="ltr">
+                                                            <div
+                                                                class="bg-primary width-40 height-30 d-flex align-items-center justify-content-center text-white">
+                                                                D</div>
+                                                            <div
+                                                                class="w-100 d-flex align-items-center justify-content-center bg-white">
+                                                                <h6 class="mb0 text-dark">
+                                                                    {{ $car->registration_plate_no }}</h6>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="badge rounded-pill badge-soft text-bg-success">Published</span>
-                                                </td>
-                                                <td>
-                                                    <div class="dropdown text-end">
-                                                        <button type="button"
-                                                            class="outline-none dropdown-toggle arrow-none border-0 height-40 rounded ps3 bg-body-secondary opacity-75"
-                                                            data-bs-auto-close="outside" data-bs-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="text-heading">Actions</span>
-                                                            <i data-feather="chevron-down" stroke-width="2"
-                                                                height="16" class="text-heading"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu text-start">
-                                                            <li><a class="dropdown-item" href="#">Edit</a>
-                                                            </li>
-                                                            <li><a class="dropdown-item" href="#">Details</a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                                                    href="#">
-                                                                    Delete <i data-feather="info" stroke-width="2"
-                                                                        height="12" class="text-body me1"
-                                                                        data-bs-toggle="tooltip"
-                                                                        data-bs-placement="left"
-                                                                        data-bs-custom-class="qd-tooltip"
-                                                                        data-bs-title="If you delete it, this action cannot be undone."></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td>
+                                                        @if ($car->status == true)
+                                                            <span
+                                                                class="badge rounded-pill badge-soft text-bg-success">Active
+                                                            </span>
+                                                        @else
+                                                            <span
+                                                                class="badge rounded-pill badge-soft text-bg-danger">Inactive
+                                                            </span>
+                                                        @endif
+
+                                                    </td>
+                                                    <td>
+                                                        <div class="dropdown text-end">
+                                                            <button type="button"
+                                                                class="outline-none dropdown-toggle arrow-none border-0 height-40 rounded ps3 bg-body-secondary opacity-75"
+                                                                data-bs-auto-close="outside" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                <span class="text-heading">Actions</span>
+                                                                <i data-feather="chevron-down" stroke-width="2"
+                                                                    height="16" class="text-heading"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu text-start">
+                                                                <li><a class="dropdown-item" href="#">Edit</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="{{ Route('car_details', $car->id) }}">Details</a>
+                                                                </li>
+                                                                <li>
+                                                                    <form
+                                                                        action="{{ route('delete_vehicle', $car->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('POST')
+                                                                        <button type="submit"
+                                                                            class="dropdown-item text-danger">Delete</button>
+
+                                                                    </form>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                             <tr>
                                                 <td>
                                                     <div class="d-inline-flex flex-row align-items-center">
@@ -1356,18 +1329,13 @@
                                                         <ul class="dropdown-menu text-start">
                                                             <li><a class="dropdown-item" href="#">Edit</a>
                                                             </li>
-                                                            <li><a class="dropdown-item" href="#">Details</a>
+                                                            <li>
+                                                                <a class="dropdown-item" href="#">Details</a>
                                                             </li>
                                                             <li>
-                                                                <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                                                    href="#">
-                                                                    Delete <i data-feather="info" stroke-width="2"
-                                                                        height="12" class="text-body me1"
-                                                                        data-bs-toggle="tooltip"
-                                                                        data-bs-placement="left"
-                                                                        data-bs-custom-class="qd-tooltip"
-                                                                        data-bs-title="If you delete it, this action cannot be undone."></i>
-                                                                </a>
+
+
+
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -1386,7 +1354,9 @@
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item active"><a class="page-link" href="#">2</a>
                                         </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+                                        <li class="page-item"><a class="page-link" href="#">
+                                                {{ $cars->links() }}</a></li>
                                         <li class="page-item"><a class="page-link" href="#">4</a></li>
                                         <li class="page-item"><a class="page-link" href="#">5</a></li>
                                         <li class="page-item"><a class="page-link" href="#">6</a></li>
