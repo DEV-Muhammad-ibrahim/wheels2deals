@@ -185,8 +185,8 @@
                                     class="icofont-linkedin linkedin"></a></div>
                         </figure>
                         <div class="team-meta">
-                            <h4><a href="#">Muhammad Ibrahim</a></h4>
-                            <p>Website Developer</p>
+                            {{-- <h4><a href="#">Muhammad Ibrahim</a></h4>
+                            <p>Website Developer</p> --}}
                         </div>
                     </div>
                 </div>

@@ -88,7 +88,7 @@
     <div class="container">
         <p class="footer-text">
             &copy; 2024 all rights reserved by &hearts; <a href="https://www.instagram.com/dev_ibrahim97/"
-                target="__blank">Dev.ibrahim</a>
+                target="__blank"></a>
         </p>
         <a href="#" class="footer-backtop"><i class="material-icons">arrow_upward</i></a>
         <div class="footer-payment">
