@@ -123,10 +123,10 @@
                         <a href="#" class="nav-link"><i class="material-icons">contact_support</i><span
                                 class="nav-text">support</span><span class="nav-arrow"></span></a>
                         <ul class="drop-list">
-                            <li class="drop-item">
+                            {{-- <li class="drop-item">
                                 <a href="{{ Route('faq') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>faqs</span></a>
-                            </li>
+                            </li> --}}
                             <li class="drop-item">
                                 <a href="{{ Route('contact') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>contact us</span></a>
