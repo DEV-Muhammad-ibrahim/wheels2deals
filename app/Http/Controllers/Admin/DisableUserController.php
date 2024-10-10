@@ -8,18 +8,18 @@ use Illuminate\Http\Request;
 
 class DisableUserController extends Controller
 {
-    public function disableUser(Request $request)
+    public function disableUser($id)
     {
 
         try {
             //code...
-            $user = User::where('id', $request->id)->get();
+            $user = User::findOrFail($id);
             $user->user_can_add_products = false;
             $SavedUser = $user->save();
             if ($SavedUser) {
-                return redirect()->back()->with('message', 'User is not approved and cant add products');
+                return redirect()->back()->with('success', $user->vendor_name . 'is not approved and cant add products');
             } else {
-                return redirect()->back()->with('message', 'User is approved and can add products');
+                return redirect()->back()->with('error', 'User is approved and can add products');
             }
         } catch (\Throwable $th) {
             //throw $th;

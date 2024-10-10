@@ -9,11 +9,11 @@
         <div style="background: url({{ asset('assets/images/banner/single/01.jpg') }}) no-repeat center / cover;">
             <div class="single-banner">
                 <div class="container">
-                    <h2>Inventory Single Page</h2>
+                    <h2>{{ $car->title }}</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="inventory-list.html">inventory list</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">inventory single</li>
+                        <li class="breadcrumb-item"><a href="{{ Route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ Route('cars') }}">Cars</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $car->title }}</li>
                     </ol>
                 </div>
             </div>
@@ -23,409 +23,80 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-7">
-                    <div class="product-single-meta-group"><span class="product-single-meta-price">$18,759/-
-                            <small>negotiable</small></span>
-                        <h2 class="product-single-meta-title">Mercedez benz super mclaren</h2>
+                    <div class="product-single-meta-group"><span
+                            class="product-single-meta-price">AED:{{ number_format($car->price, 2, '.', ',') }}/-
+                            <small>{{ $car->price_type }}</small></span>
+                        <h2 class="product-single-meta-title">{{ $car->title }} {{ $car->company }}</h2>
                         <ul class="product-single-meta-list">
-                            <li><i class="material-icons">account_circle</i><a href="profile.html">by autoland</a>
+                            <li><i class="material-icons">account_circle</i><a
+                                    href="{{ Route('vendor_details_users', $car->user->id) }}">by
+                                    {{ $car->user->name }}</a>
                             </li>
-                            <li><i class="material-icons">watch_later</i><span>45 minute ago!</span></li>
-                            <li><i class="material-icons">stars</i><button type="button" data-bs-toggle="modal"
-                                    data-bs-target="#modalReview">(24) reviews</button></li>
-                            <li><i class="material-icons">fmd_good</i><span>delpara, narayanganj</span></li>
+
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-5">
-                    <ul class="product-single-data">
-                        <li class="view"><i class="material-icons">visibility</i>
-                            <h3>4334</h3>
-                            <p>total view</p>
-                        </li>
-                        <li class="click"><i class="material-icons">mouse</i>
-                            <h3>3223</h3>
-                            <p>total click</p>
-                        </li>
-                        <li class="rating"><i class="material-icons">waving_hand</i>
-                            <h3>2112</h3>
-                            <p>total engage</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xl-12">
-                    <div class="product-single-action"><button type="button" class="compare" title="Compare"><i
-                                class="material-icons">compare</i><span>add to compare</span></button><button
-                            type="button" class="favorite" title="Favorite"><i
-                                class="material-icons">favorite</i><span>add to favorite</span></button><button
-                            type="button" data-bs-toggle="modal" data-bs-target="#modalQuery" title="Query"><i
-                                class="material-icons">help</i><span>have any query</span></button><button
-                            type="button" data-bs-toggle="modal" data-bs-target="#modalOffer" title="Offer"><i
-                                class="material-icons">local_offer</i><span>make an offer</span></button><button
-                            type="button" data-bs-toggle="modal" data-bs-target="#modalSchedule" title="Schedule"><i
-                                class="material-icons">drive_eta</i><span>test drive
-                                schedule</span></button><button type="button" data-bs-toggle="modal"
-                            data-bs-target="#modalReport" title="Report"><i
-                                class="material-icons">report</i><span>report this vehicle</span></button></div>
-                </div>
+
+
                 <div class="col-xl-12">
                     <div class="product-single-slider slider-arrow slider-dots">
-                        <div><img src="{{ asset('assets/images/product/21.jpg') }}" alt="product"></div>
-                        <div><img src="{{ asset('assets/images/product/22.jpg') }}" alt="product"></div>
-                        <div><img src="{{ asset('assets/images/product/23.jpg') }}" alt="product"></div>
-                        <div><img src="{{ asset('assets/images/product/24.jpg') }}" alt="product"></div>
-                        <div><img src="{{ asset('assets/images/product/25.jpg') }}" alt="product"></div>
+                        @foreach ($car->images as $image)
+                            <div><img src="{{ asset('storage/' . $image->path) }}" alt="product"></div>
+                        @endforeach
+
                     </div>
                 </div>
                 <div class="col-xl-12">
-                    <div class="product-single-scrollspy-btns"><a href="#overview" class="nav-link" title="Overview"><i
-                                class="material-icons">visibility</i><span>overview</span></a><a href="#video"
-                            class="nav-link" title="Video"><i
-                                class="material-icons">smart_display</i><span>video</span></a><a href="#features"
-                            class="nav-link" title="Features"><i
-                                class="material-icons">fact_check</i><span>features</span></a><a href="#faqanswer"
-                            class="nav-link" title="Faq answer"><i class="material-icons">help</i><span>faq
-                                answer</span></a><a href="#comments" class="nav-link" title="Comments"><i
-                                class="material-icons">forum</i><span>comments</span></a><button type="button"
-                            data-bs-toggle="modal" data-bs-target="#modalReview"><i
-                                class="material-icons">star</i><span>reviews</span></button><button type="button"
-                            data-bs-toggle="modal" data-bs-target="#modalContact"><i
-                                class="material-icons">perm_phone_msg</i><span>contacts</span></button></div>
+                    <div class="product-single-scrollspy-btns">
+                        <a href="#overview" class="nav-link" title="Overview">
+                            <i class="material-icons">visibility</i>
+                            <span>overview</span>
+                        </a>
+
+                        <a href="#features" class="nav-link" title="Features">
+                            <i class="material-icons">fact_check</i>
+                            <span>features</span>
+                        </a>
+
+
+
+
+                    </div>
                 </div>
                 <div class="col-xl-8">
                     <div class="common-card" id="overview">
                         <div class="common-card-header">
-                            <h4 class="common-card-header-title">vehicle overview</h4>
+                            <h4 class="common-card-header-title">vehicle description</h4>
                         </div>
                         <div class="common-card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit Praesentium numquam culpa hic
-                                repellat quasi architecto eius voluptatibus voluptate beatae libero eum cupiditate
-                                adipisci vel Quaerat quisquam adipisci quam libero quo alias incidunt expedita atque
-                                esse iusto facilis nostrum Dolor est dolore tempore officiis aliquid ad recusandae
-                                cumque eligendi sapiente eius architecto ratione nemo nostrum accusamus Quos eligendi
-                                quaerat tempore aut sed minus ut provident ullam deleniti cumque modi nihil placeat
-                                ipsam saepe distinctio <span class="d-block mt-4">Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Quos provident voluptas nam inventore reprehenderit
-                                    sequi dolor ut quis repellendus nisi cum neque eum sunt aspernatur fuga expedita,
-                                    tempora ipsum rerum, delectus explicabo nihil dignissimos nesciunt nemo. Modi,
-                                    reiciendis temporibus ipsum sed, nesciunt corrupti debitis consequuntur amet cumque
-                                    voluptas possimus cupiditate.</span></p>
+                            <p>{{ $car->description }}</span></p>
                         </div>
                     </div>
-                    <div class="common-card" id="video">
-                        <div class="common-card-header">
-                            <h4 class="common-card-header-title">vehicle video</h4>
-                        </div>
-                        <div class="common-card-body"><iframe class="product-single-video"
-                                src="https://www.youtube.com/embed/1SaqSIvon_U"></iframe></div>
-                    </div>
+
                     <div class="common-card" id="features">
                         <div class="common-card-header">
                             <h4 class="common-card-header-title">vehicle features</h4>
                         </div>
                         <div class="product-single-feature-group">
                             <ul class="product-single-feature-list">
-                                <li><span>condition:</span><span>used</span></li>
-                                <li><span>mileage:</span><span>17.20 kmpl</span></li>
-                                <li><span>Engine:</span><span>3.5m 76v gohp</span></li>
-                                <li><span>body type:</span><span>wagon</span></li>
-                                <li><span>brand name:</span><span>mercedez</span></li>
-                                <li><span>interior colour:</span><span>gray</span></li>
-                                <li><span>exterior colour:</span><span>brown</span></li>
-                                <li><span>fuel type:</span><span>petrol</span></li>
-                                <li><span>Steering type:</span><span>Electric</span></li>
-                                <li><span>Turning Radius:</span><span>5.75meters</span></li>
-                                <li><span>Transmission:</span><span>Automatic</span></li>
+                                <li><span>condition:</span><span>{{ $car->condition }}</span></li>
+                                <li><span>mileage:</span><span>{{ $car->mileage }} km</span></li>
+                                <li><span>body type:</span><span>{{ $car->type }}</span></li>
+                                <li><span>brand name:</span><span>{{ $car->company }}</span></li>
+                                <li><span>colour:</span><span>{{ $car->color }}</span></li>
+                                <li><span>fuel type:</span><span>{{ $car->fuel }}</span></li>
                             </ul>
                             <ul class="product-single-feature-list">
-                                <li><span>Power Steering:</span><i class="material-icons check">check_circle</i></li>
-                                <li><span>Vanity Mirror:</span><i class="material-icons check">check_circle</i></li>
-                                <li><span>Trunk Light:</span><i class="material-icons remove">remove_circle</i></li>
-                                <li><span>Knee Airbags:</span><i class="material-icons check">check_circle</i></li>
-                                <li><span>Rain Sensing:</span><i class="material-icons check">check_circle</i></li>
-                                <li><span>Manually Adjustable:</span><i class="material-icons remove">remove_circle</i>
-                                </li>
-                                <li><span>Introduction Date:</span><i class="material-icons check">check_circle</i>
-                                </li>
-                                <li><span>Warranty Time:</span><i class="material-icons check">check_circle</i></li>
-                                <li><span>Cylinders:</span><i class="material-icons check">check_circle</i></li>
-                                <li><span>Trunk Light:</span><i class="material-icons check">check_circle</i></li>
-                                <li><span>Speed Sensing Auto Lock:</span><i
-                                        class="material-icons remove">remove_circle</i></li>
+                                @foreach ($car->features as $feature)
+                                    <li><span>{{ $feature->name }}:</span><i
+                                            class="material-icons check">check_circle</i></li>
+                                @endforeach
+
                             </ul>
                         </div>
                     </div>
-                    <div class="common-card" id="faqanswer">
-                        <div class="common-card-header">
-                            <h4 class="common-card-header-title">vehicle faq answer</h4>
-                        </div>
-                        <ul class="accordion-list">
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#1 Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h5><i
-                                        class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, aut quia
-                                        perspiciatis, numquam assumenda possimus delectus modi doloribus maiores
-                                        voluptatum enim voluptas accusamus alias nulla nostrum, ad quidem tempore.
-                                        Assumenda, doloribus dolore. Blanditiis odit ipsa repellat officia vel saepe
-                                        dolorem perferendis nam obcaecati corrupti pariatur, corporis voluptatem
-                                        distinctio repellendus labore!</p>
-                                </div>
-                            </li>
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#2 Lorem ipsum dolor amet consectetur adipisicing?</h5><i
-                                        class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fuga quia
-                                        asperiores aliquam cumque? Deserunt commodi saepe voluptates rem atque quisquam
-                                        odit doloribus Voluptas nesciunt doloremque fuga non debitis asperiores.</p>
-                                </div>
-                            </li>
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#3 Lorem ipsum dolor sit amet consectetur adipisicing elit Quia ipsa?</h5><i
-                                        class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fuga quia
-                                        asperiores aliquam cumque? Deserunt commodi saepe voluptates rem atque quisquam
-                                        odit doloribus Voluptas nesciunt doloremque fuga non debitis asperiores.</p>
-                                </div>
-                            </li>
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#4 Lorem ipsum, dolor sit amet consectetur adipisicing elit magni dignissimos?
-                                    </h5><i class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fuga quia
-                                        asperiores aliquam cumque? Deserunt commodi saepe voluptates rem atque quisquam
-                                        odit doloribus Voluptas nesciunt doloremque fuga non debitis asperiores.</p>
-                                </div>
-                            </li>
-                            <li class="accordion-item">
-                                <div class="accordion-que">
-                                    <h5>#5 Lorem ipsum dolor sit amet consectetur adipisicing temporibus?</h5><i
-                                        class="material-icons">expand_more</i>
-                                </div>
-                                <div class="accordion-ans">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fuga quia
-                                        asperiores aliquam cumque? Deserunt commodi saepe voluptates rem atque quisquam
-                                        odit doloribus Voluptas nesciunt doloremque fuga non debitis asperiores.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="common-card" id="comments">
-                        <div class="common-card-header">
-                            <h4 class="common-card-header-title">vehicle comments (03)</h4>
-                        </div>
-                        <ul class="comment-list">
-                            <li class="comment-item">
-                                <div class="comment-group">
-                                    <div class="comment-head">
-                                        <div class="comment-user"><a class="comment-media" href="#"><img
-                                                    src="../images/avatar/01.jpg" alt="avatar"></a>
-                                            <div class="comment-meta">
-                                                <h5>mahmudul hasan</h5><span>02 february 2022</span>
-                                            </div>
-                                        </div>
-                                        <div class="comment-widget"><a class="comment-reply" href="#commentForm"><i
-                                                    class="material-icons">reply</i><span>reply</span></a>
-                                            <div class="comment-action"><button type="button"
-                                                    class="comment-action-btn"><i
-                                                        class="material-icons">more_vert</i></button>
-                                                <div class="comment-action-list"><a href="#"><i
-                                                            class="material-icons">edit</i><span>edit</span></a><a
-                                                        href="#"><i
-                                                            class="material-icons">delete</i><span>delete</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-body">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quo nostrum
-                                            dolore fugiat ducimus labore debitis unde autem recusandae? Eius harum
-                                            tempora quis minima, adipisci natus quod magni omnis quas.</p>
-                                    </div>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="comment-group">
-                                            <div class="comment-head">
-                                                <div class="comment-user"><a class="comment-media"
-                                                        href="#"><img src="../images/avatar/02.jpg"
-                                                            alt="avatar"></a>
-                                                    <div class="comment-meta">
-                                                        <h5>tahmina bonny</h5><span><b>vendor</b>02 february 2022</span>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-widget"><a class="comment-reply"
-                                                        href="#commentForm"><i
-                                                            class="material-icons">reply</i><span>reply</span></a>
-                                                    <div class="comment-action"><button type="button"
-                                                            class="comment-action-btn"><i
-                                                                class="material-icons">more_vert</i></button>
-                                                        <div class="comment-action-list"><a href="#"><i
-                                                                    class="material-icons">edit</i><span>edit</span></a><a
-                                                                href="#"><i
-                                                                    class="material-icons">delete</i><span>delete</span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="comment-body">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quo
-                                                    nostrum dolore fugiat ducimus labore debitis unde autem recusandae?
-                                                    Eius harum tempora quis minima, adipisci natus quod magni omnis
-                                                    quas.</p>
-                                            </div>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <div class="comment-group">
-                                                    <div class="comment-head">
-                                                        <div class="comment-user"><a class="comment-media"
-                                                                href="#"><img src="../images/avatar/01.jpg"
-                                                                    alt="avatar"></a>
-                                                            <div class="comment-meta">
-                                                                <h5>mahmudul hasan</h5><span>02 february 2022</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="comment-widget"><a class="comment-reply"
-                                                                href="#commentForm"><i
-                                                                    class="material-icons">reply</i><span>reply</span></a>
-                                                            <div class="comment-action"><button type="button"
-                                                                    class="comment-action-btn"><i
-                                                                        class="material-icons">more_vert</i></button>
-                                                                <div class="comment-action-list"><a href="#"><i
-                                                                            class="material-icons">edit</i><span>edit</span></a><a
-                                                                        href="#"><i
-                                                                            class="material-icons">delete</i><span>delete</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-body">
-                                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                                            Eius iure sed, delectus mollitia minima eum sit harum amet.
-                                                            Id, illo. Error cumque voluptates at eum.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <div class="comment-group">
-                                            <div class="comment-head">
-                                                <div class="comment-user"><a class="comment-media"
-                                                        href="#"><img src="../images/avatar/03.jpg"
-                                                            alt="avatar"></a>
-                                                    <div class="comment-meta">
-                                                        <h5>shahin chowdhury</h5><span>02 february 2022</span>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-widget"><a class="comment-reply"
-                                                        href="#commentForm"><i
-                                                            class="material-icons">reply</i><span>reply</span></a>
-                                                    <div class="comment-action"><button type="button"
-                                                            class="comment-action-btn"><i
-                                                                class="material-icons">more_vert</i></button>
-                                                        <div class="comment-action-list"><a href="#"><i
-                                                                    class="material-icons">edit</i><span>edit</span></a><a
-                                                                href="#"><i
-                                                                    class="material-icons">delete</i><span>delete</span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="comment-body">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quo
-                                                    nostrum dolore fugiat ducimus labore debitis unde autem recusandae?
-                                                    Eius harum tempora quis minima, adipisci natus quod magni omnis
-                                                    quas.</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="comment-item">
-                                <div class="comment-head">
-                                    <div class="comment-user"><a class="comment-media" href="#"><img
-                                                src="../images/avatar/04.jpg" alt="avatar"></a>
-                                        <div class="comment-meta">
-                                            <h5>khadija labonno</h5><span>02 february 2022</span>
-                                        </div>
-                                    </div>
-                                    <div class="comment-widget"><a class="comment-reply" href="#commentForm"><i
-                                                class="material-icons">reply</i><span>reply</span></a>
-                                        <div class="comment-action"><button type="button"
-                                                class="comment-action-btn"><i
-                                                    class="material-icons">more_vert</i></button>
-                                            <div class="comment-action-list"><a href="#"><i
-                                                        class="material-icons">edit</i><span>edit</span></a><a
-                                                    href="#"><i
-                                                        class="material-icons">delete</i><span>delete</span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-body">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quo nostrum dolore
-                                        fugiat ducimus labore debitis unde autem recusandae? Eius harum tempora quis
-                                        minima, adipisci natus quod magni omnis quas.</p>
-                                </div>
-                            </li>
-                            <li class="comment-item">
-                                <div class="comment-head">
-                                    <div class="comment-user"><a class="comment-media" href="#"><img
-                                                src="../images/avatar/05.jpg" alt="avatar"></a>
-                                        <div class="comment-meta">
-                                            <h5>burhan hawladar</h5><span>02 february 2022</span>
-                                        </div>
-                                    </div>
-                                    <div class="comment-widget"><a class="comment-reply" href="#commentForm"><i
-                                                class="material-icons">reply</i><span>reply</span></a>
-                                        <div class="comment-action"><button type="button"
-                                                class="comment-action-btn"><i
-                                                    class="material-icons">more_vert</i></button>
-                                            <div class="comment-action-list"><a href="#"><i
-                                                        class="material-icons">edit</i><span>edit</span></a><a
-                                                    href="#"><i
-                                                        class="material-icons">delete</i><span>delete</span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-body">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quo nostrum dolore
-                                        fugiat ducimus labore debitis unde autem recusandae? Eius harum tempora quis
-                                        minima, adipisci natus quod magni omnis quas.</p>
-                                </div>
-                            </li>
-                        </ul>
-                        <form class="form-container">
-                            <h3 class="form-title">Write or reply your comment</h3>
-                            <div class="row">
-                                <div class="col-md-6 col-lg-6 col-xl-6">
-                                    <div class="form-group"><input class="form-control" type="text"
-                                            placeholder="Enter your name"></div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-6">
-                                    <div class="form-group"><input class="form-control" type="text"
-                                            placeholder="Enter your mail"></div>
-                                </div>
-                                <div class="col-lg-12 col-xl-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" placeholder="Write your comment"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-xl-12"><button class="form-btn" type="submit">drop your
-                                        comment</button></div>
-                            </div>
-                        </form>
-                    </div>
+
+
                 </div>
                 <div class="col-xl-4">
                     <div class="common-card">
@@ -433,146 +104,42 @@
                             <h4 class="common-card-header-title">vendor information</h4>
                         </div>
                         <div class="common-card-body">
-                            <div class="product-single-vendor"><a class="vendor-grid-cover" href="profile.html"><img
-                                        src="../images/bg/cover.jpg" alt="cover"></a><a class="vendor-grid-avatar"
-                                    href="profile.html"><img src="../images/avatar/01.jpg" alt="avatar"></a>
+                            <div class="product-single-vendor"><a class="vendor-grid-cover"
+                                    href="{{ Route('vendor_details_users', $car->user->id) }}"><img
+                                        src="{{ asset('storage/' . $car->user->cover_picture) }}" alt="cover"></a><a
+                                    class="vendor-grid-avatar"
+                                    href="{{ Route('vendor_details_users', $car->user->id) }}"><img
+                                        src="{{ asset('storage/' . $car->user->profile_picture) }}" alt="avatar"></a>
                                 <ul class="vendor-grid-meta">
                                     <li class="profile"><i class="material-icons">account_circle</i><a
-                                            href="profile.html">person name</a></li>
-                                    <li class="location"><i class="material-icons">map</i><span>chashara,
-                                            narayanganj</span></li>
-                                    <li class="rating"><i class="material-icons">star</i><span><b>4.9</b>/28
-                                            Ratings</span></li>
-                                    <li class="store"><i class="material-icons">store</i><span>individual</span></li>
+                                            href="{{ Route('vendor_details_users', $car->user->id) }}">{{ $car->user->vendor_name }}</a>
+                                    </li>
+                                    <li class="location"><i
+                                            class="material-icons">map</i><span>{{ $car->user->city }}</span></li>
+
+                                    <li class="store"><i
+                                            class="material-icons">store</i><span>{{ $car->user->account_type }}</span>
+                                    </li>
                                 </ul>
-                                <div class="vendor-grid-action"><a href="profile.html">visit profile</a><button
-                                        type="button" data-bs-toggle="modal" data-bs-target="#modalMessage">send
-                                        message</button></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="common-card">
-                        <div class="common-card-header">
-                            <h4 class="common-card-header-title">Finance calculator</h4>
-                        </div>
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6 col-lg-6 col-xl-12">
-                                    <div class="form-group"><input type="text" class="form-control"
-                                            placeholder="Vehicle Cost"></div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-12">
-                                    <div class="form-group"><input type="text" class="form-control"
-                                            placeholder="Down Payment"></div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-12">
-                                    <div class="form-group"><input type="text" class="form-control"
-                                            placeholder="Annual Interest Rate"></div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-12">
-                                    <div class="form-group"><select class="form-select">
-                                            <option selected>Payments Frequency</option>
-                                            <option value="1">weekly</option>
-                                            <option value="2">monthly</option>
-                                            <option value="3">yearly</option>
-                                        </select></div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="form-group"><button type="submit" class="form-btn">payment
-                                            calculate</button></div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <ul class="product-single-calculate-list">
-                                        <li><span>payment number</span><span>$70</span></li>
-                                        <li><span>payment amount</span><span>$95.34</span></li>
-                                    </ul>
+                                <div class="vendor-grid-action"><a
+                                        href="{{ Route('vendor_details_users', $car->user->id) }}">visit
+                                        profile</a>
+
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="common-card">
-                        <div class="common-card-header">
-                            <h4 class="common-card-header-title">top categories</h4>
                         </div>
-                        <div class="product-single-category"><a href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/minivan.png" alt="category"><span>minivan
-                                    (24)</span></a><a href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/convertible.png" alt="category"><span>convertible
-                                    (24)</span></a><a href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/coupe.png" alt="category"><span>coupe (24)</span></a><a
-                                href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/pickup.png" alt="category"><span>pickup (24)</span></a><a
-                                href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/sedan.png" alt="category"><span>sedan (24)</span></a><a
-                                href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/sports.png" alt="category"><span>sports (24)</span></a><a
-                                href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/suv.png" alt="category"><span>suv/muv (24)</span></a><a
-                                href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/wagon.png" alt="category"><span>wagon (24)</span></a><a
-                                href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/jeep.png" alt="category"><span>jeep (24)</span></a><a
-                                href="inventory-list.html" class="category-card"><img
-                                    src="../images/category/Hatchback.html" alt="category"><span>Hatchback
-                                    (24)</span></a></div>
                     </div>
+
+
                     <div class="common-card">
                         <div class="common-card-header">
-                            <h4 class="common-card-header-title">top brands</h4>
-                        </div>
-                        <div class="product-single-brand"><a class="brand-card" href="inventory-list.html"><img
-                                    src="../images/brand/01.png" alt="brand">
-                                <h6>tesla</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/02.png"
-                                    alt="brand">
-                                <h6>nissan</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/03.png"
-                                    alt="brand">
-                                <h6>mercedes</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/04.png"
-                                    alt="brand">
-                                <h6>toyota</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/05.png"
-                                    alt="brand">
-                                <h6>audi</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/06.png"
-                                    alt="brand">
-                                <h6>lamborghini</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/07.png"
-                                    alt="brand">
-                                <h6>bugatti</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/08.png"
-                                    alt="brand">
-                                <h6>ferrari</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/09.png"
-                                    alt="brand">
-                                <h6>bmw</h6>
-                                <p>(24) vehicles</p>
-                            </a><a class="brand-card" href="inventory-list.html"><img src="../images/brand/10.png"
-                                    alt="brand">
-                                <h6>porsche</h6>
-                                <p>(24) vehicles</p>
-                            </a></div>
-                    </div>
-                    <div class="common-card">
-                        <div class="common-card-header">
-                            <h4 class="common-card-header-title">share this vehicle</h4>
+                            <h4 class="common-card-header-title">Reach out to buy car</h4>
                         </div>
                         <div class="common-card-body">
                             <ul class="product-single-social-list">
-                                <li><a href="#" class="icofont-facebook facebook"></a></li>
-                                <li><a href="#" class="icofont-twitter twitter"></a></li>
-                                <li><a href="#" class="icofont-linkedin linkedin"></a></li>
-                                <li><a href="#" class="icofont-instagram instagram"></a></li>
-                                <li><a href="#" class="icofont-pinterest pinterest"></a></li>
+                                <li><a href="https://wa.me/971544551077" target="_blank"
+                                        class="icofont-whatsapp whatsapp" style="background-color: green;"></a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -587,213 +154,73 @@
                     <div class="section-head">
                         <div class="section-text">
                             <h2>related this vehicle</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
-                        </div><a href="#" class="btn btn-inline"><i
+
+                        </div><a href="{{ Route('cars') }}" class="btn btn-inline"><i
                                 class="material-icons">travel_explore</i><span>browse all</span></a>
                     </div>
                 </div>
             </div>
             <div class="row related-slider slider-arrow">
-                <div class="col">
-                    <div class="product-grid-card">
-                        <div class="product-grid-image"><img src="../images/product/01.jpg" alt="feature">
-                            <div class="product-grid-badge"><span class="badge used">used</span></div>
-                            <div class="product-grid-hints"><i class="material-icons">collections</i><span>4</span>
+                @foreach ($relatedCars as $relatedCar)
+                    <div class="col">
+                        <div class="product-grid-relatedCard">
+                            <div class="product-grid-image">
+                                <img src="{{ asset('storage/' . $relatedCar->image) }}" alt="feature" />
+                                @if ($relatedCar->condition === 'new')
+                                    <div class="product-grid-badge">
+                                        <span class="badge new">{{ $relatedCar->condition }}</span>
+                                    </div>
+                                @else
+                                    <div class="product-grid-badge">
+                                        <span class="badge used">{{ $relatedCar->condition }}</span>
+                                    </div>
+                                @endif
+                                <div class="product-grid-hints">
+                                    <i
+                                        class="material-icons">collections</i><span>{{ $relatedCar->images->count() }}</span>
+                                </div>
+                                <div class="product-grid-overlay">
+                                    <div class="product-grid-vendor">
+                                        <i class="material-icons">person</i><a
+                                            href="{{ Route('vendor_details_users', $relatedCar->user->id) }}">by
+                                            {{ $relatedCar->user->name }}</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="product-grid-overlay">
-                                <div class="product-grid-vendor"><i class="material-icons">person</i><a
-                                        href="profile.html">by autoland</a></div>
-                                <div class="product-grid-rating"><i class="material-icons">star</i><a
-                                        href="review.html">28 review</a></div>
-                            </div>
-                        </div>
-                        <div class="product-grid-content">
-                            <div class="product-grid-group">
-                                <div class="product-grid-price"><span>$18,759/-</span><small>fixed</small></div>
-                                <div class="product-grid-action"><button type="button" title="Compare"
-                                        class="compare material-icons">compare</button><button type="button"
-                                        title="Favorite" class="favorite material-icons">favorite</button></div>
-                            </div>
-                            <div class="product-grid-meta">
-                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
-                                <ul>
-                                    <li>delpara, narayanganj</li>
-                                    <li>23h ago!</li>
+                            <div class="product-grid-content">
+                                <div class="product-grid-group">
+                                    <div class="product-grid-price">
+                                        <span>AED{{ number_format($relatedCar->price, 2, '.', ',') }}/-</span><small>{{ $relatedCar->price_type }}</small>
+                                    </div>
+                                </div>
+                                <div class="product-grid-meta">
+                                    <h4>
+                                        <a
+                                            href="{{ Route('inventory_single', $relatedCar->id) }}">{{ $relatedCar->title }}</a>
+                                    </h4>
+                                </div>
+                                <ul class="product-grid-extra">
+
+                                    <li>
+                                        <i class="material-icons">settings</i><span>{{ $relatedCar->mileage }}
+                                            km</span>
+                                    </li>
+                                    <li>
+                                        <i
+                                            class="material-icons">local_gas_station</i><span>{{ $relatedCar->fuel }}</span>
+                                    </li>
                                 </ul>
-                            </div>
-                            <ul class="product-grid-extra">
-                                <li><i class="material-icons">construction</i><span>manual</span></li>
-                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
-                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
-                            </ul>
-                            <div class="product-grid-btn"><a href="inventory-single.html"><i
-                                        class="material-icons">visibility</i><span>details</span></a><a
-                                    href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true"
-                                    data-vbtype="video"><i class="material-icons">videocam</i><span>video</span></a>
+                                <div class="product-grid-btn">
+                                    <a href="{{ Route('inventory_single', $relatedCar->id) }}">
+                                        <i class="material-icons">visibility</i>
+                                        <span>details</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="product-grid-card">
-                        <div class="product-grid-image"><img src="../images/product/02.jpg" alt="feature">
-                            <div class="product-grid-badge"><span class="badge new">new</span></div>
-                            <div class="product-grid-hints"><i class="material-icons">collections</i><span>4</span>
-                            </div>
-                            <div class="product-grid-overlay">
-                                <div class="product-grid-vendor"><i class="material-icons">person</i><a
-                                        href="profile.html">by autoland</a></div>
-                                <div class="product-grid-rating"><i class="material-icons">star</i><a
-                                        href="review.html">28 review</a></div>
-                            </div>
-                        </div>
-                        <div class="product-grid-content">
-                            <div class="product-grid-group">
-                                <div class="product-grid-price"><span>$18,759/-</span><small>fixed</small></div>
-                                <div class="product-grid-action"><button type="button" title="Compare"
-                                        class="compare material-icons">compare</button><button type="button"
-                                        title="Favorite" class="favorite material-icons">favorite</button></div>
-                            </div>
-                            <div class="product-grid-meta">
-                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
-                                <ul>
-                                    <li>delpara, narayanganj</li>
-                                    <li>23h ago!</li>
-                                </ul>
-                            </div>
-                            <ul class="product-grid-extra">
-                                <li><i class="material-icons">construction</i><span>manual</span></li>
-                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
-                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
-                            </ul>
-                            <div class="product-grid-btn"><a href="inventory-single.html"><i
-                                        class="material-icons">visibility</i><span>details</span></a><a
-                                    href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true"
-                                    data-vbtype="video"><i class="material-icons">videocam</i><span>video</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="product-grid-card">
-                        <div class="product-grid-image"><img src="../images/product/03.jpg" alt="feature">
-                            <div class="product-grid-badge"><span class="badge used">used</span></div>
-                            <div class="product-grid-hints"><i class="material-icons">collections</i><span>4</span>
-                            </div>
-                            <div class="product-grid-overlay">
-                                <div class="product-grid-vendor"><i class="material-icons">person</i><a
-                                        href="profile.html">by autoland</a></div>
-                                <div class="product-grid-rating"><i class="material-icons">star</i><a
-                                        href="review.html">28 review</a></div>
-                            </div>
-                        </div>
-                        <div class="product-grid-content">
-                            <div class="product-grid-group">
-                                <div class="product-grid-price"><span>$18,759/-</span><small>fixed</small></div>
-                                <div class="product-grid-action"><button type="button" title="Compare"
-                                        class="compare material-icons">compare</button><button type="button"
-                                        title="Favorite" class="favorite material-icons">favorite</button></div>
-                            </div>
-                            <div class="product-grid-meta">
-                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
-                                <ul>
-                                    <li>delpara, narayanganj</li>
-                                    <li>23h ago!</li>
-                                </ul>
-                            </div>
-                            <ul class="product-grid-extra">
-                                <li><i class="material-icons">construction</i><span>manual</span></li>
-                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
-                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
-                            </ul>
-                            <div class="product-grid-btn"><a href="inventory-single.html"><i
-                                        class="material-icons">visibility</i><span>details</span></a><a
-                                    href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true"
-                                    data-vbtype="video"><i class="material-icons">videocam</i><span>video</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="product-grid-card">
-                        <div class="product-grid-image"><img src="../images/product/04.jpg" alt="feature">
-                            <div class="product-grid-badge"><span class="badge new">new</span></div>
-                            <div class="product-grid-hints"><i class="material-icons">collections</i><span>4</span>
-                            </div>
-                            <div class="product-grid-overlay">
-                                <div class="product-grid-vendor"><i class="material-icons">person</i><a
-                                        href="profile.html">by autoland</a></div>
-                                <div class="product-grid-rating"><i class="material-icons">star</i><a
-                                        href="review.html">28 review</a></div>
-                            </div>
-                        </div>
-                        <div class="product-grid-content">
-                            <div class="product-grid-group">
-                                <div class="product-grid-price"><span>$18,759/-</span><small>fixed</small></div>
-                                <div class="product-grid-action"><button type="button" title="Compare"
-                                        class="compare material-icons">compare</button><button type="button"
-                                        title="Favorite" class="favorite material-icons">favorite</button></div>
-                            </div>
-                            <div class="product-grid-meta">
-                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
-                                <ul>
-                                    <li>delpara, narayanganj</li>
-                                    <li>23h ago!</li>
-                                </ul>
-                            </div>
-                            <ul class="product-grid-extra">
-                                <li><i class="material-icons">construction</i><span>manual</span></li>
-                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
-                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
-                            </ul>
-                            <div class="product-grid-btn"><a href="inventory-single.html"><i
-                                        class="material-icons">visibility</i><span>details</span></a><a
-                                    href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true"
-                                    data-vbtype="video"><i class="material-icons">videocam</i><span>video</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="product-grid-card">
-                        <div class="product-grid-image"><img src="../images/product/05.jpg" alt="feature">
-                            <div class="product-grid-badge"><span class="badge new">new</span></div>
-                            <div class="product-grid-hints"><i class="material-icons">collections</i><span>4</span>
-                            </div>
-                            <div class="product-grid-overlay">
-                                <div class="product-grid-vendor"><i class="material-icons">person</i><a
-                                        href="profile.html">by autoland</a></div>
-                                <div class="product-grid-rating"><i class="material-icons">star</i><a
-                                        href="review.html">28 review</a></div>
-                            </div>
-                        </div>
-                        <div class="product-grid-content">
-                            <div class="product-grid-group">
-                                <div class="product-grid-price"><span>$18,759/-</span><small>fixed</small></div>
-                                <div class="product-grid-action"><button type="button" title="Compare"
-                                        class="compare material-icons">compare</button><button type="button"
-                                        title="Favorite" class="favorite material-icons">favorite</button></div>
-                            </div>
-                            <div class="product-grid-meta">
-                                <h4><a href="inventory-single.html">Mercedez benz super mclaren</a></h4>
-                                <ul>
-                                    <li>delpara, narayanganj</li>
-                                    <li>23h ago!</li>
-                                </ul>
-                            </div>
-                            <ul class="product-grid-extra">
-                                <li><i class="material-icons">construction</i><span>manual</span></li>
-                                <li><i class="material-icons">settings</i><span>2000 km</span></li>
-                                <li><i class="material-icons">local_gas_station</i><span>diesel</span></li>
-                            </ul>
-                            <div class="product-grid-btn"><a href="inventory-single.html"><i
-                                        class="material-icons">visibility</i><span>details</span></a><a
-                                    href="https://youtu.be/VWrJkx6O0L8" class="venobox" data-autoplay="true"
-                                    data-vbtype="video"><i class="material-icons">videocam</i><span>video</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>

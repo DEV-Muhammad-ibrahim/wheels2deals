@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class AdminViewController extends Controller
 {
     public function admin_dashboard()
     {
-        return view('admin.admin-dashboard');
+        $query = Vehicle::query();
+
+        $totalCar = $query->count(); // Count all cars
+        $activeCar = (clone $query)->where('status', true)->count(); // Count active cars
+        $inActiveCar = (clone $query)->where('status', false)->count(); // Count inactive cars
+        $cars = $query->latest()->paginate(10); // Get paginated latest cars
+
+        // dd($totalCar, $activeCar, $inActiveCar, $cars);
+        return view('admin.admin-dashboard', compact('totalCar', 'activeCar', 'inActiveCar', 'cars'));
     }
     public function car_list()
     {

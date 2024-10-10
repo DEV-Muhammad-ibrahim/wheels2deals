@@ -4,20 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Vehicle;
 use Exception;
 use Illuminate\Http\Request;
 
 class DisableCarsController extends Controller
 {
-    public function disableCar(Request $request)
+    public function disaproveCar($id)
     {
         try {
             //code...
-            $id = $request->id;
-            $car = Product::where('id', $id)->get();
-            $car->status = 'inactive';
+
+            $car = Vehicle::findOrFail($id);
+            $car->status = false;
             $car->save();
-            return redirect()->back()->with('message', 'Car is inactive');
+            return redirect()->route('car_list')->with('success', 'Car is inactive');
         } catch (Exception $e) {
             // Log the error for debugging purposes
             // Log::error('Error adding product: ' . $e->getMessage());

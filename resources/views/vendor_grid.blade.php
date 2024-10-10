@@ -11,7 +11,7 @@
                 <div class="container">
                     <h2>vendor grid page</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ Route('home') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">vendor-grid</li>
                     </ol>
                 </div>

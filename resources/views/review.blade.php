@@ -11,7 +11,7 @@
             <div class="mc-breadcrumb-group">
                 <h2 class="mc-breadcrumb-title">user reviews</h2>
                 <ul class="mc-breadcrumb-list">
-                    <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="index.html">home</a></li>
+                    <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="{{ Route('home') }}">home</a></li>
                     <li class="mc-breadcrumb-item"><a class="mc-breadcrumb-link" href="dashboard.html">dashboard</a>
                     </li>
                     <li class="mc-breadcrumb-item">review</li>

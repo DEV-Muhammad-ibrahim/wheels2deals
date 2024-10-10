@@ -41,13 +41,13 @@ class RegisterVendorController extends Controller
 
         // Handle profile image upload if provided
         if ($request->hasFile('profile_image')) {
-            $profileImagePath = $request->file('profile_image')->store('profile_images', 'public');
+            $profileImagePath = $request->file('profile_image')->store('images/profile_images', 'public');
             $user->profile_picture = $profileImagePath;
         }
 
         // Handle cover image upload if provided
         if ($request->hasFile('cover_image')) {
-            $coverImagePath = $request->file('cover_image')->store('cover_images', 'public');
+            $coverImagePath = $request->file('cover_image')->store('images/cover_images', 'public');
             $user->cover_picture = $coverImagePath;
         }
 

@@ -1,12 +1,21 @@
 <aside class="sidebar-part">
     <div class="sidebar-header">
-        <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" /></a><button
-            class="sidebar-close material-icons">close</button>
+        <a href="#">
+
+
+            <img src="{{ asset('assets/images/logo.png') }}" alt="logo" />
+        </a><button class="sidebar-close material-icons">close</button>
     </div>
     <div class="sidebar-content">
         <div class="sidebar-btn">
-            <a href="{{ Route('create_ads') }}" class="btn btn-inline"><i class="material-icons">storefront</i><span>sell
-                    vehicles</span></a>
+            @if (Auth::check())
+                <a href="{{ Route('create_ads') }}" class="btn btn-inline"><i
+                        class="material-icons">storefront</i><span>sell
+                        vehicles</span></a>
+            @else
+                <a href="{{ Route('login') }}" class="btn btn-inline"><i
+                        class="material-icons">person</i><span>Login</span></a>
+            @endif
         </div>
         <nav class="sidebar-nav">
             {{-- <div class="sidebar-group">
@@ -52,16 +61,16 @@
                 <h5 class="sidebar-title">main menu</h5>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="{{ Route('index') }}" class="nav-link"><i class="material-icons">home</i><span
+                        <a href="{{ Route('home') }}" class="nav-link"><i class="material-icons">home</i><span
                                 class="nav-text">home</span></a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link"><i class="material-icons">inventory</i><span
-                                class="nav-text">inventory</span><span class="nav-arrow"></span></a>
+                                class="nav-text">Dealeship</span><span class="nav-arrow"></span></a>
                         <ul class="drop-list">
                             <li class="drop-item">
-                                <a href="{{ Route('inventory_grid') }}" class="drop-link"><i
-                                        class="material-icons">remove</i><span>inventory grid</span></a>
+                                <a href="{{ Route('accessory') }}" class="drop-link"><i
+                                        class="material-icons">remove</i><span>Accessories</span></a>
                             </li>
                             <li class="drop-item">
                                 <a href="{{ Route('cars') }}" class="drop-link"><i
@@ -75,20 +84,14 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link"><i class="material-icons">store</i><span
-                                class="nav-text">vendor</span><span class="nav-arrow"></span></a>
+                                class="nav-text">Vendor</span><span class="nav-arrow"></span></a>
                         <ul class="drop-list">
-                            <li class="drop-item">
-                                <a href="{{ Route('vendor_grid') }}" class="drop-link"><i
-                                        class="material-icons">remove</i><span>vendor grid</span></a>
-                            </li>
+
                             <li class="drop-item">
                                 <a href="{{ Route('vendor_list') }}" class="drop-link"><i
-                                        class="material-icons">remove</i><span>vendor list</span></a>
+                                        class="material-icons">remove</i><span>Vendors</span></a>
                             </li>
-                            <li class="drop-item">
-                                <a href="{{ Route('cars') }}" class="drop-link"><i
-                                        class="material-icons">remove</i><span>vendor single</span></a>
-                            </li>
+
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -103,10 +106,10 @@
                                 <a href="{{ Route('pricing_plan') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>pricing plan</span></a>
                             </li> --}}
-                            <li class="drop-item">
+                            {{-- <li class="drop-item">
                                 <a href="{{ Route('coming_soon') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>coming soon</span></a>
-                            </li>
+                            </li> --}}
                             {{-- <li class="drop-item">
                                 <a href="{{ Route('404') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>404
@@ -146,10 +149,10 @@
                                 <a href="{{ Route('register') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>register</span></a>
                             </li>
-                            <li class="drop-item">
+                            {{-- <li class="drop-item">
                                 <a href="{{ Route('forgot_password') }}" class="drop-link"><i
                                         class="material-icons">remove</i><span>forgot password</span></a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                 </ul>
@@ -158,10 +161,10 @@
                 <div class="sidebar-group">
                     <h5 class="sidebar-title">user menu</h5>
                     <ul class="nav-list">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ Route('dashboard') }}" class="nav-link"><i
                                     class="material-icons">dashboard</i><span class="nav-text">dashboard</span></a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ Route('profile') }}" class="nav-link"><i
                                     class="material-icons">account_circle</i><span class="nav-text">profile</span></a>

@@ -37,7 +37,7 @@ class OtpController extends Controller
                 'Your account has been verified',
             ));
 
-            return redirect()->route('index');
+            return redirect()->route('home');
         }
 
         return back()->with('error', 'Invalid or expired OTP');

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('accessories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('company');
+            $table->string('image');
+            $table->string('description');
+            $table->string('compatibility');
+            $table->string('price');
+            $table->string('price_type');
             $table->timestamps();
         });
     }

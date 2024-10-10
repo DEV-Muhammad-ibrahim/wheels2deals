@@ -4,13 +4,14 @@
     <section class="auth-part">
         <div class="auth-banner"><img class="auth-banner-bg" src="{{ asset('assets/images/bg/auth.jpg') }}" alt="auth">
             <div class="auth-banner-overlay">
-                <div class="auth-content"><a class="auth-logo" href="index.html"><img
+                <div class="auth-content"><a class="auth-logo" href="{{ Route('home') }}"><img
                             src="{{ asset('assets/images/logo.png') }}" alt="logo"></a>
                     <h1 class="auth-headline">Registor Now</h1>
                     <p class="auth-details">Welcome to Wheels2Deals!
                         Join our growing community of car enthusiasts, buyers, and sellers. Whether you're looking to
                         find the perfect ride or sell one, we make it easy for you. Create your account today and unlock
                         exclusive features!</p>
+
                     <div class="auth-social">
                         <h5>follow on</h5>
                         <ul>
@@ -65,7 +66,7 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="checkAgree" name="terms"><label
                         class="form-check-label" for="checkAgree">I agree to the <a href="#">Terms </a> and <a
-                            href="#">Privacy
+                            href="{{ Route('privacy') }}">Privacy
                             Policy</a>.</label>
                 </div>
 

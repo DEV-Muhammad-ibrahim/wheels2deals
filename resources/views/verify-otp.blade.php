@@ -6,7 +6,7 @@
     <section class="auth-part">
         <div class="auth-banner"><img class="auth-banner-bg" src="{{ asset('assets/images/bg/auth.jpg') }}" alt="auth">
             <div class="auth-banner-overlay">
-                <div class="auth-content"><a class="auth-logo" href="index.html"><img
+                <div class="auth-content"><a class="auth-logo" href="{{ Route('home') }}"><img
                             src="{{ asset('assets/images/logo.png') }}" alt="logo"></a>
                     <h1 class="auth-headline">Verify Your Account</h1>
 

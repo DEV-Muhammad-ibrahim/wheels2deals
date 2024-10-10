@@ -11,7 +11,7 @@
                 <div class="container">
                     <h2>about our company</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ Route('index') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ Route('home') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('about') }}">about-us</a>
                         </li>
                     </ol>

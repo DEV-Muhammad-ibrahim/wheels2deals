@@ -147,27 +147,65 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{-- <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center align-items-center">
-                                        <li class="page-item">
-                                            <a class="page-link">
-                                                <i class="arrow" data-feather="chevron-left" width="14"></i>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                <i class="arrow" data-feather="chevron-right" width="14"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav> --}}
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 mobile-bottom-fix text-center text-lg-start">
+                                        <span class="me1">Showing:</span>
+                                        <span class="text-heading">{{ $category->firstItem() }} to
+                                            {{ $category->lastItem() }} of {{ $category->total() }}</span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <nav aria-label="Page navigation example">
+                                            <ul
+                                                class="pagination justify-content-center justify-content-lg-end align-items-center">
+                                                {{-- Previous Page Link --}}
+                                                @if ($category->onFirstPage())
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" tabindex="-1">
+                                                            <i class="arrow" data-feather="chevron-left"
+                                                                width="14"></i>
+                                                        </a>
+                                                    </li>
+                                                @else
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="{{ $category->previousPageUrl() }}">
+                                                            <i class="arrow" data-feather="chevron-left"
+                                                                width="14"></i>
+                                                        </a>
+                                                    </li>
+                                                @endif
+
+                                                {{-- Pagination Elements --}}
+                                                @for ($i = 1; $i <= $category->lastPage(); $i++)
+                                                    @if ($i == $category->currentPage())
+                                                        <li class="page-item active"><a class="page-link"
+                                                                href="#">{{ $i }}</a></li>
+                                                    @else
+                                                        <li class="page-item"><a class="page-link"
+                                                                href="{{ $category->url($i) }}">{{ $i }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endfor
+
+                                                {{-- Next Page Link --}}
+                                                @if ($category->hasMorePages())
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="{{ $category->nextPageUrl() }}">
+                                                            <i class="arrow" data-feather="chevron-right"
+                                                                width="14"></i>
+                                                        </a>
+                                                    </li>
+                                                @else
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" tabindex="-1">
+                                                            <i class="arrow" data-feather="chevron-right"
+                                                                width="14"></i>
+                                                        </a>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

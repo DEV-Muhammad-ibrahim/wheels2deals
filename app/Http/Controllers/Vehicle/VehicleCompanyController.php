@@ -22,7 +22,7 @@ class VehicleCompanyController extends Controller
             'image' => 'required'
         ]);
 
-        $imagePath = $request->file('image')->store('company_images', 'public');
+        $imagePath = $request->file('image')->store('images/company_images', 'public');
         $company = new Company();
         $company->name = $request->name;
         $company->image = $imagePath;
@@ -58,7 +58,7 @@ class VehicleCompanyController extends Controller
             }
 
             // Store new image
-            $path = $request->file('image')->store('company_images', 'public');
+            $path = $request->file('image')->store('images/company_images', 'public');
             $company->image = $path;
         }
 

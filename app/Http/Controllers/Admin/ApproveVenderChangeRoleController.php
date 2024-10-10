@@ -8,21 +8,22 @@ use Illuminate\Http\Request;
 
 class ApproveVenderChangeRoleController extends Controller
 {
-    public function approveVendor(Request $request)
+    public function approveVendor($id)
     {
         try {
             //code...
-            $id = $request->id;
-            $user = User::where('id', $id)->get();
+
+            $user = User::findOrFail($id);
             $user->user_can_add_products = true;
             $savedUser = $user->save();
             if ($savedUser) {
-                return redirect()->back()->with('message', 'User Can is now vendor and add products');
+                return redirect()->back()->with('success', $user->vendor_name . 'is now vendor and create products');
             } else {
-                return redirect()->back()->with('message', 'Something went wrong');
+                return redirect()->back()->with('error', 'Something went wrong');
             }
         } catch (\Throwable $th) {
             //throw $th;
+            return redirect()->back()->with('message', 'Something went wrong' . $th->getMessage());
         }
     }
 }

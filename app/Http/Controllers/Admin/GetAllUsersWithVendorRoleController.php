@@ -10,6 +10,7 @@ class GetAllUsersWithVendorRoleController extends Controller
 {
     public function getUsers()
     {
-        $users = User::where('role', 'vendor')->get();
+        $users = User::where('role', 'vendor')->paginate(10);
+        return view('admin.admin-vendors', compact('users'));
     }
 }

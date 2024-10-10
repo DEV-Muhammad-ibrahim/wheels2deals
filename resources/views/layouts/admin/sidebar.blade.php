@@ -29,7 +29,7 @@
 
         <ul class="menu-group m-0 px-2 mb-2">
             <li
-                class="sub-menu {{ request()->routeIs(['car_list', 'car_details', 'categories', 'add_category', 'features', 'add_feature', 'company', 'add_company', 'car_approval', 'car_approval_details', 'add_car', 'type', 'add_type']) ? 'active' : '' }} ">
+                class="sub-menu {{ request()->routeIs(['car_list', 'car_details', 'categories', 'add_category', 'features', 'add_feature', 'company', 'add_company', 'car_approval', 'car_approval_details', 'add_car', 'type', 'add_type', 'acessories', 'add_acessory']) ? 'active' : '' }} ">
                 <a href="javascript:;" class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <i data-feather="monitor" stroke-width="1.5" height="18" class="me2"></i>
@@ -98,14 +98,20 @@
                             <span>Approvals</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('car_approval_details') ? 'active' : '' }}">
-                        <a href="{{ Route('car_approval_details') }}">
-                            <span>Approval Details</span>
+                    <li class="{{ request()->routeIs('acessories') ? 'active' : '' }}">
+                        <a href="{{ Route('acessories') }}">
+                            <span>Accessories</span>
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('add_acessory') ? 'active' : '' }}">
+                        <a href="{{ Route('add_acessory') }}">
+                            <span>Add Accessory</span>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
-            <li class="sub-menu {{ request()->routeIs('all_users') ? 'active' : '' }}">
+            <li class="sub-menu {{ request()->routeIs(['all_users', 'all_vendors']) ? 'active' : '' }}">
                 <a href="javascript:;" class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <i data-feather="user" stroke-width="1.5" height="18" class="me2"></i>
@@ -113,16 +119,15 @@
                     </div>
                     <i class="arrow" data-feather="chevron-right" height="14"></i>
                 </a>
-                <ul
-                    class="sub-menu-group
-                    {{ request()->routeIs(['all_users', 'admin_settings']) ? 'active' : '' }}">
+                <ul class="sub-menu-group
+                    {{ request()->routeIs('all_users') ? 'active' : '' }}">
                     <li class=" {{ request()->routeIs('all_users') ? 'active' : '' }}">
                         <a href="{{ Route('all_users') }}">
                             <span>Simple Users</span>
                         </a>
                     </li>
-                    <li class=" {{ request()->routeIs('admin_settings') ? 'active' : '' }}">
-                        <a href="{{ Route('admin_settings') }}">
+                    <li class=" {{ request()->routeIs('all_vendors') ? 'active' : '' }}">
+                        <a href="{{ Route('all_vendors') }}">
                             <span>Vendors</span>
                         </a>
                     </li>

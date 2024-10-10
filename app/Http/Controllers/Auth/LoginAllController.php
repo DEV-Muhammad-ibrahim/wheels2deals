@@ -40,9 +40,9 @@ class LoginAllController extends Controller
             session(['otp_verified' => true]);
             $role = $user->role;
             if ($role == 'user') {
-                return redirect()->route('index');
+                return redirect()->route('home');
             } else if ($role == 'vendor') {
-                return redirect()->route('dashboard');
+                return redirect()->route('profile');
             } else if ($role == 'admin') {
                 return redirect()->route('admin_dashboard');
             }

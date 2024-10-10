@@ -34,7 +34,7 @@ class Vehicle extends Model
     ];
 
     // Define relationships if necessary
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

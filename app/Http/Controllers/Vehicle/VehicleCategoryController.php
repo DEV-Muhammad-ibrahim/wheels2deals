@@ -11,7 +11,7 @@ class VehicleCategoryController extends Controller
 {
     public function read()
     {
-        $category = VehicleCategory::all();
+        $category = VehicleCategory::paginate(10);
         return view('admin.admin-categories', compact('category'));
     }
     public function create(Request $request)
@@ -22,7 +22,7 @@ class VehicleCategoryController extends Controller
             'image' => 'required'
         ]);
 
-        $imagePath = $request->file('image')->store('category_images', 'public');
+        $imagePath = $request->file('image')->store('images/category_images', 'public');
         $category = new VehicleCategory();
         $category->name = $request->name;
         $category->image = $imagePath;
@@ -58,7 +58,7 @@ class VehicleCategoryController extends Controller
             }
 
             // Store new image
-            $path = $request->file('image')->store('category_images', 'public');
+            $path = $request->file('image')->store('images/category_images', 'public');
             $category->image = $path;
         }
 

@@ -23,7 +23,7 @@ class VehicleTypeController extends Controller
             'image' => 'required'
         ]);
 
-        $imagePath = $request->file('image')->store('type_images', 'public');
+        $imagePath = $request->file('image')->store('images/type_images', 'public');
         $type = new VehicleType();
         $type->name = $request->name;
         $type->image = $imagePath;
@@ -59,7 +59,7 @@ class VehicleTypeController extends Controller
             }
 
             // Store new image
-            $path = $request->file('image')->store('type_images', 'public');
+            $path = $request->file('image')->store('images/type_images', 'public');
             $type->image = $path;
         }
 

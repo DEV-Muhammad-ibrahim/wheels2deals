@@ -12,7 +12,7 @@
                 <div class="container">
                     <h2>faqs</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ Route('home') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">faq</li>
                     </ol>
                 </div>

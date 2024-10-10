@@ -581,12 +581,7 @@
                                 </ol>
                             </nav>
                         </div>
-                        <div class="col-md-6 text-start text-md-end">
-                            <!-- Add Button Start-->
-                            <button class="btn btn-primary btn-soft" data-bs-toggle="modal"
-                                data-bs-target="#addCarModal">Edit Car</button>
-                            <!-- Add Button End-->
-                        </div>
+
                     </div>
                     <!-- Page Top End -->
 
@@ -634,13 +629,13 @@
                                                         <span>License Plate</span>
                                                     </div>
                                                     <div class="col-7">
-                                                        <div class="border border-dark width-160 rounded overflow-hidden d-flex"
+                                                        <div class="border border-dark width-160 rounded overflow-hidden d-flex flex-column bg-white"
                                                             dir="ltr">
+                                                            <div class="text-heading text-center">
+                                                                <small class="text-dark">UAE</small>
+                                                            </div>
                                                             <div
-                                                                class="bg-primary width-40 height-30 d-flex align-items-center justify-content-center text-white">
-                                                                D</div>
-                                                            <div
-                                                                class="w-100 d-flex align-items-center justify-content-center bg-white">
+                                                                class="w-100 d-flex align-items-center justify-content-center">
                                                                 <h6 class="mb0 text-dark">
                                                                     {{ $car->registration_plate_no }}</h6>
                                                             </div>
@@ -661,6 +656,24 @@
                                                                 class="badge rounded-pill badge-soft text-bg-danger">Inactive
                                                             </span>
                                                         @endif
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-5">
+                                                        <span>Action</span>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <div class="col-md-6 text-start text-md-end">
+                                                            <!-- Add Button Start-->
+                                                            <form action="{{ Route('car_disaprove', $car->id) }}"
+                                                                method="POST">
+                                                                @method('POST')
+                                                                @csrf
+                                                                <button class="btn btn-danger ">Disable
+                                                                    Car</button>
+                                                            </form>
+                                                            <!-- Add Button End-->
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -870,16 +883,7 @@
                     <!-- Table End -->
 
                     <!-- Calendar Start -->
-                    <div class="col-xxl-4 mb6">
-                        <div class="card shadow-card overflow-hidden p6">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h6>Project Time</h6>
-                                    <div class="calendar-container"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- Calendar End -->
                 </div>
                 <!-- Table & Calendar End -->

@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Accessory;
+use App\Models\Company;
+use App\Models\User;
+use App\Models\Vehicle;
+use App\Models\VehicleImages;
+use App\Models\VehicleType;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,12 +16,20 @@ class ViewController extends Controller
 {
     public function index()
     {
-        $view = 'index';
-        if (view()->exists($view)) {
-            return view($view);
-        } else {
-            return view('404');
-        }
+
+
+        $brands = Company::take(10)->get();
+        $types = VehicleType::take(10)->get();
+        $cars = Vehicle::with(['user', 'images'])
+            ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
+
+        $randomCars = Vehicle::with(['user', 'images'])->inRandomOrder()->take(6)->get();
+
+
+        return view('index', compact('brands', 'types', 'cars', 'randomCars')); // Pass the brands data to the view
+
     }
     public function error()
     {
@@ -141,37 +155,30 @@ class ViewController extends Controller
     }
     public function inventory_grid()
     {
-        $view = 'inventory_grid';
-        if (view()->exists($view)) {
-            return view($view);
-        } else {
-            return view('404');
-        }
+        $accessories = Accessory::paginate(10);
+        return view('inventory_grid', compact('accessories'));
     }
     public function cars()
     {
-        $view = 'inventory_list';
-        if (view()->exists($view)) {
-            return view($view);
-        } else {
-            return view('404');
-        }
+        $companies = Company::all();
+        $types = VehicleType::all();
+        $cars = Vehicle::with(['user', 'images'])->orderBy('id', 'desc')->paginate(10);
+        return view('inventory_list', compact('cars', 'companies', 'types'));
     }
-    public function inventory_single()
+    public function inventory_single($id)
     {
-        $view = 'inventory_single';
-        if (view()->exists($view)) {
-            return view($view);
-        } else {
-            return view('404');
-        }
+        $car = Vehicle::findOrFail($id);
+        $user = User::findOrFail($car->user_id);
+        $relatedCars = Vehicle::where('type', $car->type)->get();
+
+        return view('inventory_single', compact('car', 'user', 'relatedCars'));
     }
     public function login()
     {
         $user = auth()->user();
 
         if ($user) {
-            return redirect()->route('index');
+            return redirect()->route('home');
         } else {
             return view('login');
         }
@@ -193,12 +200,15 @@ class ViewController extends Controller
     }
     public function posted_ads()
     {
-        $view = 'posted_ads';
-        if (view()->exists($view)) {
-            return view($view);
-        } else {
-            return view('404');
-        }
+
+        $id = auth()->user()->id;
+
+        // Retrieve active vehicles for the authenticated user
+        $cars = Vehicle::where(['user_id' => $id, 'status' => 'active'])->paginate(10);
+
+        // Dump and die to see the results
+
+        return view('posted_ads', compact('cars'));
     }
     public function pricing_plan()
     {
@@ -231,7 +241,7 @@ class ViewController extends Controller
     {
         $user = auth()->user();
         if ($user) {
-            return redirect()->route('index');
+            return redirect()->route('home');
         } else {
             return view('register');
         }
@@ -272,12 +282,9 @@ class ViewController extends Controller
     }
     public function vendor_list()
     {
-        $view = 'vendor_list';
-        if (view()->exists($view)) {
-            return view($view);
-        } else {
-            return view('404');
-        }
+        $vendors = User::where(['role' => 'vendor', 'user_can_add_products' => true])->paginate(10);
+
+        return view('vendor_list', compact('vendors'));
     }
     public function logout(Request $request)
     {
