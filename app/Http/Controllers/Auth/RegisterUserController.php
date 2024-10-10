@@ -25,11 +25,11 @@ class RegisterUserController extends Controller
             'password' =>  [
                 'required',
                 'string',
-                // 'min:8', // Minimum length of 8 characters
-                // 'regex:/[a-z]/', // must contain at least one lowercase letter
-                // 'regex:/[A-Z]/', // must contain at least one uppercase letter
-                // 'regex:/[0-9]/', // must contain at least one digit
-                // 'regex:/[@$!%*?&]/', // must contain a special character
+                'min:8', // Minimum length of 8 characters
+                'regex:/[a-z]/', // must contain at least one lowercase letter
+                'regex:/[A-Z]/', // must contain at least one uppercase letter
+                'regex:/[0-9]/', // must contain at least one digit
+                'regex:/[@$!%*?&]/', // must contain a special character
             ],
         ], [
             'password.regex' => 'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
