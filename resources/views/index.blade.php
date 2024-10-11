@@ -116,7 +116,8 @@
                 @foreach ($types as $type)
                     <div class="col">
                         <a href="" class="category-card">
-                            <img src="{{ Storage::url($type->image) }}" alt="category" /><span>{{ $type->name }}
+                            <img src="{{ asset('storage/app/public/' . $type->image) }}"
+                                alt="category" /><span>{{ $type->name }}
                             </span>
                         </a>
                     </div>
@@ -144,7 +145,7 @@
                     <div class="col">
                         <div class="product-grid-card">
                             <div class="product-grid-image">
-                                <img src="{{ asset('storage/' . $car->image) }}" alt="feature" />
+                                <img src="{{ asset('storage/app/public/' . $car->image) }}" alt="feature" />
                                 @if ($car->condition === 'new')
                                     <div class="product-grid-badge">
                                         <span class="badge new">{{ $car->condition }}</span>
@@ -219,7 +220,7 @@
                     <div class="col">
                         <div class="product-feature-card">
                             <div class="product-feature-image">
-                                <img src="{{ asset('storage/' . $car->image) }}" alt="product" />
+                                <img src="{{ asset('storage/app/public/' . $car->image) }}" alt="product" />
                                 <a href="{{ Route('inventory_single', $car->id) }}"
                                     class="product-feature-btn badge-hover"><i class="material-icons">add</i><span
                                         class="badge arrow-right">more
@@ -252,33 +253,7 @@
         </div>
     </section>
 
-    <section class="section-gap-95">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section-head">
-                        <div class="section-text">
-                            <h2>browse by top Companies</h2>
 
-                        </div>
-                        <a href="{{ Route('cars') }}" class="btn btn-inline"><i
-                                class="material-icons">travel_explore</i><span>browse all</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
-                @foreach ($brands as $comp)
-                    <div class="col">
-                        <a class="brand-card" href="{{ Route('cars') }}">
-                            <img src="{{ asset('storage/' . $comp->image) }}" alt="brand" class="img-fluid" />
-                            <h6>{{ $comp->name }}</h6>
-                        </a>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-    </section>
 
     <section class="section-gap-120">
         <div class="container">
@@ -318,33 +293,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3">
-                <div class="col">
-                    <div class="funfactor-card">
-                        <i class="material-icons">drive_eta</i>
-                        <h4>
-                            <span class="funfactor-text">stock vehicles</span><span class="funfactor-data">2355</span>
-                        </h4>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="funfactor-card">
-                        <i class="material-icons">flag</i>
-                        <h4>
-                            <span class="funfactor-text">sold vehicles</span><span class="funfactor-data">7895</span>
-                        </h4>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="funfactor-card">
-                        <i class="material-icons">people</i>
-                        <h4>
-                            <span class="funfactor-text">happy clients</span><span class="funfactor-data">6567</span>
-                        </h4>
-                    </div>
-                </div>
 
-            </div>
         </div>
     </section>
 
