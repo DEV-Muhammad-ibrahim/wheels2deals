@@ -22,3 +22,12 @@ jobs:
           rsync -avz --delete-after \
           -e "ssh -o StrictHostKeyChecking=no -p 65002" \
           ./ u118130549@154.41.233.109://home/u118130549/domains/wheels2deals.com/public_html
+      - name: Create symbolic link
+        run: |
+          ssh -o StrictHostKeyChecking=no -p 65002 u118130549@154.41.233.109 '
+          cd /home/u118130549/domains/wheels2deals.com/public_html &&
+          php artisan storage:link &&
+          if [ ! -L public/storage ]; then
+            ln -s ../storage/app/public public/storage
+          fi
+          '
