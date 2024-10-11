@@ -27,7 +27,7 @@
                         <form action="{{ Route('vehicles.search') }}" method="GET">
                             <div class="product-widget-group">
                                 <input type="number" name="min_price" placeholder="Min - 00">
-                                <input type="number" name="max_price" placeholder="Max - 100">
+                                <input type="number" name="max_price" placeholder="Max - 100K">
                             </div>
 
 
