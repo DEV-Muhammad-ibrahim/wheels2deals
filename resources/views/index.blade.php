@@ -116,7 +116,7 @@
                 @foreach ($types as $type)
                     <div class="col">
                         <a href="" class="category-card">
-                            <img src="{{ asset('storage/' . $type->image) }}" alt="category" /><span>{{ $type->name }}
+                            <img src="{{ Storage::url($type->image) }}" alt="category" /><span>{{ $type->name }}
                             </span>
                         </a>
                     </div>
