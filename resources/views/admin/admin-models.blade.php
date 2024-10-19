@@ -1,12 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+
+
 @include('layouts.admin.head')
 
 <body>
-
-
     <div class="app-root d-flex flex-column">
         <!-- ***** Sidebar Start ***** -->
-
         @include('layouts.admin.sidebar')
+
         <!-- ***** Sidebar End ***** -->
 
         <!-- ***** Responsive Menu Backdrop Start ***** -->
@@ -35,93 +38,63 @@
                     <!-- Page Top Start -->
                     <div class="row mb6 align-items-center">
                         <div class="col-md-6 mobile-bottom-fix">
-                            <h1 class="page-title mb2">Car List</h1>
+                            <h1 class="page-title mb2">Models</h1>
                             <nav class="breadcrumb-nav" aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Car List</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Models</li>
                                 </ol>
                             </nav>
                         </div>
                         <div class="col-md-6 text-start text-md-end">
                             <!-- Filter Dropdown Start-->
-
                             <!-- Filter Dropdown End-->
 
                             <!-- Add Button Start-->
-
-                            <a href="{{ Route('add_type') }}" class="btn btn-primary">Add
-                                Car</a>
-
+                            <a href="{{ Route('model.add') }}" class="btn btn-primary">Add
+                                Model</a>
                             <!-- Add Button End-->
                         </div>
                     </div>
-
-                    <!-- Mini Widgets End -->
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <!-- Page Top End -->
 
                     <!-- Content Start -->
                     <div class="row mb5">
                         <div class="col-12">
                             <div class="card shadow-card p6 pt3">
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                                 <div class="table-responsive text-nowrap">
                                     <table class="table qd-table mb6 align-middle">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Title</th>
-                                                <th scope="col">Company</th>
-                                                <th scope="col">Type</th>
-                                                <th scope="col">Model</th>
-                                                <th scope="col">YEAR</th>
+                                                <th scope="col">Models NAME</th>
                                                 <th scope="col">STATUS</th>
                                                 <th scope="col" class="text-end">ACTIONS</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($cars as $car)
+                                            @foreach ($models as $model)
                                                 <tr>
                                                     <td>
                                                         <div class="d-inline-flex flex-row align-items-center">
-                                                            <div class="width-120 height-80 img-fix rounded me4">
-                                                                <img src="{{ asset('storage/' . $car->image) }}"
-                                                                    alt="">
-                                                            </div>
-                                                            <strong>{{ $car->title }}</strong>
+
+                                                            <strong class="text-heading">{{ $model->name }}</strong>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <strong class="text-heading">{{ $car->company->name }}</strong>
-                                                    </td>
-                                                    <td>
-                                                        <strong class="text-heading">{{ $car->type->name }}</strong>
-                                                    </td>
-                                                    <td>
-                                                        <strong class="text-heading">{{ $car->model->name }}</strong>
-                                                    </td>
-                                                    <td>
-                                                        <strong class="text-heading">{{ $car->year }}</strong>
-                                                    </td>
+
 
                                                     <td>
-                                                        @if ($car->status == true)
-                                                            <span
-                                                                class="badge rounded-pill badge-soft text-bg-success">Active
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge rounded-pill badge-soft text-bg-danger">Inactive
-                                                            </span>
-                                                        @endif
-
+                                                        <span
+                                                            class="badge rounded-pill badge-soft text-bg-success">Published</span>
                                                     </td>
                                                     <td>
                                                         <div class="dropdown text-end">
@@ -135,19 +108,27 @@
                                                             </button>
                                                             <ul class="dropdown-menu text-start">
 
-                                                                <li><a class="dropdown-item"
-                                                                        href="{{ Route('car_details', $car->id) }}">Details</a>
+
                                                                 </li>
                                                                 <li>
-                                                                    <form
-                                                                        action="{{ route('delete_vehicle', $car->id) }}"
-                                                                        method="POST">
-                                                                        @csrf
-                                                                        @method('POST')
-                                                                        <button type="submit"
-                                                                            class="dropdown-item text-danger">Delete</button>
+                                                                    <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                                                        href="#">
+                                                                        <form
+                                                                            action="{{ route('model.delete', $model->id) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            @method('POST')
+                                                                            <button type="submit"
+                                                                                class="dropdown-item text-danger">Delete</button>
+                                                                        </form>
 
-                                                                    </form>
+                                                                        <i data-feather="info" stroke-width="2"
+                                                                            height="12" class="text-body me1"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-placement="left"
+                                                                            data-bs-custom-class="qd-tooltip"
+                                                                            data-bs-title="If you delete it, this action cannot be undone."></i>
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -161,15 +142,15 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 mobile-bottom-fix text-center text-lg-start">
                                         <span class="me1">Showing:</span>
-                                        <span class="text-heading">{{ $cars->firstItem() }} to
-                                            {{ $cars->lastItem() }} of {{ $cars->total() }}</span>
+                                        <span class="text-heading">{{ $models->firstItem() }} to
+                                            {{ $models->lastItem() }} of {{ $models->total() }}</span>
                                     </div>
                                     <div class="col-lg-6">
                                         <nav aria-label="Page navigation example">
                                             <ul
                                                 class="pagination justify-content-center justify-content-lg-end align-items-center">
                                                 {{-- Previous Page Link --}}
-                                                @if ($cars->onFirstPage())
+                                                @if ($models->onFirstPage())
                                                     <li class="page-item disabled">
                                                         <a class="page-link" tabindex="-1">
                                                             <i class="arrow" data-feather="chevron-left"
@@ -178,7 +159,7 @@
                                                     </li>
                                                 @else
                                                     <li class="page-item">
-                                                        <a class="page-link" href="{{ $cars->previousPageUrl() }}">
+                                                        <a class="page-link" href="{{ $models->previousPageUrl() }}">
                                                             <i class="arrow" data-feather="chevron-left"
                                                                 width="14"></i>
                                                         </a>
@@ -186,21 +167,21 @@
                                                 @endif
 
                                                 {{-- Pagination Elements --}}
-                                                @for ($i = 1; $i <= $cars->lastPage(); $i++)
-                                                    @if ($i == $cars->currentPage())
+                                                @for ($i = 1; $i <= $models->lastPage(); $i++)
+                                                    @if ($i == $models->currentPage())
                                                         <li class="page-item active"><a class="page-link"
                                                                 href="#">{{ $i }}</a></li>
                                                     @else
                                                         <li class="page-item"><a class="page-link"
-                                                                href="{{ $cars->url($i) }}">{{ $i }}</a>
+                                                                href="{{ $models->url($i) }}">{{ $i }}</a>
                                                         </li>
                                                     @endif
                                                 @endfor
 
                                                 {{-- Next Page Link --}}
-                                                @if ($cars->hasMorePages())
+                                                @if ($models->hasMorePages())
                                                     <li class="page-item">
-                                                        <a class="page-link" href="{{ $cars->nextPageUrl() }}">
+                                                        <a class="page-link" href="{{ $models->nextPageUrl() }}">
                                                             <i class="arrow" data-feather="chevron-right"
                                                                 width="14"></i>
                                                         </a>
@@ -226,17 +207,9 @@
             <!-- ***** Content End ***** -->
 
             <!-- ***** Footer Start ***** -->
-
-            <!-- ***** End Start ***** -->
-        </main>
-        <!-- ***** Main End ***** -->
-    </div>
-
-    <!-- Plugin Bundle -->
-    <script src="{{ asset('adminAssets/js/plugins.bundle.js') }}" crossorigin="anonymous"></script>
-    <!-- Common Javascript -->
-    <script src="{{ asset('adminAssets/js/app.js') }}" crossorigin=" anonymous"></script>
+            @include('layouts.admin.footer')
 </body>
+
 
 
 </html>

@@ -32,13 +32,13 @@
                     <!-- Page Top Start -->
                     <div class="row mb6 align-items-center">
                         <div class="col-md-12 mobile-bottom-fix">
-                            <h1 class="page-title mb2">Add Category</h1>
+                            <h1 class="page-title mb2">Add Model</h1>
                             <nav class="breadcrumb-nav" aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a
-                                            href="projects-ecommerce-categories.html">Categories</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Add Category</li>
+                                    <li class="breadcrumb-item"><a href="projects-ecommerce-categories.html">Model</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">Add Model</li>
                                 </ol>
                             </nav>
                         </div>
@@ -46,8 +46,7 @@
                     <!-- Page Top End -->
 
                     <!-- Content Start -->
-                    <form method="POST" action="{{ Route('create_category') }}" id="addcategory"
-                        class="needs-validation" enctype="multipart/form-data">
+                    <form method="POST" action="{{ Route('model.add') }}" id="addcategory" class="needs-validation">
                         @csrf
                         @method('POST')
                         <div class="row mb5">
@@ -73,7 +72,7 @@
                                                 @endif
                                                 <div class="col-12 mb5">
                                                     <label for="add-form-6" class="form-label">
-                                                        <span>Category Name</span>
+                                                        <span>Model Name</span>
                                                         <span class="text-danger">*</span>
                                                         <i data-feather="info" stroke-width="2" width="12"
                                                             class="text-body" data-bs-toggle="tooltip"
@@ -88,6 +87,38 @@
                                                     @enderror
                                                     <div class="invalid-feedback">Please fill out all fields.</div>
                                                 </div>
+                                                <div class="col-6 mb5">
+                                                    <div class="form-group"><label class="form-label">Type
+                                                            <span>*</span></label>
+                                                        <select class="form-select" name="type">
+                                                            <option selected>---</option>
+                                                            @foreach ($type as $type)
+                                                                <option value="{{ $type->id }}">
+                                                                    {{ $type->name }}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                    @error('company')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-6 mb5">
+                                                    <div class="form-group"><label class="form-label">Company
+                                                            <span>*</span></label>
+                                                        <select class="form-select" name="company">
+                                                            <option selected>---</option>
+                                                            @foreach ($company as $company)
+                                                                <option value="{{ $company->id }}">
+                                                                    {{ $company->name }}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                    @error('company')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
 
 
 
@@ -98,75 +129,35 @@
 
                                     <!-- Meta Options Start -->
 
-                                    <!-- Meta Options End -->
+
+                                    <!-- Media End -->
+
+                                    <!-- Settings Start -->
+
+                                    <!-- Settings End -->
                                 </div>
                             </div>
-                            <!-- Left Column End -->
-
-                            <!-- Right Column Start -->
-                            {{-- <div class="col-xxl-4">
-                                <div class="sticky-top">
-                                    <div class="row">
-                                        <!-- Media Start -->
-                                        <div class="col-12 mb6">
-                                            <div class="card shadow-card p6">
-                                                <label for="add-form-1" class="form-label">
-                                                    <span>Media</span>
-
-                                                    <span class="text-danger">*</span>
-                                                    <i data-feather="info" stroke-width="2" width="12"
-                                                        class="text-body" data-bs-toggle="tooltip"
-                                                        data-bs-placement="right" data-bs-custom-class="qd-tooltip"
-                                                        data-bs-title="Supports: *.png or *.jpg"></i>
-                                                </label>
-                                                @error('image')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-
-                                                <div class="file-upload">
-                                                    <label for="file-input" class="file-upload-label">
-                                                        <span class="file-upload-icon">📁</span>
-                                                        <span class="file-upload-text">Choose a file</span>
-                                                    </label>
-                                                    <input type="file" id="file-input" class="file-upload-input"
-                                                        name="image" />
-                                                    <div id="file-name" class="file-name-display">No file chosen</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Media End -->
-
-                                        <!-- Settings Start -->
-
-                                        <!-- Settings End -->
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <!-- Right Column End -->
-
-                            <!-- Buttons Start -->
-                            <div class="col-12 text-end">
-
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-                            <!-- Buttons End -->
                         </div>
-                    </form>
-                    <!-- Content End -->
-                </div>
-            </div>
-            <!-- ***** Content End ***** -->
+                        <!-- Right Column End -->
 
-            <!-- ***** Footer Start ***** -->
-            @include('layouts.admin.footer')
-            <!-- Page Specific Javascript -->
-            <script src="{{ asset('adminAssets/js/pages/projects/ecommerce/add-category.js') }}" crossorigin="anonymous"></script>
-            <script>
-                document.getElementById('file-input').addEventListener('change', function(e) {
-                    var filename = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
-                    document.getElementById('file-name').textContent = filename;
-                });
-            </script>
+                        <!-- Buttons Start -->
+                        <div class="col-12 text-end">
+
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                        <!-- Buttons End -->
+                </div>
+                </form>
+                <!-- Content End -->
+            </div>
+    </div>
+    <!-- ***** Content End ***** -->
+
+    <!-- ***** Footer Start ***** -->
+    @include('layouts.admin.footer')
+    <!-- Page Specific Javascript -->
+    <script src="{{ asset('adminAssets/js/pages/projects/ecommerce/add-category.js') }}" crossorigin="anonymous"></script>
+
 </body>
 
 

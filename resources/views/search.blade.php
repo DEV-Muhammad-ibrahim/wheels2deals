@@ -38,7 +38,7 @@
                                 @foreach ($companies as $company)
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="companies[]"
-                                            value="{{ $company->name }}" id="company_{{ $company->id }}"
+                                            value="{{ $company->id }}" id="company_{{ $company->id }}"
                                             {{ in_array($company->id, request('companies', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="company_{{ $company->id }}">
                                             {{ $company->name }}
@@ -56,7 +56,7 @@
                                 @foreach ($types as $type)
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="types[]"
-                                            value="{{ $type->name }}" id="type_{{ $type->id }}"
+                                            value="{{ $type->id }}" id="type_{{ $type->id }}"
                                             {{ in_array($type->id, request('types', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="type_{{ $type->id }}">
                                             {{ $type->name }}
@@ -120,8 +120,8 @@
                                             </div>
                                         </div>
                                         <ul class="product-list-info">
-                                            <li><span>type:</span><span>{{ $car->type }}</span></li>
-                                            <li><span>make:</span><span>{{ $car->company }}</span></li>
+                                            <li><span>type:</span><span>{{ $car->type->name }}</span></li>
+                                            <li><span>make:</span><span>{{ $car->company->name }}</span></li>
                                             <li><span>fuel:</span><span>{{ $car->fuel }}</span></li>
                                             <li><span>year:</span><span>{{ $car->year }}</span></li>
                                             <li><span>price:</span><span>{{ $car->price_type }}</span></li>

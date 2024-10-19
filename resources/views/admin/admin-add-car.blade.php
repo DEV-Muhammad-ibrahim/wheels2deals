@@ -87,99 +87,54 @@
                                                             data-bs-title="Type a name for the product."></i>
                                                     </label>
                                                     <input id="add-form-1" class="form-control slug-target"
-                                                        type="text" required name="title">
+                                                        type="text" required name="title"
+                                                        value="{{ old('title') }}">
                                                     <div class="invalid-feedback">Please fill out all fields.</div>
                                                 </div>
                                                 @error('title')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
 
-                                                <div class="col-6 mb5">
-                                                    <label for="add-form-1" class="form-label">
-                                                        <span>Vehicle Registration Number</span>
-                                                        <span class="text-danger">*</span>
-                                                        <i data-feather="info" stroke-width="2" width="12"
-                                                            class="text-body" data-bs-toggle="tooltip"
-                                                            data-bs-placement="right" data-bs-custom-class="qd-tooltip"
-                                                            data-bs-title="Type a name for the product."></i>
-                                                    </label>
-                                                    <input id="add-form-1" class="form-control slug-target"
-                                                        type="text" required name="vehicle_registration_no">
-                                                    <div class="invalid-feedback">Please fill out all fields.</div>
-                                                </div>
-                                                @error('vehicle_registration_no')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-6 mb5">
-                                                    <label for="add-form-1" class="form-label">
-                                                        <span>Registeration Plate Number</span>
-                                                        <span class="text-danger">*</span>
-                                                        <i data-feather="info" stroke-width="2" width="12"
-                                                            class="text-body" data-bs-toggle="tooltip"
-                                                            data-bs-placement="right" data-bs-custom-class="qd-tooltip"
-                                                            data-bs-title="Type a name for the product."></i>
-                                                    </label>
-                                                    <input id="add-form-1" class="form-control slug-target"
-                                                        type="text" required name="registration_plate_no">
-                                                    <div class="invalid-feedback">Please fill out all fields.</div>
-                                                </div>
-                                                @error('registration_plate_no')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-6 mb5">
-                                                    <label for="add-form-1" class="form-label">
-                                                        <span>Date of issue</span>
-                                                        <span class="text-danger">*</span>
-                                                        <i data-feather="info" stroke-width="2" width="12"
-                                                            class="text-body" data-bs-toggle="tooltip"
-                                                            data-bs-placement="right"
-                                                            data-bs-custom-class="qd-tooltip"
-                                                            data-bs-title="Type a name for the product."></i>
-                                                    </label>
-                                                    <input id="add-form-1" class="form-control slug-target"
-                                                        type="date" required name="doi">
-                                                    <div class="invalid-feedback">Please fill out all fields.</div>
-                                                </div>
-                                                @error('doi')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-6 mb5">
-                                                    <label for="add-form-1" class="form-label">
-                                                        <span>Date of expiry</span>
-                                                        <span class="text-danger">*</span>
-                                                        <i data-feather="info" stroke-width="2" width="12"
-                                                            class="text-body" data-bs-toggle="tooltip"
-                                                            data-bs-placement="right"
-                                                            data-bs-custom-class="qd-tooltip"
-                                                            data-bs-title="Type a name for the product."></i>
-                                                    </label>
-                                                    <input id="add-form-1" class="form-control slug-target"
-                                                        type="date" required name="doe">
-                                                    <div class="invalid-feedback">Please fill out all fields.</div>
-                                                </div>
-                                                @error('doe')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+
                                                 <div class="col-6 mb5">
                                                     <div class="form-group"><label class="form-label">Company
                                                             <span>*</span></label>
-                                                        <select class="form-select" name="company">
+                                                        <select class="form-select" name="company_id"
+                                                            value="{{ old('company') }}">
                                                             <option selected>---</option>
                                                             @foreach ($company as $company)
-                                                                <option value="{{ $company->name }}">
+                                                                <option value="{{ $company->id }}">
                                                                     {{ $company->name }}</option>
                                                             @endforeach
 
                                                         </select>
                                                     </div>
-                                                    @error('company')
+                                                    @error('company_id')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-6 mb5">
+                                                    <div class="form-group"><label class="form-label">Model
+                                                            <span>*</span></label>
+                                                        <select class="form-select" name="model_id"
+                                                            value="{{ old('model') }}">
+                                                            <option selected>---</option>
+                                                            @foreach ($models as $model)
+                                                                <option value="{{ $model->id }}">
+                                                                    {{ $model->name }}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                    @error('model_id')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="col-6 mb-5">
                                                     <div class="form-group"><label class="form-label">Fuel
                                                             <span>*</span></label>
-                                                        <select class="form-select" name="fuel">
+                                                        <select class="form-select" name="fuel"
+                                                            value="{{ old('fuel') }}">
                                                             <option selected>---</option>
                                                             <option value="diesel">Disel</option>
                                                             <option value="petrol">Petrol</option>
@@ -193,7 +148,8 @@
                                                 <div class="col-6 mb-5">
                                                     <div class="form-group">
                                                         <label class="form-label">Year <span>*</span></label>
-                                                        <select class="form-select" name="year">
+                                                        <select class="form-select" name="year"
+                                                            value="{{ old('year') }}">
                                                             <option selected>---</option>
                                                             <!-- Dynamically generated options for the last 50 years -->
                                                             <option value="2024">2024</option>
@@ -253,13 +209,61 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+                                                <div class="col-6 mb-5">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Transmission <span>*</span></label>
+                                                        <select class="form-select" name="transmission"
+                                                            value="{{ old('transmission') }}">
+                                                            <option selected>---</option>
+                                                            <option value="manual">Manual</option>
+                                                            <option value="automatic">Automatic</option>
+                                                        </select>
+                                                        @error('transmission')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-5">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Seating Capacity
+                                                            <span>*</span></label>
+                                                        <select class="form-select" name="seating_capacity"
+                                                            value="{{ old('seating_capacity') }}">
+                                                            <option selected>---</option>
+                                                            <option value="2">2</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="12">12</option>
+                                                            <option value="15">15</option>
+                                                        </select>
+                                                        @error('seating_capacity')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                                 <div class="col-6 mb-f">
                                                     <div class="form-group"><label class="form-label">Colour
                                                             <span>*</span></label><input id="add-form-1"
                                                             class="form-control slug-target" type="text" required
-                                                            name="color">
+                                                            name="color" value="{{ old('color') }}">
                                                     </div>
                                                     @error('color')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-6 mb-f">
+                                                    <div class="form-group"><label class="form-label"> Interior Colour
+                                                            <span>*</span></label><input id="add-form-1"
+                                                            class="form-control slug-target" type="text" required
+                                                            name="interior_color"
+                                                            value="{{ old('interior_color') }}">
+                                                    </div>
+                                                    @error('interior_color')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -275,7 +279,8 @@
                                                     </label>
                                                     <div class="input-group">
                                                         <input type="number" id="add-form-5" class="form-control"
-                                                            placeholder="0,00" required name="mileage">
+                                                            placeholder="0,00" required name="mileage"
+                                                            value="{{ old('mileage') }}">
                                                         <span class="input-group-text">Km</span>
                                                     </div>
                                                     <div class="invalid-feedback">Please fill out all
@@ -289,7 +294,8 @@
                                                 <div class="col-6 mb-5">
                                                     <div class="form-group"><label class="form-label">Price type
                                                             <span>*</span></label>
-                                                        <select class="form-select " name="price_type">
+                                                        <select class="form-select " name="price_type"
+                                                            value="{{ old('price_type') }}">
                                                             <option selected>---</option>
                                                             <option value="fixed">Fixed</option>
                                                             <option value="negotiable">Negotiable
@@ -303,7 +309,8 @@
                                                 <div class="col-6 mb-5">
                                                     <div class="form-group"><label class="form-label">Condition
                                                             <span>*</span></label>
-                                                        <select class="form-select" name="condition">
+                                                        <select class="form-select" name="condition"
+                                                            value="{{ old('condition') }}">
                                                             <option selected>---</option>
                                                             <option value="used">Used</option>
                                                             <option value="new">New</option>
@@ -313,46 +320,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                {{-- <div class="col-6 mb5">
-                                                    <label for="add-form-2" class="form-label">
-                                                        <span>URL Slug</span>
-                                                        <i data-feather="info" stroke-width="2" width="12"
-                                                            class="text-body" data-bs-toggle="tooltip"
-                                                            data-bs-placement="right"
-                                                            data-bs-custom-class="qd-tooltip"
-                                                            data-bs-title="The URL slug is automatically populated when you type the title."></i>
-                                                    </label>
-                                                    <input id="add-form-2" class="form-control slug-url"
-                                                        type="text">
-                                                </div> --}}
-                                                {{-- <div class="col-6 mb5">
-                                                    <label for="add-form-3" class="form-label">
-                                                        <span>SKU</span>
-                                                        <span class="text-danger">*</span>
-                                                        <i data-feather="info" stroke-width="2" width="12"
-                                                            class="text-body" data-bs-toggle="tooltip"
-                                                            data-bs-placement="right"
-                                                            data-bs-custom-class="qd-tooltip"
-                                                            data-bs-title="Type a SKU code for the product."></i>
-                                                    </label>
-                                                    <input id="add-form-3" class="form-control" type="text"
-                                                        required>
-                                                    <div class="invalid-feedback">Please fill out all fields.</div>
-                                                </div> --}}
-                                                {{-- <div class="col-6 mb5">
-                                                    <label for="add-form-4" class="form-label">
-                                                        <span>Piece</span>
-                                                        <i data-feather="info" stroke-width="2" width="12"
-                                                            class="text-body" data-bs-toggle="tooltip"
-                                                            data-bs-placement="right"
-                                                            data-bs-custom-class="qd-tooltip"
-                                                            data-bs-title="Please write stock information."></i>
-                                                    </label>
-                                                    <div class="input-group">
-                                                        <input type="text" id="add-form-4" class="form-control">
-                                                        <span class="input-group-text">Piece</span>
-                                                    </div>
-                                                </div> --}}
+
                                                 <div class="col-6 mb5">
                                                     <label for="add-form-5" class="form-label">
                                                         <span>Price</span>
@@ -365,7 +333,8 @@
                                                     </label>
                                                     <div class="input-group">
                                                         <input type="number" id="add-form-5" class="form-control"
-                                                            placeholder="0,00" required name="price">
+                                                            placeholder="0,00" required name="price"
+                                                            value="{{ old('price') }}">
                                                         <span class="input-group-text">UAE</span>
                                                     </div>
                                                     @error('price')
@@ -383,16 +352,16 @@
                                                             data-bs-title="Select if the category will be a subcategory of another category."></i>
                                                     </label>
                                                     <select id="add-form-6" class="form-select js-choice" required
-                                                        name="category">
+                                                        name="category_id" value="{{ old('category') }}">
                                                         <option value="">Select Category</option>
                                                         @foreach ($category as $cat)
-                                                            <option value="{{ $cat->name }}">
+                                                            <option value="{{ $cat->id }}">
                                                                 {{ $cat->name }}
                                                             </option>
                                                         @endforeach
 
                                                     </select>
-                                                    @error('category')
+                                                    @error('category_id')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -407,23 +376,23 @@
                                                             data-bs-title="Select if the type will be a subtype of another type."></i>
                                                     </label>
                                                     <select id="add-form-6" class="form-select js-choice" required
-                                                        name="type">
+                                                        name="type_id" value="{{ old('type') }}">
                                                         <option value="">Select type</option>
                                                         @foreach ($type as $type)
-                                                            <option value="{{ $type->name }}">
+                                                            <option value="{{ $type->id }}">
                                                                 {{ $type->name }}
                                                             </option>
                                                         @endforeach
 
                                                     </select>
-                                                    @error('type')
+                                                    @error('type_id')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group mb-0"><label class="form-label">Description
                                                             <span class="text-danger">*</span></label>
-                                                        <textarea class="form-control" name="description"></textarea>
+                                                        <textarea class="form-control" name="description" value="{{ old('description') }}"></textarea>
                                                     </div>
                                                     @error('description')
                                                         <div class="alert alert-danger">{{ $message }}</div>

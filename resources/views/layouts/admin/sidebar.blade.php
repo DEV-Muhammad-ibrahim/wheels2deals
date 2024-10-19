@@ -29,7 +29,7 @@
 
         <ul class="menu-group m-0 px-2 mb-2">
             <li
-                class="sub-menu {{ request()->routeIs(['car_list', 'car_details', 'categories', 'add_category', 'features', 'add_feature', 'company', 'add_company', 'car_approval', 'car_approval_details', 'add_car', 'type', 'add_type', 'acessories', 'add_acessory']) ? 'active' : '' }} ">
+                class="sub-menu {{ request()->routeIs(['car_list', 'car_details', 'categories', 'add_category', 'features', 'add_feature', 'company', 'add_company', 'car_approval', 'car_approval_details', 'add_car', 'type', 'add_type', 'acessories', 'add_acessory', 'models.show', 'model.add']) ? 'active' : '' }} ">
                 <a href="javascript:;" class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <i data-feather="monitor" stroke-width="1.5" height="18" class="me2"></i>
@@ -46,6 +46,16 @@
                     <li class="{{ request()->routeIs('add_car') ? 'active' : '' }}">
                         <a href="{{ Route('add_car') }}">
                             <span>Add Car</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('models.show') ? 'active' : '' }}">
+                        <a href="{{ Route('models.show') }}">
+                            <span>Models</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('model.add') ? 'active' : '' }}">
+                        <a href="{{ Route('model.add') }}">
+                            <span>Add Model</span>
                         </a>
                     </li>
                     {{-- <li class="{{ request()->routeIs('car_details') ? 'active' : '' }}">

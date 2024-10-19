@@ -26,15 +26,15 @@
                     <div class="product-single-meta-group"><span
                             class="product-single-meta-price">AED{{ $car->price }}/-
                             <small>{{ $car->price_type }}</small></span>
-                        <h2 class="product-single-meta-title">{{ $car->title }} {{ $car->company }}</h2>
+                        <h2 class="product-single-meta-title">{{ $car->title }} {{ $car->company->name }}</h2>
                         <ul class="product-single-meta-list">
                             <li><i class="material-icons">account_circle</i><a
-                                    href="profile.html">{{ $user->vendor_name }}</a>
+                                    href="profile.html">{{ $car->user->vendor_name }}</a>
                             </li>
                             <li><i class="material-icons">watch_later</i><span>{{ $car->created_at }}</span></li>
 
-                            <li><i class="material-icons">fmd_good</i><span>{{ $user->city }},
-                                    {{ $user->state }}</span></li>
+                            <li><i class="material-icons">fmd_good</i><span>{{ $car->user->city }},
+                                    {{ $car->user->state }}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -83,9 +83,10 @@
                                 <li><span>condition:</span><span>{{ $car->condition }}</span></li>
                                 <li><span>mileage:</span><span>{{ $car->mileage }} km</span></li>
 
-                                <li><span>body type:</span><span>{{ $car->type }}</span></li>
-                                <li><span>brand name:</span><span>{{ $car->company }}</span></li>
+                                <li><span>body type:</span><span>{{ $car->type->name }}</span></li>
+                                <li><span>brand name:</span><span>{{ $car->company->name }}</span></li>
                                 <li><span>colour:</span><span>{{ $car->color }}</span></li>
+                                <li><span>interior colour:</span><span>{{ $car->interior_color }}</span></li>
                                 <li><span>fuel type:</span><span>{{ $car->fuel }}</span></li>
                             </ul>
                             <ul class="product-single-feature-list">
@@ -126,15 +127,15 @@
                         <div class="common-card-body">
                             <div class="product-single-vendor">
                                 <a class="vendor-grid-cover" href="profile.html">
-                                    <img src="{{ asset('storage/' . $user->cover_picture) }}" alt="cover">
+                                    <img src="{{ asset('storage/' . $car->user->cover_picture) }}" alt="cover">
                                 </a>
                                 <a class="vendor-grid-avatar" href="profile.html">
-                                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="avatar">
+                                    <img src="{{ asset('storage/' . $car->user->profile_picture) }}" alt="avatar">
                                 </a>
                                 <ul class="vendor-grid-meta">
                                     <li class="profile"><i class="material-icons">account_circle</i><a
-                                            href="profile.html">{{ $user->vendor_name }}</a></li>
-                                    <li class="location"><i class="material-icons">map</i><span>{{ $user->city }},
+                                            href="profile.html">{{ $car->user->vendor_name }}</a></li>
+                                    <li class="location"><i class="material-icons">map</i><span>{{ $car->user->city }},
                                         </span></li>
 
                                     <div class="vendor-grid-action">

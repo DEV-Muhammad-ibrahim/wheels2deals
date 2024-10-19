@@ -78,8 +78,10 @@
                                             <tr>
                                                 <th scope="col">Title</th>
                                                 <th scope="col">Company</th>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">Model</th>
                                                 <th scope="col">YEAR</th>
-                                                <th scope="col">LICENSE PLATE</th>
+
                                                 <th scope="col">STATUS</th>
                                                 <th scope="col" class="text-end">ACTIONS</th>
                                             </tr>
@@ -97,24 +99,16 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <strong class="text-heading">{{ $car->company }}</strong>
+                                                        <strong class="text-heading">{{ $car->company->name }}</strong>
+                                                    </td>
+                                                    <td>
+                                                        <strong class="text-heading">{{ $car->type->name }}</strong>
+                                                    </td>
+                                                    <td>
+                                                        <strong class="text-heading">{{ $car->model->name }}</strong>
                                                     </td>
                                                     <td>
                                                         <strong class="text-heading">{{ $car->year }}</strong>
-                                                    </td>
-                                                    <td>
-                                                        <div class="border border-dark width-160 rounded overflow-hidden d-flex flex-column bg-white"
-                                                            dir="ltr">
-                                                            <div class="text-heading text-center">
-                                                                <small class="text-dark">UAE</small>
-                                                            </div>
-                                                            <div
-                                                                class="w-100 d-flex align-items-center justify-content-center">
-                                                                <h6 class="mb0 text-dark">
-                                                                    {{ $car->registration_plate_no }}</h6>
-                                                            </div>
-                                                        </div>
-
                                                     </td>
                                                     <td>
                                                         @if ($car->status == true)

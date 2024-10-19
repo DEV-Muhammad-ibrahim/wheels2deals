@@ -65,8 +65,8 @@
                 </div> --}}
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="checkAgree" name="terms"><label
-                        class="form-check-label" for="checkAgree">I agree to the <a href="#">Terms </a> and <a
-                            href="{{ Route('privacy') }}">Privacy
+                        class="form-check-label" for="checkAgree">I agree to the <a href="{{ Route('privacy') }}">Terms
+                        </a> and <a href="{{ Route('privacy') }}">Privacy
                             Policy</a>.</label>
                 </div>
 

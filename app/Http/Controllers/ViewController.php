@@ -7,7 +7,7 @@ use App\Models\Company;
 use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleImages;
-use App\Models\VehicleType;
+use App\Models\Type;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,16 +19,13 @@ class ViewController extends Controller
 
 
         $brands = Company::take(10)->get();
-        $types = VehicleType::take(10)->get();
-        $cars = Vehicle::with(['user', 'images'])
-            ->orderBy('created_at', 'desc')
-            ->take(6)
-            ->get();
-
-        $randomCars = Vehicle::with(['user', 'images'])->inRandomOrder()->take(6)->get();
+        $types = Type::take(10)->get();
 
 
-        return view('index', compact('brands', 'types', 'cars', 'randomCars')); // Pass the brands data to the view
+        $randomCars = Vehicle::with(['user', 'images'])->inRandomOrder()->take(6)->where('status', true)->get();
+
+
+        return view('index', compact('brands', 'types', 'randomCars')); // Pass the brands data to the view
 
     }
     public function error()
@@ -161,17 +158,20 @@ class ViewController extends Controller
     public function cars()
     {
         $companies = Company::all();
-        $types = VehicleType::all();
-        $cars = Vehicle::with(['user', 'images'])->orderBy('id', 'desc')->paginate(10);
+        $types = Type::all();
+        $cars = Vehicle::with(['user', 'images'])->orderBy('id', 'desc')->where('status', true)->paginate(10);
         return view('inventory_list', compact('cars', 'companies', 'types'));
     }
     public function inventory_single($id)
     {
         $car = Vehicle::findOrFail($id);
-        $user = User::findOrFail($car->user_id);
-        $relatedCars = Vehicle::where('type', $car->type)->get();
 
-        return view('inventory_single', compact('car', 'user', 'relatedCars'));
+        $relatedCars = Vehicle::where([
+            'type_id' => $car->type_id,
+            'status' => true
+        ])->take(6)->get();
+
+        return view('inventory_single', compact('car', 'relatedCars'));
     }
     public function login()
     {

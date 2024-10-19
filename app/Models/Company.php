@@ -9,4 +9,9 @@ class Company extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'image'];
+
+    public function vehicleModels()
+    {
+        return $this->hasMany(VehicleModel::class);
+    }
 }

@@ -26,7 +26,7 @@
                     <div class="product-single-meta-group"><span
                             class="product-single-meta-price">AED:{{ number_format($car->price, 2, '.', ',') }}/-
                             <small>{{ $car->price_type }}</small></span>
-                        <h2 class="product-single-meta-title">{{ $car->title }} {{ $car->company }}</h2>
+                        <h2 class="product-single-meta-title">{{ $car->title }} {{ $car->company->name }}</h2>
                         <ul class="product-single-meta-list">
                             <li><i class="material-icons">account_circle</i><a
                                     href="{{ Route('vendor_details_users', $car->user->id) }}">by
@@ -81,9 +81,12 @@
                             <ul class="product-single-feature-list">
                                 <li><span>condition:</span><span>{{ $car->condition }}</span></li>
                                 <li><span>mileage:</span><span>{{ $car->mileage }} km</span></li>
-                                <li><span>body type:</span><span>{{ $car->type }}</span></li>
-                                <li><span>brand name:</span><span>{{ $car->company }}</span></li>
+                                <li><span>body type:</span><span>{{ $car->type->name }}</span></li>
+                                <li><span>Model:</span><span>{{ $car->model->name }}</span></li>
+                                <li><span>brand name:</span><span>{{ $car->company->name }}</span></li>
                                 <li><span>colour:</span><span>{{ $car->color }}</span></li>
+                                <li><span>Interior colour:</span><span>{{ $car->interior_color }}</span></li>
+                                <li><span>Transmission:</span><span>{{ $car->transmission }}</span></li>
                                 <li><span>fuel type:</span><span>{{ $car->fuel }}</span></li>
                             </ul>
                             <ul class="product-single-feature-list">
@@ -116,6 +119,9 @@
                                     </li>
                                     <li class="location"><i
                                             class="material-icons">map</i><span>{{ $car->user->city }}</span></li>
+                                    <li class="location"><i
+                                            class="material-icons">phone</i><span>{{ $car->user->phone_no }}</span>
+                                    </li>
 
                                     <li class="store"><i
                                             class="material-icons">store</i><span>{{ $car->user->account_type }}</span>

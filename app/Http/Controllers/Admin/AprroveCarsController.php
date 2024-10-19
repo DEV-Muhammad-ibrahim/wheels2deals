@@ -31,9 +31,8 @@ class AprroveCarsController extends Controller
     }
     public function approve_car_details_page($id)
     {
-        $car = Vehicle::findOrFail($id);
-        $user = User::findOrFail($car->user_id);
-        // dd($car->images);
-        return view('admin.car-approval-details', compact('car', 'user'));
+        $car = Vehicle::with('user', 'images')->findOrFail($id);
+
+        return view('admin.car-approval-details', compact('car'));
     }
 }

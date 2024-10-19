@@ -21,6 +21,7 @@ use App\Http\Controllers\Vehicle\VehicleCategoryController;
 use App\Http\Controllers\Vehicle\VehicleCompanyController;
 use App\Http\Controllers\Vehicle\VehicleController;
 use App\Http\Controllers\Vehicle\VehicleFeaturesController;
+use App\Http\Controllers\Vehicle\VehicleModelController;
 use App\Http\Controllers\Vehicle\VehicleTypeController;
 use App\Http\Controllers\Vendor\CreateAdController;
 use App\Http\Controllers\Vendor\ShowDetailsController;
@@ -79,11 +80,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/create_ad', [CreateAdController::class, 'create_ad'])->name('ad_create');
     Route::get('/posted_ads', [ViewController::class, 'posted_ads'])->name('posted_ads');
     Route::get('/pricing_plan', [ViewController::class, 'pricing_plan'])->name('pricing_plan');
-    Route::get('/privacy', [ViewController::class, 'privacy'])->name('privacy');
     Route::get('/profile', [ViewController::class, 'profile'])->name('profile');
     Route::get('/setting', [ViewController::class, 'setting'])->name('setting');
     Route::post('/vendor', [RegisterVendorController::class, 'register'])->name('register_vendor');
 });
+Route::get('/privacy', [ViewController::class, 'privacy'])->name('privacy');
 
 
 
@@ -150,6 +151,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('add_accessory', [AcessoriesController::class, 'add_acessory_show'])->name('add_acessory');
     Route::post('add_accessory', [AcessoriesController::class, 'create'])->name('add_acessory');
     Route::get('delete/{id}/accessory', [AcessoriesController::class, 'destroy'])->name('delete_accessory');
+    //Model Routes
+    Route::get('/models', [VehicleModelController::class, 'show'])->name('models.show');
+    Route::get('/add_model', [VehicleModelController::class, 'add'])->name('model.add');
+    Route::post('/add_model', [VehicleModelController::class, 'create'])->name('model.add');
+    Route::post('/model/{id}/delete', [VehicleModelController::class, 'delete'])->name('model.delete');
 });
 
 

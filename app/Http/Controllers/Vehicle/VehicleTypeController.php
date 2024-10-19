@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
-use App\Models\Vehicle;
-use App\Models\VehicleType;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +11,7 @@ class VehicleTypeController extends Controller
 {
     public function read()
     {
-        $type = VehicleType::all();
+        $type = Type::all();
         return view('admin.admin-types', compact('type'));
     }
     public function create(Request $request)
@@ -24,7 +23,7 @@ class VehicleTypeController extends Controller
         ]);
 
         $imagePath = $request->file('image')->store('images/type_images', 'public');
-        $type = new VehicleType();
+        $type = new Type();
         $type->name = $request->name;
         $type->image = $imagePath;
 
@@ -35,7 +34,7 @@ class VehicleTypeController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $type = VehicleType::findOrFail($id);
+        $type = Type::findOrFail($id);
 
         // Validate the request
         $request->validate([
@@ -69,13 +68,13 @@ class VehicleTypeController extends Controller
     }
     public function show($id)
     {
-        $type = VehicleType::findOrFail($id);
+        $type = Type::findOrFail($id);
         return view('admin.admin-edit-type', compact('type'));
     }
 
     public function destroy($id)
     {
-        $type = VehicleType::findOrFail($id);
+        $type = Type::findOrFail($id);
 
         // Delete the image file from storage
         if ($type->image) {

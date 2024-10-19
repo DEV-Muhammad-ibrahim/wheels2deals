@@ -6,7 +6,7 @@
     @include('layouts.navbar')
     @include('layouts.widget')
 
-    <section class="section-gap-120 banner-slider slider-count">
+    <section class="section-gap-95 banner-slider slider-count">
         <div
             style="
           background: url({{ asset('assets/images/banner/landing/ltr/01.jpg') }}) no-repeat center /
@@ -17,11 +17,9 @@
                     <div class="banner-content">
                         <h1>best place to sell and buy a car</h1>
                         <p>
-                            Welcome to Wheels2Deals, your one-stop destination for buying and selling cars with ease and
-                            confidence! Whether you're looking to purchase your dream car or sell your vehicle quickly,
-                            we’ve got you covered.
+                            A platform to buy and sell cars easily and quickly.
                         </p>
-                        <ul>
+                        {{-- <ul>
                             <li>
                                 <i class="material-icons">email</i><span><small>contact
                                         email</small>info@wheels2deals.com</span>
@@ -30,9 +28,9 @@
                                 <i class="material-icons">phone</i><span><small>contact number</small>934 7273
                                     2392</span>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <a href="{{ Route('cars') }}" class="btn btn-inline"><i
-                                class="material-icons">visibility</i><span>show listing</span></a>
+                                class="material-icons">visibility</i><span>Buy Cars</span></a>
                     </div>
                 </div>
             </div>
@@ -47,11 +45,9 @@
                     <div class="banner-content">
                         <h1>best place to sell and buy a car</h1>
                         <p>
-                            Welcome to Wheels2Deals, your one-stop destination for buying and selling cars with ease and
-                            confidence! Whether you're looking to purchase your dream car or sell your vehicle quickly,
-                            we’ve got you covered.
+                            A platform to buy and sell cars easily and quickly.
                         </p>
-                        <ul>
+                        {{-- <ul>
                             <li>
                                 <i class="material-icons">email</i><span><small>contact
                                         email</small>info@wheels2deals.com</span>
@@ -60,9 +56,9 @@
                                 <i class="material-icons">phone</i><span><small>contact number</small>934 7273
                                     2392</span>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <a href="{{ Route('cars') }}" class="btn btn-inline"><i
-                                class="material-icons">visibility</i><span>show listing</span></a>
+                                class="material-icons">visibility</i><span>Buy Cars</span></a>
                     </div>
                 </div>
             </div>
@@ -77,11 +73,9 @@
                     <div class="banner-content">
                         <h1>best place to sell and buy a car</h1>
                         <p>
-                            Welcome to Wheels2Deals, your one-stop destination for buying and selling cars with ease and
-                            confidence! Whether you're looking to purchase your dream car or sell your vehicle quickly,
-                            we’ve got you covered.
+                            A platform to buy and sell cars easily and quickly.
                         </p>
-                        <ul>
+                        {{-- <ul>
                             <li>
                                 <i class="material-icons">email</i><span><small>contact
                                         email</small>info@wheels2deals.com</span>
@@ -90,42 +84,16 @@
                                 <i class="material-icons">phone</i><span><small>contact number</small>934 7273
                                     2392</span>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <a href="{{ Route('cars') }}" class="btn btn-inline"><i
-                                class="material-icons">visibility</i><span>show listing</span></a>
+                                class="material-icons">visibility</i><span>Buy Cars</span></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="section-gap-95">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section-head">
-                        <div class="section-text">
-                            <h2>find top categories</h2>
 
-                        </div>
-                        <a href="{{ Route('cars') }}" class="btn btn-inline"><i
-                                class="material-icons">travel_explore</i><span>browse all</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
-                @foreach ($types as $type)
-                    <div class="col">
-                        <a href="" class="category-card">
-                            <img src="{{ asset('storage/' . $type->image) }}" alt="category" /><span>{{ $type->name }}
-                            </span>
-                        </a>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-    </section>
-    <section class="section-gap-95">
+    {{-- <section class="section-gap-95">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -198,6 +166,33 @@
 
             </div>
         </div>
+    </section> --}}
+    <section class="section-gap-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-head">
+                        <div class="section-text">
+                            <h2>find by Types</h2>
+
+                        </div>
+                        <a href="{{ Route('cars') }}" class="btn btn-inline"><i
+                                class="material-icons">travel_explore</i><span>browse all</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
+                @foreach ($types as $type)
+                    <div class="col">
+                        <a href="" class="category-card">
+                            <img src="{{ asset('storage/' . $type->image) }}" alt="category" /><span>{{ $type->name }}
+                            </span>
+                        </a>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
     </section>
     <section class="section-gap-120 feature-part">
         <div class="container">
@@ -251,109 +246,90 @@
             </div>
         </div>
     </section>
-
-
-
-    <section class="section-gap-120">
+    <section class="section-gap-95">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="section-head">
                         <div class="section-text">
-                            <h2>how we best for you</h2>
+                            <h2>browse by Companies</h2>
 
                         </div>
-                        <a href="{{ Route('about') }}" class="btn btn-inline"><i
-                                class="material-icons"></i><span>more details</span></a>
+                        <a href="{{ Route('cars') }}" class="btn btn-inline"><i
+                                class="material-icons">travel_explore</i><span>browse all</span></a>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6 col-xl-6">
-                    <div class="about-media">
-                        <img src="{{ asset('assets/images/bg/video.jpg') }}" alt="video" />
-
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
+                @foreach ($brands as $comp)
+                    <div class="col">
+                        <a class="brand-card" href="{{ Route('cars') }}">
+                            <img src="{{ asset('storage/' . $comp->image) }}" alt="brand" class="img-fluid" />
+                            <h6>{{ $comp->name }}</h6>
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-6 col-xl-6">
-                    <div class="about-content">
-                        <h3>
-                            Wheels2deals has been standing on the trust of customers for the last
-                            10 years
-                        </h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Officia, eligendi consectetur laboriosam qui optio illo
-                            provident impedit, vero nisi commodi delectus pariatur eum
-                            mollitia excepturi temporibus aspernatur, repudiandae animi.
-                            Quaerat sit rem doloremque repellat tenetur mollitia quae,
-                            provident quasi voluptatibus ducimus velit excepturi?
-                        </p>
-                    </div>
-                </div>
+                @endforeach
             </div>
-
         </div>
     </section>
 
-    {{-- <section class="section-gap-120 review-part">
+
+    {{-- <div class="row">
+        <div class="col-xl-12">
+            <div class="section-head">
+                <div class="section-text">
+                    <h2>Why Wheels2deals</h2>
+
+                </div>
+                <a href="{{ Route('about') }}" class="btn btn-inline"><i class="material-icons"></i><span>more
+                        details</span></a>
+            </div>
+        </div>
+    </div> --}}
+    <section class="section-gap-75">
         <div class="container">
-            <div class="row review-slider slider-arrow">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-head">
+                        <div class="section-text">
+                            <h2>Why Wheels2deals</h2>
+
+                        </div>
+                        <a href="{{ Route('about') }}" class="btn btn-inline"><i class="material-icons"></i><span>more
+                                details</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
                 <div class="col">
-                    <div class="review-wrap">
-                        <div class="review-wrap-image">
-                            <img src="../images/review/01.jpg" alt="review" />
-                        </div>
-                        <div class="review-wrap-content">
-                            <div class="review-wrap-meta">
-                                <div class="review-wrap-ideo">
-                                    <a href="#" class="material-icons">play_arrow</a><i
-                                        class="material-icons">format_quote</i>
-                                </div>
-                                <div class="review-wrap-item">
-                                    <h4>mercedes-benz wagon</h4>
-                                    <h5>see the full review</h5>
-                                </div>
-                            </div>
-                            <p class="review-wrap-quote">
-                                " Lorem ipsum dolor sit amet consectetur adipisicing elit
-                                Expedita ut porro beatae itaque accusantium nisi Asperiores
-                                reprehenderit "
-                            </p>
-                            <h3 class="review-wrap-user">miron mahmud</h3>
-                            <h5 class="review-wrap-type">buyer review</h5>
-                        </div>
+                    <div class="feature-card"><i class="material-icons">fact_check</i>
+                        <h3>Quick Ad Posting</h3>
+
                     </div>
                 </div>
                 <div class="col">
-                    <div class="review-wrap">
-                        <div class="review-wrap-image">
-                            <img src="../images/review/02.jpg" alt="review" />
-                        </div>
-                        <div class="review-wrap-content">
-                            <div class="review-wrap-meta">
-                                <div class="review-wrap-video">
-                                    <a href="#" class="material-icons">play_arrow</a><i
-                                        class="material-icons">format_quote</i>
-                                </div>
-                                <div class="review-wrap-item">
-                                    <h4>lamborghini huracan</h4>
-                                    <h5>see the full review</h5>
-                                </div>
-                            </div>
-                            <p class="review-wrap-quote">
-                                " Lorem ipsum dolor sit amet consectetur adipisicing elit
-                                Expedita ut porro beatae itaque accusantium nisi Asperiores
-                                reprehenderit "
-                            </p>
-                            <h3 class="review-wrap-user">tahmina bonny</h3>
-                            <h5 class="review-wrap-type">seller review</h5>
-                        </div>
+                    <div class="feature-card"><i class="material-icons">verified_user</i>
+                        <h3>Fast Selling Process</h3>
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="feature-card"><i class="material-icons">stars</i>
+                        <h3>Start Selling just from AED 49</h3>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="feature-card"><i class="material-icons">rocket_launch</i>
+                        <h3>Vast Buyer Network</h3>
                     </div>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
+
+
 
 
     @include('layouts.footer')

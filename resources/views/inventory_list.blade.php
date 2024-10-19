@@ -38,15 +38,13 @@
                                 @foreach ($companies as $company)
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="companies[]"
-                                            value="{{ $company->name }}" id="company_{{ $company->id }}"
+                                            value="{{ $company->id }}" id="company_{{ $company->id }}"
                                             {{ in_array($company->id, request('companies', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="company_{{ $company->id }}">
                                             {{ $company->name }}
                                         </label>
                                     </div>
                                 @endforeach
-
-
                             </ul>
 
 
@@ -56,7 +54,7 @@
                                 @foreach ($types as $type)
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="types[]"
-                                            value="{{ $type->name }}" id="type_{{ $type->id }}"
+                                            value="{{ $type->id }}" id="type_{{ $type->id }}"
                                             {{ in_array($type->id, request('types', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="type_{{ $type->id }}">
                                             {{ $type->name }}

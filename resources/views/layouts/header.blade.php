@@ -20,25 +20,63 @@
                 </button>
             </div>
             <div class="header-option">
-                <input type="number" placeholder="Max Price" name="min_price" />
-                <input type="number" placeholder="Min Price" name="max_price" />
-                <select class="form-select" name="company">
-                    <option selected>makes</option>
+
+                <select class="form-select" name="company" id="company-select">
+                    <option selected value="">makes</option>
                     @foreach (getAllCompanies() as $company)
-                        <option value="{{ $company->name }}">{{ $company->name }}</option>
+                        <option value="{{ $company->id }}" {{ request('company') == $company->id ? 'selected' : '' }}>
+                            {{ $company->name }}
+                        </option>
                     @endforeach
-
                 </select>
-                <select class="form-select" name="type">
-                    <option selected>Types</option>
+                <select class="form-select" name="type" id="type-select">
+                    <option selected value="">Types</option>
                     @foreach (getAllTypes() as $type)
-                        <option value="{{ $type->name }}">{{ $type->name }}</option>
+                        <option value="{{ $type->id }}" {{ request('type') == $type->id ? 'selected' : '' }}>
+                            {{ $type->name }}
+                        </option>
                     @endforeach
-
+                </select>
+                <select class="form-select" name="model" id="model-select">
+                    <option selected value="">Models</option>
+                    @foreach (getAllModels() as $model)
+                        <option value="{{ $model->id }}" data-company="{{ $model->company_id }}"
+                            data-type="{{ $model->type_id }}" {{ request('model') == $model->id ? 'selected' : '' }}>
+                            {{ $model->name }}
+                        </option>
+                    @endforeach
                 </select>
                 <button type="submit">search</button>
             </div>
         </form>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const companySelect = document.getElementById('company-select');
+                const typeSelect = document.getElementById('type-select');
+                const modelSelect = document.getElementById('model-select');
+                const allModelOptions = Array.from(modelSelect.options);
+
+                function updateModelOptions() {
+                    const selectedCompany = companySelect.value;
+                    const selectedType = typeSelect.value;
+
+                    modelSelect.innerHTML = '<option selected value="">Models</option>';
+
+                    allModelOptions.forEach(option => {
+                        if ((!selectedCompany || option.dataset.company === selectedCompany) &&
+                            (!selectedType || option.dataset.type === selectedType)) {
+                            modelSelect.appendChild(option.cloneNode(true));
+                        }
+                    });
+                }
+
+                companySelect.addEventListener('change', updateModelOptions);
+                typeSelect.addEventListener('change', updateModelOptions);
+
+                // Initial call to set correct state on page load
+                updateModelOptions();
+            });
+        </script>
     </div>
     @if (Auth::check())
         <a href="{{ Route('profile') }}" class="header-user">
@@ -52,14 +90,14 @@
         </a>
     @endif
 
-    @if (Auth::check())
-        <a href="{{ Route('create_ads') }}" class="btn header-btn">
-            <i class="material-icons">storefront</i>
-            <span>sell vehicles</span></a>
-    @else
-        <a href="{{ Route('login') }}" class="btn header-btn">
-            <i class="material-icons">person</i>
-            <span>Login</span></a>
-    @endif
+
+    <a href="{{ Route('create_ads') }}" class="btn header-btn">
+        <i class="material-icons">storefront</i>
+        <span>sell vehicles</span></a>
+
+
+
+
+
 
 </header>

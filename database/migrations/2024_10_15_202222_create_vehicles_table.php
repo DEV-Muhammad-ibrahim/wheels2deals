@@ -14,24 +14,24 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('vehicle_registration_no');
-            $table->string('registration_plate_no');
-            $table->string('doi');
-            $table->string('doe');
-            $table->string('category');
-            $table->string('company');
             $table->string('fuel');
             $table->string('year');
             $table->string('color');
+            $table->string('interior_color'); // Added interior color field
+            $table->integer('seating_capacity'); // Added seating capacity field
+            $table->string('transmission'); // Added transmission field
             $table->integer('mileage');
             $table->integer('price');
             $table->string('price_type');
-            $table->string('type');
             $table->string('condition');
             $table->string('description');
             $table->string('image');
             $table->boolean('status')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('model_id')->constrained('vehicle_models')->onDelete('cascade'); // Reference to vehicle_models
+            $table->foreignId('type_id')->constrained()->onDelete('cascade'); // Foreign key for type
+            $table->foreignId('company_id')->constrained()->onDelete('cascade'); // Foreign key for company
+            $table->foreignId('category_id')->constrained()->onDelete('cascade'); // Foreign key for category
             $table->timestamps();
         });
     }

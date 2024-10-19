@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\Feature;
+use App\Models\Type;
 use App\Models\Vehicle;
 use App\Models\VehicleCategory;
 use App\Models\VehicleFeature;
 use App\Models\VehicleImages;
+use App\Models\VehicleModel;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +26,11 @@ class VehicleController extends Controller
     public function add_vehicle_page()
     {
         $feature = Feature::all();
-        $category = VehicleCategory::all();
+        $category = Category::all();
         $company = Company::all();
-        $type = VehicleType::all();
-        return view('admin.admin-add-car', compact('feature', 'category', 'company', 'type'));
+        $type = Type::all();
+        $models = VehicleModel::all();
+        return view('admin.admin-add-car', compact('feature', 'category', 'company', 'type', 'models'));
     }
     // Create Car
     public function add_car(Request $request)
@@ -36,45 +40,33 @@ class VehicleController extends Controller
         $validatedData = $request->validate(
             [
                 'title' => 'required|string|max:255',
-                'vehicle_registration_no' => 'required|string|max:10|regex:/^[A-Z]{1,2}\s?\d{1,5}$/',
-                'registration_plate_no' => 'required|string|max:10|regex:/^[A-Z]{1,2}\s?\d{1,5}$/',
-                'doi' => 'required|date',
-                'doe' => 'required|date',
-                'category' => 'required|string|max:255|exists:vehicle_categories,name',
-                'company' => 'required|string|max:255|exists:companies,name',
                 'fuel' => 'required|string|in:diesel,electric,petrol',
                 'year' => 'required|string|max:4',
                 'color' => 'required|string|max:255',
+                'interior_color' => 'required|string|max:255',
+                'seating_capacity' => 'required',
+                'transmission' => 'required|in:manual,automatic',
                 'mileage' => 'required|numeric',
                 'price' => 'required|numeric',
                 'price_type' => 'required|string|in:fixed,negotiable',
-                'type' => 'required|string|exists:vehicle_types,name',
                 'condition' => 'required|string|in:used,new',
                 'description' => 'required|string',
                 'status' => 'required|string|in:active,inactive',
                 'p_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
                 'image.*' => 'required|mimes:jpeg,png,jpg|max:2048|image',
+                'image' => 'array|max:5',
                 'feature_ids' => 'array',
+                'type_id' => 'required',
+                'company_id' => 'required',
+                'category_id' => 'required',
+                'model_id' => 'required',
             ],
             [
-                // Custom messages for doi and doe
-                'doi.required' => 'The Date of Issue field is required.',
-                'doi.date' => 'The Date of Issue must be a valid date.',
-
-                // Custom message for doe
-                'doe.required' => 'The Date of Expiry field is required.',
-                'doe.date' => 'The Date of Expiry must be a valid date.',
-
-                // Custom messages for vehicle_registration_no and registration_plate_no
-                'vehicle_registration_no.required' => 'The Vehicle Registration Number field is required.',
-                'vehicle_registration_no.string' => 'The Vehicle Registration Number must be a string.',
-                'vehicle_registration_no.regex' => 'The Vehicle Registration Number format is invalid. It should follow the format "AB 1234" or "AB1234".',
-                'vehicle_registration_no.max' => 'The Vehicle Registration Number may not be greater than 10 characters.',
-
-                'registration_plate_no.required' => 'The Registration Plate Number field is required.',
-                'registration_plate_no.string' => 'The Registration Plate Number must be a string.',
-                'registration_plate_no.regex' => 'The Registration Plate Number format is invalid. It should follow the format "AB 1234" or "AB1234".',
-                'registration_plate_no.max' => 'The Registration Plate Number may not be greater than 10 characters.',
+                // Custom messages for required fields
+                'type_id.required' => 'The vehicle type is required.',
+                'company_id.required' => 'The company is required.',
+                'model_id.required' => 'The model is required.',
+                'category_id.required' => ' The category is required',
             ]
         );
 
@@ -85,7 +77,7 @@ class VehicleController extends Controller
 
             $validatedData['status'] = ($validatedData['status'] === 'active');
             $validatedData['user_id'] = Auth::user()->id;
-            // dd($validatedData['user_id']);
+
             // Handle preview image upload
             if ($request->hasFile('p_image')) {
                 $previewImagePath = $request->file('p_image')->store('images/vehicle_preview_images', 'public');

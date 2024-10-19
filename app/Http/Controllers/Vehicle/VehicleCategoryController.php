@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\VehicleCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,21 +12,21 @@ class VehicleCategoryController extends Controller
 {
     public function read()
     {
-        $category = VehicleCategory::paginate(10);
+        $category = Category::paginate(10);
         return view('admin.admin-categories', compact('category'));
     }
     public function create(Request $request)
     {
 
         $request->validate([
-            'name' => 'required|unique:vehicle_categories',
-            'image' => 'required'
+            'name' => 'required|unique:categories',
+
         ]);
 
-        $imagePath = $request->file('image')->store('images/category_images', 'public');
-        $category = new VehicleCategory();
+
+        $category = new Category();
         $category->name = $request->name;
-        $category->image = $imagePath;
+
 
         if ($category->save()) {
             return redirect()->back()->with('success', 'Category Created');
@@ -34,7 +35,7 @@ class VehicleCategoryController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $category = VehicleCategory::findOrFail($id);
+        $category = Category::findOrFail($id);
 
         // Validate the request
         $request->validate([
@@ -68,13 +69,13 @@ class VehicleCategoryController extends Controller
     }
     public function show($id)
     {
-        $category = VehicleCategory::findOrFail($id);
+        $category = Category::findOrFail($id);
         return view('admin.admin-edit-category', compact('category'));
     }
 
     public function destroy($id)
     {
-        $category = VehicleCategory::findOrFail($id);
+        $category = Category::findOrFail($id);
 
         // Delete the image file from storage
         if ($category->image) {

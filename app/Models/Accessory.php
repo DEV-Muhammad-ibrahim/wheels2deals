@@ -9,7 +9,15 @@ class Accessory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'company', 'compatibility', 'description', 'image', 'price', 'price_type'];
+    protected $fillable = [
+        'name',
+        'company',
+        'compatibility',
+        'description',
+        'image',
+        'price',
+        'price_type'
+    ];
 
     public function images()
     {

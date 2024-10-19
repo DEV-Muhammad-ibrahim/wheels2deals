@@ -6,10 +6,10 @@
             <div class="auth-banner-overlay">
                 <div class="auth-content"><a class="auth-logo" href="{{ Route('home') }}"><img
                             src="{{ asset('assets/images/logo.png') }}" alt="logo"></a>
-                    <h1 class="auth-headline">Lorem ipsum dolor sit amet consectetur adipisicing</h1>
-                    <p class="auth-details">Elit Iusto dolore libero recusandae dolor dolores explicabo ullam cum
-                        facilis aperiam alias odio quam excepturi molestiae omnis inventore. Repudiandae officia placeat
-                        amet consectetur dicta dolorem quo.</p>
+                    <h1 class="auth-headline">Login</h1>
+                    <p class="auth-details">Welcome to Wheels2Deals! Join our growing community of car enthusiasts,
+                        buyers, and sellers. Whether you're looking to find the perfect ride or sell one, we make it
+                        easy for you. Create your account today and unlock exclusive features!</p>
                     <div class="auth-social">
                         <h5>follow on</h5>
                         <ul>
