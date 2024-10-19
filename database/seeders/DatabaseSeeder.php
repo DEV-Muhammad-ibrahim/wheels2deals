@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@wheels2deals.com',
-            'password' => '@Wheels2deals',
+            'password' => '@Wheels2deals@naveed@54455',
             'role' => 'admin',
             'verified' => true,
             'user_can_add_products' => true,
