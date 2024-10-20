@@ -39,7 +39,7 @@
                 <div class="col-xl-12">
                     <div class="product-single-slider slider-arrow slider-dots">
                         @foreach ($accessory->images as $image)
-                            <div><img src="{{ asset('storage/' . $image->path) }}" alt="product"></div>
+                            <div><img src="{{ asset('public/storage/' . $image->path) }}" alt="product"></div>
                         @endforeach
 
                     </div>

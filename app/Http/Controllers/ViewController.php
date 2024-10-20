@@ -18,8 +18,8 @@ class ViewController extends Controller
     {
 
 
-        $brands = Company::take(10)->get();
-        $types = Type::take(10)->get();
+        $brands = Company::inRandomOrder()->take(10)->get();
+        $types = Type::inRandomOrder()->take(10)->get();
 
 
         $randomCars = Vehicle::with(['user', 'images'])->inRandomOrder()->take(6)->where('status', true)->get();

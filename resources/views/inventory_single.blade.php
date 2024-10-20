@@ -41,7 +41,7 @@
                 <div class="col-xl-12">
                     <div class="product-single-slider slider-arrow slider-dots">
                         @foreach ($car->images as $image)
-                            <div><img src="{{ asset('storage/' . $image->path) }}" alt="product"></div>
+                            <div><img src="{{ asset('public/storage/' . $image->path) }}" alt="product"></div>
                         @endforeach
 
                     </div>
@@ -109,10 +109,11 @@
                         <div class="common-card-body">
                             <div class="product-single-vendor"><a class="vendor-grid-cover"
                                     href="{{ Route('vendor_details_users', $car->user->id) }}"><img
-                                        src="{{ asset('storage/' . $car->user->cover_picture) }}" alt="cover"></a><a
-                                    class="vendor-grid-avatar"
+                                        src="{{ asset('public/storage/' . $car->user->cover_picture) }}"
+                                        alt="cover"></a><a class="vendor-grid-avatar"
                                     href="{{ Route('vendor_details_users', $car->user->id) }}"><img
-                                        src="{{ asset('storage/' . $car->user->profile_picture) }}" alt="avatar"></a>
+                                        src="{{ asset('public/storage/' . $car->user->profile_picture) }}"
+                                        alt="avatar"></a>
                                 <ul class="vendor-grid-meta">
                                     <li class="profile"><i class="material-icons">account_circle</i><a
                                             href="{{ Route('vendor_details_users', $car->user->id) }}">{{ $car->user->vendor_name }}</a>
@@ -171,7 +172,7 @@
                     <div class="col">
                         <div class="product-grid-relatedCard">
                             <div class="product-grid-image">
-                                <img src="{{ asset('storage/' . $relatedCar->image) }}" alt="feature" />
+                                <img src="{{ asset('public/storage/' . $relatedCar->image) }}" alt="feature" />
                                 @if ($relatedCar->condition === 'new')
                                     <div class="product-grid-badge">
                                         <span class="badge new">{{ $relatedCar->condition }}</span>

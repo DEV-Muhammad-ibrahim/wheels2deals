@@ -63,7 +63,8 @@
                                         <div class="row align-items-center">
                                             <div class="col-md-7 mobile-bottom-fix">
                                                 <div class="w-100 height-280 img-fix rounded">
-                                                    <img src="{{ asset('storage/' . $car->image) }}" alt="">
+                                                    <img src="{{ asset('public/storage/' . $car->image) }}"
+                                                        alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-5">

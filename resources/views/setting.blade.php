@@ -117,7 +117,7 @@
                                                 <span>*</span>
                                             </label>
                                             <input type="text" class="form-control" name="vendor_name"
-                                                value="{{ auth()->check() ? auth()->user()->vendor_name : old('vendor_name', '') }}">
+                                                value="{{ auth()->check() ? (auth()->user()->account_type === 'individual' ? auth()->user()->name : auth()->user()->vendor_name) : old('vendor_name', '') }}">
                                         </div>
                                         @error('vendor_name')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -144,7 +144,7 @@
                                                 <span>*</span>
                                             </label>
                                             <input type="tel" class="form-control" name="phone_no"
-                                                value="{{ auth()->check() ? auth()->user()->vendor_name : old('phone_no', '') }}">
+                                                value="{{ auth()->check() ? auth()->user()->phone_no : old('phone_no', '') }}">
                                             @error('phone_no')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -162,10 +162,10 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">website
-                                                <span>*</span>
+
                                             </label>
                                             <input type="url" class="form-control" name="website"
-                                                value="{{ auth()->check() ? auth()->user()->vendor_name : old('website', '') }}">
+                                                value="{{ auth()->check() ? auth()->user()->website : old('website', '') }}">
                                             @error('website')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -177,7 +177,7 @@
                                                 <span>*</span>
                                             </label>
                                             <input type="text" class="form-control" name="city"
-                                                value="{{ auth()->check() ? auth()->user()->vendor_name : old('city', '') }}">
+                                                value="{{ auth()->check() ? auth()->user()->city : old('city', '') }}">
                                             @error('city')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -189,7 +189,7 @@
                                                 <span>*</span>
                                             </label>
                                             <input type="text" class="form-control" name="state"
-                                                value="{{ auth()->check() ? auth()->user()->vendor_name : old('state', '') }}">
+                                                value="{{ auth()->check() ? auth()->user()->state : old('state', '') }}">
                                             @error('state')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -198,10 +198,10 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">zip
-                                                <span>*</span>
+
                                             </label>
                                             <input type="text" class="form-control" name="zip"
-                                                value="{{ auth()->check() ? auth()->user()->vendor_name : old('zip', '') }}">
+                                                value="{{ auth()->check() ? auth()->user()->zip : old('zip', '') }}">
                                             @error('zip')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -213,7 +213,7 @@
                                                 <span>*</span>
                                             </label>
                                             <textarea class="form-control" name="description"
-                                                value="{{ auth()->check() ? auth()->user()->descriptiom : old('description', '') }}"></textarea>
+                                                value="{{ auth()->check() ? auth()->user()->description : old('description', '') }}"></textarea>
                                             @error('description')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -332,25 +332,42 @@
                         </form>
                     </div> --}}
                     <div class="tab-pane fade" id="password">
-                        <form>
+                        <form action="{{ route('change.password') }}" method="POST">
+                            @csrf
                             <div class="common-card">
                                 <div class="common-card-header">
-                                    <h4 class="common-card-header-title">change password</h4>
+                                    <h4 class="common-card-header-title">Change Password</h4>
                                 </div>
                                 <div class="row row-cols-1">
                                     <div class="col">
-                                        <div class="form-group"><label class="form-label">current
-                                                password</label><input type="password" class="form-control"></div>
+                                        <div class="form-group">
+                                            <label class="form-label">Current Password</label>
+                                            <input type="password" class="form-control" name="current_password">
+                                            @error('current_password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group"><label class="form-label">change
-                                                password</label><input type="password" class="form-control"></div>
+                                        <div class="form-group">
+                                            <label class="form-label">New Password</label>
+                                            <input type="password" class="form-control" name="password">
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group"><label class="form-label">confirm
-                                                password</label><input type="password" class="form-control"></div>
+                                        <div class="form-group">
+                                            <label class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" name="confirm_password">
+                                            @error('confirm_password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                    <div class="col"><button type="submit" class="form-btn">save changes</button>
+                                    <div class="col">
+                                        <button type="submit" class="form-btn">Save Changes</button>
                                     </div>
                                 </div>
                             </div>

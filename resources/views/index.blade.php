@@ -112,7 +112,7 @@
                     <div class="col">
                         <div class="product-grid-card">
                             <div class="product-grid-image">
-                                <img src="{{ asset('storage/' . $car->image) }}" alt="feature" />
+                                <img src="{{ asset('public/storage/' . $car->image) }}" alt="feature" />
                                 @if ($car->condition === 'new')
                                     <div class="product-grid-badge">
                                         <span class="badge new">{{ $car->condition }}</span>
@@ -184,8 +184,9 @@
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
                 @foreach ($types as $type)
                     <div class="col">
-                        <a href="" class="category-card">
-                            <img src="{{ asset('storage/' . $type->image) }}" alt="category" /><span>{{ $type->name }}
+                        <a href="{{ route('vehicles.search', ['type' => $type->id]) }}" class="category-card">
+                            <img src="{{ asset('public/storage/' . $type->image) }}"
+                                alt="category" /><span>{{ $type->name }}
                             </span>
                         </a>
                     </div>
@@ -214,7 +215,7 @@
                     <div class="col">
                         <div class="product-feature-card">
                             <div class="product-feature-image">
-                                <img src="{{ asset('storage/' . $car->image) }}" alt="product" />
+                                <img src="{{ asset('public/storage/' . $car->image) }}" alt="product" />
                                 <a href="{{ Route('inventory_single', $car->id) }}"
                                     class="product-feature-btn badge-hover"><i class="material-icons">add</i><span
                                         class="badge arrow-right">more
@@ -263,8 +264,9 @@
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
                 @foreach ($brands as $comp)
                     <div class="col">
-                        <a class="brand-card" href="{{ Route('cars') }}">
-                            <img src="{{ asset('storage/' . $comp->image) }}" alt="brand" class="img-fluid" />
+                        <a class="brand-card" href="{{ route('vehicles.search', ['company' => $comp->id]) }}">
+                            <img src="{{ asset('public/storage/' . $comp->image) }}" alt="brand"
+                                class="img-fluid" />
                             <h6>{{ $comp->name }}</h6>
                         </a>
                     </div>

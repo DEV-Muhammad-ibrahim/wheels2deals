@@ -52,7 +52,7 @@
                     <!-- Page Top End -->
 
                     <!-- Content Start -->
-                    <form method="POST" action="{{ Route('add_acessory') }}" id="addcategory" class="needs-validation"
+                    <form method="POST" action="{{ Route('acessory_add') }}" id="addcategory" class="needs-validation"
                         enctype="multipart/form-data">
                         @csrf
                         @method('POST')

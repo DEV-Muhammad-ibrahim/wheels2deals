@@ -80,7 +80,8 @@
     </div>
     @if (Auth::check())
         <a href="{{ Route('profile') }}" class="header-user">
-            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="user" />
+            <img src="{{ auth()->user()->profile_picture ? asset('public/storage/' . auth()->user()->profile_picture) : asset('assets/images/user.png') }}"
+                alt="user" />
             <span>profile</span>
         </a>
     @else

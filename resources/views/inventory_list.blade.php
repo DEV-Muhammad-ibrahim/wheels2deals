@@ -82,8 +82,8 @@
                         @foreach ($cars as $car)
                             <div class="col">
                                 <div class="product-list-card">
-                                    <div class="product-list-image"><img src="{{ asset('storage/' . $car->image) }}"
-                                            alt="product">
+                                    <div class="product-list-image"><img
+                                            src="{{ asset('public/storage/' . $car->image) }}" alt="product">
 
                                         @if ($car->condition === 'new')
                                             <div class="product-grid-badge">
@@ -118,8 +118,8 @@
                                             </div>
                                         </div>
                                         <ul class="product-list-info">
-                                            <li><span>type:</span><span>{{ $car->type }}</span></li>
-                                            <li><span>make:</span><span>{{ $car->company }}</span></li>
+                                            <li><span>type:</span><span>{{ $car->type->name }}</span></li>
+                                            <li><span>make:</span><span>{{ $car->company->name }}</span></li>
                                             <li><span>fuel:</span><span>{{ $car->fuel }}</span></li>
                                             <li><span>year:</span><span>{{ $car->year }}</span></li>
                                             <li><span>price:</span><span>{{ $car->price_type }}</span></li>

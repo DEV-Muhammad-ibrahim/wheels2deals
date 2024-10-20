@@ -82,7 +82,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pricing_plan', [ViewController::class, 'pricing_plan'])->name('pricing_plan');
     Route::get('/profile', [ViewController::class, 'profile'])->name('profile');
     Route::get('/setting', [ViewController::class, 'setting'])->name('setting');
-    Route::post('/vendor', [RegisterVendorController::class, 'register'])->name('register_vendor');
+    Route::post('/vendor/create', [RegisterVendorController::class, 'register'])->name('register_vendor');
+
+    Route::post('/change-password', [RegisterVendorController::class, 'update'])->name('change.password');
 });
 Route::get('/privacy', [ViewController::class, 'privacy'])->name('privacy');
 
@@ -149,7 +151,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     //Accessories Routes
     Route::get('accessories', [AcessoriesController::class, 'show'])->name('acessories');
     Route::get('add_accessory', [AcessoriesController::class, 'add_acessory_show'])->name('add_acessory');
-    Route::post('add_accessory', [AcessoriesController::class, 'create'])->name('add_acessory');
+    Route::post('add_accessory', [AcessoriesController::class, 'create'])->name('acessory_add');
     Route::get('delete/{id}/accessory', [AcessoriesController::class, 'destroy'])->name('delete_accessory');
     //Model Routes
     Route::get('/models', [VehicleModelController::class, 'show'])->name('models.show');

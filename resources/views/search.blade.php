@@ -84,8 +84,8 @@
                         @foreach ($cars as $car)
                             <div class="col">
                                 <div class="product-list-card">
-                                    <div class="product-list-image"><img src="{{ asset('storage/' . $car->image) }}"
-                                            alt="product">
+                                    <div class="product-list-image"><img
+                                            src="{{ asset('public/storage/' . $car->image) }}" alt="product">
 
                                         @if ($car->condition === 'new')
                                             <div class="product-grid-badge">

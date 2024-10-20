@@ -5,39 +5,55 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterVendorController extends Controller
 {
     public function register(Request $request)
     {
-        // $data = [$request->profile_image, $request->cover_image, $request->vendor_name, $request->account_type, $request->city, $request->state, $request->zip, $request->description];
+
 
         $request->validate([
-            'profile_image' => '|required|mimes:jpeg,png,jpg|max:2048', // Adjust max size as needed
-            'cover_image' => '|required|mimes:jpeg,png,jpg|max:2048', // Adjust max size as needed
-            'vendor_name' => 'required|string|max:255',
+            'profile_image' => 'nullable|mimes:jpeg,png,jpg|max:2048', // Adjust max size as needed
+            'cover_image' => 'nullable|mimes:jpeg,png,jpg|max:2048', // Adjust max size as needed
+            'vendor_name' => 'required_if:account_type,dealership|string|max:255',
             'account_type' => 'required|in:dealership,individual',
             'city' => 'required|string|max:255',
             'state' => 'required|string|max:255',
-            'zip' => 'required|string|max:255',
-            'website' => 'required|string|max:255',
+            'zip' => 'nullable|string|max:255',
+            'website' => 'nullable|string|max:255',
             'phone_no' => 'required|string|max:20',
             'description' => 'required|string',
         ]);
+
         $id = auth()->user()->id;
         // Find the user by ID
         $user = User::findOrFail($id);
 
-        // Update the user's attributes
-        $user->vendor_name = $request->vendor_name;
-        $user->account_type = $request->account_type;
+        // Update common attributes
         $user->city = $request->city;
         $user->state = $request->state;
         $user->zip = $request->zip;
         $user->phone_no = $request->phone_no;
-        $user->website = $request->website;
         $user->description = $request->description;
-        $user->role = 'vendor';
+
+        // Handle account type specific logic
+        if ($request->account_type === 'individual') {
+            $user->name = $request->vendor_name; // Save to name instead of vendor_name
+        } elseif ($request->account_type === 'dealership') {
+            $user->vendor_name = $request->vendor_name; // Save to vendor_name
+        }
+
+        // Store website if provided
+        $user->website = $request->website; // Save website regardless of account type
+
+        // Set user role based on authentication
+        if (auth()->user()->role === 'admin') {
+            $user->role = $user->role;
+        } else {
+            $user->role = 'vendor';
+        }
 
         // Handle profile image upload if provided
         if ($request->hasFile('profile_image')) {
@@ -56,6 +72,32 @@ class RegisterVendorController extends Controller
 
         // Return a response
         return redirect()->back()->with('success', 'Vendor updated successfully!');
-        // dd($data);
+    }
+    public function update(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'current_password' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
+        ], [
+            'current_password.required' => 'The current password field is required.',
+            'password.required' => 'The new password field is required.',
+            'password.min' => 'The new password must be at least 8 characters.',
+            'password.confirmed' => 'The new password confirmation does not match.',
+        ]);
+
+        // Manually find the authenticated user
+        $user = User::findOrFail(Auth::user()->id);
+
+        // Check if the current password is correct
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'The provided current password is incorrect.']);
+        }
+
+        // Update the user's password manually
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Password changed successfully!');
     }
 }

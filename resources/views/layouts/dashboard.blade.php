@@ -1,6 +1,7 @@
 <section class="section-gap-75">
-    @if (auth()->user()->role === 'vendor')
-        <div style="background: url({{ asset('storage/' . auth()->user()->cover_picture) }}) no-repeat center / cover;">
+    @if (auth()->user()->role === 'vendor' && auth()->user()->cover_picture === !null)
+        <div
+            style="background: url({{ asset('public/storage/' . auth()->user()->cover_picture) }}) no-repeat center / cover;">
         @else
             <div style="background: url({{ asset('assets/images/banner/single/02.jpg') }}) no-repeat center / cover;">
     @endif
@@ -10,9 +11,10 @@
                 <div class="col-lg-7 col-xl-8">
                     <div class="user-banner-profile">
                         <div class="user-banner-profile-avatar">
-                            @if (auth()->user()->role === 'vendor')
+                            @if (auth()->user()->role === 'vendor' && auth()->user()->profile_picture === !null)
                                 <a href="{{ Route('profile') }}">
-                                    <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="avatar">
+                                    <img src="{{ asset('public/storage/' . auth()->user()->profile_picture) }}"
+                                        alt="avatar">
                                 </a>
                             @else
                                 <a href="{{ Route('profile') }}">
@@ -23,6 +25,7 @@
                         <div class="user-banner-profile-meta">
                             @if (auth()->user()->role === 'vendor')
                                 <div class="user-banner-profile-name">
+
                                     <h3><a href="{{ Route('profile') }}">{{ auth()->user()->vendor_name }}</a></h3>
                                     <span>{{ auth()->user()->account_type }}</span>
                                 </div>
@@ -38,7 +41,7 @@
                                 </ul>
                             @else
                                 <div class="user-banner-profile-name">
-                                    <h3><a href="profile.html">{{ auth()->user()->name }}</a></h3>
+                                    <h3><a href="{{ Route('profile') }}">{{ auth()->user()->name }}</a></h3>
 
                                 </div>
                                 <ul class="user-banner-profile-contact-list">

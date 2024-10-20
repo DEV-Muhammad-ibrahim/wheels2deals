@@ -32,13 +32,13 @@
                     <!-- Page Top Start -->
                     <div class="row mb6 align-items-center">
                         <div class="col-md-12 mobile-bottom-fix">
-                            <h1 class="page-title mb2">Add Category</h1>
+                            <h1 class="page-title mb2">Edit Type</h1>
                             <nav class="breadcrumb-nav" aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item"><a href="projects-ecommerce-categories.html">Types</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Add Type</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Type</li>
                                 </ol>
                             </nav>
                         </div>

@@ -110,14 +110,14 @@
                                                     <td>
                                                         <div class="d-inline-flex flex-row align-items-center">
                                                             <div class="width-120 height-80 img-fix rounded me4">
-                                                                <img src="{{ asset('storage/' . $car->image) }}"
+                                                                <img src="{{ asset('public/storage/' . $car->image) }}"
                                                                     alt="">
                                                             </div>
                                                             <strong>{{ $car->title }}</strong>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <strong class="text-heading">{{ $car->company }}</strong>
+                                                        <strong class="text-heading">{{ $car->company->name }}</strong>
                                                     </td>
                                                     <td>
                                                         <strong class="text-heading">{{ $car->year }}</strong>

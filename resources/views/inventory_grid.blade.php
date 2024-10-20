@@ -51,7 +51,7 @@
                             <div class="col">
                                 <div class="product-grid-card">
                                     <div class="product-grid-image">
-                                        <img src="{{ asset('storage/' . $accessory->image) }}" alt="product">
+                                        <img src="{{ asset('public/storage/' . $accessory->image) }}" alt="product">
                                         {{-- <div class="product-grid-badge">
                                             <span class="badge used">used</span>
                                         </div> --}}

@@ -90,7 +90,7 @@
                                                     <td>
                                                         <div class="d-inline-flex flex-row align-items-center">
                                                             <div class="width-120 height-80 img-fix rounded me4">
-                                                                <img src="{{ asset('storage/' . $company->image) }}"
+                                                                <img src="{{ asset('public/storage/' . $company->image) }}"
                                                                     alt="">
                                                             </div>
                                                             <strong class="text-heading">{{ $company->name }}</strong>

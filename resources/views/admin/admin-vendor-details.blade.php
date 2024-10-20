@@ -228,7 +228,8 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-7 mobile-bottom-fix">
                                         <div class="w-100 height-280 img-fix rounded">
-                                            <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="">
+                                            <img src="{{ asset('public/storage/' . $user->profile_picture) }}"
+                                                alt="">
                                         </div>
                                     </div>
                                 </div>

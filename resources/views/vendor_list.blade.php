@@ -37,10 +37,12 @@
                             <div class="col">
                                 <div class="vendor-list-card">
                                     <a class="vendor-list-cover" href="profile.html">
-                                        <img src="{{ asset('storage/' . $vendor->cover_picture) }}" alt="cover">
+                                        <img src="{{ asset('public/storage/' . $vendor->cover_picture) }}"
+                                            alt="cover">
                                     </a>
                                     <a class="vendor-list-avatar" href="profile.html"><img
-                                            src="{{ asset('storage/' . $vendor->profile_picture) }}" alt="avatar">
+                                            src="{{ asset('public/storage/' . $vendor->profile_picture) }}"
+                                            alt="avatar">
                                     </a>
                                     <div class="vendor-list-group">
                                         <ul class="vendor-list-meta">

@@ -29,7 +29,7 @@
                     <div class="col">
                         <div class="product-grid-card">
                             <div class="product-grid-image">
-                                <img src="{{ asset('storage/' . $car->image) }}" alt="feature" />
+                                <img src="{{ asset('public/storage/' . $car->image) }}" alt="feature" />
                                 @if ($car->condition === 'new')
                                     <div class="product-grid-badge">
                                         <span class="badge new">{{ $car->condition }}</span>
