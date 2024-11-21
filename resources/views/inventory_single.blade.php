@@ -6,7 +6,7 @@
     @include('layouts.navbar')
     @include('layouts.widget')
     <section class="section-gap-100">
-        <div style="background: url({{ asset('assets/images/banner/single/01.jpg') }}) no-repeat center / cover;">
+        {{-- <div style="background: url({{ asset('assets/images/banner/single/01.jpg') }}) no-repeat center / cover;">
             <div class="single-banner">
                 <div class="container">
                     <h2>{{ $car->title }}</h2>
@@ -17,16 +17,18 @@
                     </ol>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     <section class="section-gap-100">
         <div class="container">
             <div class="row">
                 <div class="col-xl-7">
-                    <div class="product-single-meta-group"><span
-                            class="product-single-meta-price">AED:{{ number_format($car->price, 2, '.', ',') }}/-
-                            <small>{{ $car->price_type }}</small></span>
-                        <h2 class="product-single-meta-title">{{ $car->title }} {{ $car->company->name }}</h2>
+                    <h2 class="product-single-meta-title">{{ $car->title }} {{ $car->company->name }}</h2>
+                    <div class="product-single-meta-group">
+                        <span class="product-single-meta-price">AED:{{ number_format($car->price, 2, '.', ',') }}/-
+                            <small>{{ $car->price_type }}</small>
+                        </span>
+
                         <ul class="product-single-meta-list">
                             <li><i class="material-icons">account_circle</i><a
                                     href="{{ Route('vendor_details_users', $car->user->id) }}">by
@@ -107,13 +109,17 @@
                             <h4 class="common-card-header-title">vendor information</h4>
                         </div>
                         <div class="common-card-body">
-                            <div class="product-single-vendor"><a class="vendor-grid-cover"
-                                    href="{{ Route('vendor_details_users', $car->user->id) }}"><img
-                                        src="{{ asset('public/storage/' . $car->user->cover_picture) }}"
-                                        alt="cover"></a><a class="vendor-grid-avatar"
-                                    href="{{ Route('vendor_details_users', $car->user->id) }}"><img
-                                        src="{{ asset('public/storage/' . $car->user->profile_picture) }}"
-                                        alt="avatar"></a>
+                            <div class="product-single-vendor">
+                                {{-- <a class="vendor-grid-cover"
+                                    href="{{ Route('vendor_details_users', $car->user->id) }}">
+                                    <img src="{{ asset('public/storage/' . $car->user->cover_picture) }}"
+                                        alt="cover">
+                                </a>
+                                <a class="vendor-grid-avatar"
+                                    href="{{ Route('vendor_details_users', $car->user->id) }}">
+                                    <img src="{{ asset('public/storage/' . $car->user->profile_picture) }}"
+                                        alt="avatar">
+                                </a> --}}
                                 <ul class="vendor-grid-meta">
                                     <li class="profile"><i class="material-icons">account_circle</i><a
                                             href="{{ Route('vendor_details_users', $car->user->id) }}">{{ $car->user->vendor_name }}</a>

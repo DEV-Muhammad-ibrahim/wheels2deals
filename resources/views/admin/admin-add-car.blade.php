@@ -292,7 +292,54 @@
 
 
                                                 <div class="col-6 mb-5">
-                                                    <div class="form-group"><label class="form-label">Price type
+                                                    <div class="form-group"><label class="form-label">Seats
+                                                            <span>*</span></label>
+                                                        <select class="form-select " name="seats"
+                                                            value="{{ old('seats') }}">
+                                                            <option selected>---</option>
+
+                                                            <option value="">All </option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9+</option>
+
+                                                        </select>
+                                                        @error('seats')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-5">
+                                                    <div class="form-group"><label class="form-label">Location
+                                                            <span>*</span></label>
+                                                        <select class="form-select " name="location"
+                                                            value="{{ old('location') }}">
+                                                            <option selected>---</option>
+
+                                                            <option value="">All </option>
+                                                            <option value="Abu Dhabi">Abu Dhabi</option>
+                                                            <option value="Ajman">Ajman</option>
+                                                            <option value="Dubai">Dubai</option>
+                                                            <option value="Fujairah">Fujairah</option>
+                                                            <option value="Sharjah">Sharjah</option>
+                                                            <option value="Al Ain">Al Ain</option>
+                                                            <option value="Ras al-Khaimah">Ras al-Khaimah</option>
+                                                            <option value="Umm al-Quwain">Umm al-Quwain</option>
+
+                                                        </select>
+                                                        @error('location')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-5">
+                                                    <div class="form-group"><label class="form-label">Price Type
                                                             <span>*</span></label>
                                                         <select class="form-select " name="price_type"
                                                             value="{{ old('price_type') }}">
@@ -316,6 +363,71 @@
                                                             <option value="new">New</option>
                                                         </select>
                                                         @error('condition')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-5">
+                                                    <div class="form-group"><label class="form-label">Steering_side
+                                                            <span>*</span></label>
+                                                        <select class="form-select" name="steering_side"
+                                                            value="{{ old('steering_side') }}">
+                                                            <option selected>---</option>
+                                                            <option value="left">Left hand</option>
+                                                            <option value="right">Right hand</option>
+                                                        </select>
+                                                        @error('steering_side')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-5">
+                                                    <div class="form-group"><label class="form-label">Regional Specs
+                                                            <span>*</span></label>
+                                                        <select class="form-select" name="regional_specs"
+                                                            value="{{ old('regional_specs') }}">
+                                                            <option selected>---</option>
+
+                                                            <option value="">All </option>
+                                                            <option value="gcc">GCC</option>
+                                                            <option value="american">American</option>
+                                                            <option value="canadian">Canadian</option>
+                                                            <option value="european">European</option>
+                                                            <option value="japanese">Japanese</option>
+                                                            <option value="korean">Korean</option>
+                                                            <option value="chinese">Chinese</option>
+                                                            <option value="other">Other</option>
+
+                                                        </select>
+                                                        @error('regional_specs')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-5">
+                                                    <div class="form-group"><label class="form-label">Cylinders
+                                                            <span>*</span></label>
+                                                        <select class="form-select" name="cylinders"
+                                                            value="{{ old('cylinders') }}">
+                                                            <option selected>---</option>
+
+
+                                                            <option value="">All </option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="8">8</option>
+                                                            <option value="10">10</option>
+                                                            <option value="12">12</option>
+                                                            <option value="16">16</option>
+
+
+
+
+                                                        </select>
+                                                        @error('cylinders')
                                                             <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -422,6 +534,45 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb6">
+                                        <div class="card shadow-card p6">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h6 class="mb4">Home Page Status </h6>
+                                                </div>
+
+                                                <div class="col-3 mb-3">
+                                                    <div class="form-check">
+                                                        <h3>Popular</h3>
+                                                        <input class="form-check-input" type="radio" id="check1"
+                                                            name="popular" value="1">
+                                                        <label class="form-check-label" for="check1">true</label>
+
+                                                    </div>
+                                                    <input class="form-check-input" type="radio" name="popular"
+                                                        value="0">
+                                                    <label class="form-check-label" for="check1">false</label>
+                                                </div>
+
+                                                <div class="col-3 mb-3">
+                                                    <div class="form-check">
+                                                        <h3>Featured</h3>
+                                                        <input class="form-check-input" type="radio" id="check1"
+                                                            name="featured" value="1">
+                                                        <label class="form-check-label" for="check1">true</label>
+
+                                                    </div>
+                                                    <input class="form-check-input" type="radio" name="featured"
+                                                        value="0">
+                                                    <label class="form-check-label" for="check1">false</label>
+                                                </div>
+
 
 
 

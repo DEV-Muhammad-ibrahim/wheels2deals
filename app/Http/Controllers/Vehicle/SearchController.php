@@ -7,64 +7,116 @@ use App\Models\Company;
 use App\Models\Type;
 use App\Models\Vehicle;
 use App\Models\VehicleModel;
-use App\Models\VehicleType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class SearchController extends Controller
 {
     public function search(Request $request)
     {
-
+        // Start with a base query of active vehicles
         $query = Vehicle::query()->where('status', true);
 
-        // Search by title
+        // Search by title (if provided)
         if ($request->filled('title')) {
             $query->where('title', 'like', '%' . $request->input('title') . '%');
         }
-        //Search by company
-        if ($request->filled('company')) {
-            $companyId = $request->input('company');
-            $query->where('company_id', $companyId);
+
+        // Search by specific fields with exact matching
+        $exactMatchFields = [
+            'company' => 'company_id',
+            'type' => 'type_id',
+            'model' => 'model_id',
+            'year' => 'year',
+            'fuel' => 'fuel',
+            'transmission' => 'transmission',
+            'steering_side' => 'steering_side',
+            'cylinders' => 'cylinders',
+            'regional_specs' => 'regional_specs',
+            'location' => 'location',
+        ];
+
+        foreach ($exactMatchFields as $requestKey => $dbColumn) {
+            if ($request->filled($requestKey)) {
+                $query->where($dbColumn, $request->input($requestKey));
+            }
         }
 
-        // Search by type
-        if ($request->filled('type')) {
-            $query->where('type_id', $request->input('type'));
+        // Search by multiple companies/types (if provided)
+        $multiSelectFields = [
+            'companies' => 'company_id',
+            'types' => 'type_id',
+        ];
+
+        foreach ($multiSelectFields as $requestKey => $dbColumn) {
+            if ($request->has($requestKey)) {
+                $query->whereIn($dbColumn, $request->input($requestKey));
+            }
         }
 
-        // Search by Model
-        if ($request->filled('model')) {
-            $query->where('model_id', $request->input('model'));
-        }
-        // dd($request->input('company'), $request->input('type'), $request->input('model'));
-
-        // Search by company
-        if ($request->has('companies')) {
-            $query->whereIn('company_id', $request->input('companies'));
-        }
-
-        // Search by type
-        if ($request->has('types')) {
-            $query->whereIn('type_id', $request->input('types'));
-        }
-        // Search by price range
+        // Price range search
         if ($request->filled('min_price') && $request->filled('max_price')) {
-            $query->whereBetween('price', [$request->input('min_price'), $request->input('max_price')]);
+            $query->whereBetween('price', [
+                min($request->input('min_price'), $request->input('max_price')),
+                max($request->input('min_price'), $request->input('max_price'))
+            ]);
         } elseif ($request->filled('min_price')) {
             $query->where('price', '>=', $request->input('min_price'));
         } elseif ($request->filled('max_price')) {
             $query->where('price', '<=', $request->input('max_price'));
         }
 
-        // Order by latest
-        $cars = $query->latest()->paginate(15);
+        // Mileage range search
+        if ($request->filled('min_mileage') && $request->filled('max_mileage')) {
+            $query->whereBetween('mileage', [
+                min($request->input('min_mileage'), $request->input('max_mileage')),
+                max($request->input('min_mileage'), $request->input('max_mileage'))
+            ]);
+        } elseif ($request->filled('min_mileage')) {
+            $query->where('mileage', '>=', $request->input('min_mileage'));
+        } elseif ($request->filled('max_mileage')) {
+            $query->where('mileage', '<=', $request->input('max_mileage'));
+        }
 
-        // dd($cars);
-        // Fetch unique companies and types for checkboxes
+        // Seating capacity search
+        if ($request->filled('seating_capacity')) {
+            $query->where('seating_capacity', $request->input('seating_capacity'));
+        }
+
+        // Additional optional filters
+        $optionalFilters = [
+            'color' => 'color',
+            'interior_color' => 'interior_color',
+            'condition' => 'condition',
+        ];
+
+        foreach ($optionalFilters as $requestKey => $dbColumn) {
+            if ($request->filled($requestKey)) {
+                $query->where($dbColumn, $request->input($requestKey));
+            }
+        }
+
+        // Optional boolean filters
+        $booleanFilters = [
+            'popular' => 'popular',
+            'featured' => 'featured',
+        ];
+
+        foreach ($booleanFilters as $requestKey => $dbColumn) {
+            if ($request->has($requestKey)) {
+                $query->where($dbColumn, $request->input($requestKey));
+            }
+        }
+
+        // Order and paginate results
+        $cars = $query->with(['company', 'type', 'model'])  // Eager load relationships
+            ->latest()
+            ->paginate(15);
+
+        // Fetch dropdown options
         $companies = Company::all();
         $types = Type::all();
         $models = VehicleModel::all();
+
         return view('search', compact('cars', 'companies', 'types', 'models'));
     }
 }

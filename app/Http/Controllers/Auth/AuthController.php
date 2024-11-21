@@ -10,8 +10,8 @@ class AuthController extends Controller
 {
     public function users()
     {
-        $users = User::where('role', 'user')->get();
+        // $users = User::where('role', 'user')->get();
 
-        return response()->json($users);
+        // return response()->json($users);
     }
 }

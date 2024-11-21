@@ -25,6 +25,13 @@ return new class extends Migration
             $table->string('price_type');
             $table->string('condition');
             $table->string('description');
+            $table->string('location');
+            $table->string('steering_side');
+            $table->string('cylinders');
+            $table->string('regional_specs');
+            $table->string('seats');
+            $table->boolean('popular');
+            $table->boolean('featured');
             $table->string('image');
             $table->boolean('status')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

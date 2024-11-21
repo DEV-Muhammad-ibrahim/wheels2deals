@@ -8,24 +8,32 @@ use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleImages;
 use App\Models\Type;
+use App\Models\VehicleModel;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ViewController extends Controller
 {
+    public function checkModel()
+    {
+        $models = VehicleModel::where(['type_id' => '1'])->get();
+        dd($models);
+    }
     public function index()
     {
 
 
         $brands = Company::inRandomOrder()->take(10)->get();
+        // $brands = Company::all();
         $types = Type::inRandomOrder()->take(10)->get();
 
 
-        $randomCars = Vehicle::with(['user', 'images'])->inRandomOrder()->take(6)->where('status', true)->get();
+        $featureCars = Vehicle::with(['user', 'images'])->inRandomOrder()->take(6)->where(['status' => true])->get();
+        $popularCars = Vehicle::with(['user', 'images'])->inRandomOrder()->take(6)->where(['status' => true, 'popular' => true])->get();
 
 
-        return view('index', compact('brands', 'types', 'randomCars')); // Pass the brands data to the view
+        return view('index', compact('brands', 'types', 'featureCars', 'popularCars')); // Pass the brands data to the view
 
     }
     public function error()

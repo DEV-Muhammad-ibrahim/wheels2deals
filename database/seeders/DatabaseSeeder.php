@@ -31,5 +31,8 @@ class DatabaseSeeder extends Seeder
             'verified' => true,
             'user_can_add_products' => true,
         ]);
+        $this->call(TypesTableSeeder::class);
+        $this->call(CompanySeeder::class);
+        $this->call(ModelSeeder::class);
     }
 }

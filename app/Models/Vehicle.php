@@ -30,7 +30,14 @@ class Vehicle extends Model
         'model_id',
         'type_id',
         'company_id',
-        'category_id'
+        'category_id',
+        'location',
+        'steering_side',  // Corrected spelling from "steeing_side"
+        'cylinders',
+        'regional_specs',
+        'seats',
+        'popular',
+        'featured'
     ];
 
     /**

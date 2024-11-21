@@ -83,7 +83,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ViewController::class, 'profile'])->name('profile');
     Route::get('/setting', [ViewController::class, 'setting'])->name('setting');
     Route::post('/vendor/create', [RegisterVendorController::class, 'register'])->name('register_vendor');
-
     Route::post('/change-password', [RegisterVendorController::class, 'update'])->name('change.password');
 });
 Route::get('/privacy', [ViewController::class, 'privacy'])->name('privacy');
